@@ -1,0 +1,27 @@
+<!-- Navbar (Header) Starts  [class.sticky]="sticky" -->
+<nav *ngIf="!publicLink" class="header-navbar navbar navbar-expand-lg navbar-light bg-faded sticky" #stickyMenu
+  id="app-header">
+  <div class="container-fluid d-flex justify-content-end">
+    <!-- <div class="navbar-header">
+      <button type="button" class="navbar-toggle d-lg-none float-left" data-toggle="collapse" (click)="toggleSidebar()">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="d-lg-none navbar-right navbar-collapse-toggle">
+        <a class="open-navbar-container" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+          aria-controls="navbarSupportedContent">
+          <i class="ft-more-vertical"></i>
+        </a>
+      </span>
+      <app-reselect-country *ngIf="showAdminButtons"></app-reselect-country>
+    </div> -->
+    <div class="navbar-container">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+        <app-navbar-item></app-navbar-item>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- Navbar (Header) Ends -->

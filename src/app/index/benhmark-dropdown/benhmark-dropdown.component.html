@@ -1,0 +1,8 @@
+<div>
+    <div>
+        <ng-select [items]="dropdownList" [(ngModel)]="selectedBenchmark" [clearable]="false" [searchable]="false"
+            (change)="selectBenchmark($event); setServiceVariable($event)">
+        </ng-select>
+    </div>
+    <div class="description" innerHTML="{{description}}"></div>
+</div>

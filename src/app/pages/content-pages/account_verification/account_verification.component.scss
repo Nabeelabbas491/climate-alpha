@@ -1,0 +1,232 @@
+.main-container {
+  position: relative;
+  background: black;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+
+.placement {
+  margin: 0 9rem;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.btn {
+  background-color: #009999;
+  padding: 15px 20px 15px 20px;
+  height: 47px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  fill: #fff;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.form-input {
+  min-height: 46px;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.input-box {
+  position: absolute;
+  width: 100%;
+  top: 44%;
+}
+
+.tag-form-group {
+  background: white;
+  // border: 1px solid bl;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .ng2-tag-input.ng2-tag-input--focused {
+  border-bottom: unset !important;
+}
+
+::ng-deep .code-input input {
+  font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.clr_green {
+  color: #009999;
+  font-weight: 500;
+}
+
+code-input {
+  // for bottom css provide explicitly to cover all four sides of input
+
+  --item-border-has-value: 2px solid #009999; // when input has a value
+  --item-border-bottom-has-value: 2px solid #009999; // when input has a value
+
+  --item-border-bottom-focused: 2px solid #009999; // when input is focused
+  --item-border-focused: 2px solid #009999; // when input is focused
+  font-size: 60px;
+  --item-shadow-focused: 0px 1px 5px rgb(102, 184, 174); // shadow color
+  --item-height: 7rem;
+  --item-spacing: 10px;
+
+  // --text-security-type: disc;  // when code is hidden text style type
+
+  // --item-border-radius: 5px;
+  // --item-background: transparent;
+  // --color: #171516;
+  // --item-spacing: 4px;
+}
+
+
+
+.btn-primary {
+  color: white !important;
+}
+
+.text-note {
+  font-size: 11px;
+}
+
+#verification_code {
+  background-image: url('../../../../assets/img/pdf/pdf_header.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  .login-img {
+    padding: 0;
+    background: #0000003b;
+  }
+
+  .login-btn {
+    .btn.btn-outline-primary {
+      &:hover {
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .recover-pass {
+    button.btn.btn-primary {
+      color: #fff !important;
+    }
+  }
+
+  .forgot-password-option,
+  .remember-me {
+
+    a.text-decoration-none,
+    .custom-control-label {
+      font-size: 14px;
+    }
+  }
+}
+
+.grey-overlay {
+  // background: #867e7e8f;
+  background: #7070708f;
+}
+
+.footer-text {
+  //  font-family: "Montserrat", Sans-serif;
+  padding: 0;
+  font-size: 1rem;
+
+}
+
+.password_title_align {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+input[type=checkbox] {
+  accent-color: #009999;
+  cursor: pointer;
+}
+
+#login {
+
+  // background-image: url('../../../../assets/img/gallery/login_bg.jpg');
+  background-image: url('../../../../assets/img/pdf/pdf_header.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  .login-img {
+    padding: 0;
+    background: #0000003b;
+  }
+
+  .login-btn {
+    .btn.btn-outline-primary {
+      &:hover {
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .recover-pass {
+    button.btn.btn-primary {
+      color: #fff !important;
+    }
+  }
+
+  .forgot-password-option,
+  .remember-me {
+
+    a.text-decoration-none,
+    .custom-control-label {
+      font-size: 14px;
+    }
+  }
+}
+
+.login_btn_clr {
+  background: #009999;
+}
+
+.bg-transparent {
+  background: transparent !important;
+}
+
+.grey-overlay {
+  // background: #867e7e8f;
+  background: #7070708f;
+}
+
+.login_text_clr {
+  color: #009999 !important;
+}
+
+.password_title_align {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn {
+  margin-bottom: 5px;
+}

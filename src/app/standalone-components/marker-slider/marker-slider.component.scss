@@ -1,0 +1,127 @@
+.benchmark-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 170px;
+  height: 28px;
+  border-radius: 35px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  position: relative;
+}
+
+.red {
+  color: #810000 !important;
+  background: rgb(243, 230, 230);
+  border: 1px solid #810000;
+}
+
+.green {
+  color: #009999 !important;
+  background: rgba(0, 153, 153, 0.1);
+  border: 1px solid #009999;
+}
+
+::ng-deep .benchmark-slider {
+  .ngx-slider .ngx-slider-bar {
+    background: #B5B5B5;
+    ;
+    height: 2px;
+  }
+
+  .ngx-slider .ngx-slider-selection {
+    background: #B5B5B5;
+    ;
+  }
+
+  .ngx-slider .ngx-slider-pointer {
+    width: 0x;
+    height: 0px;
+    top: auto;
+    /* to remove the default positioning */
+    bottom: 35px;
+    background-color: #333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .ngx-slider .ngx-slider-pointer:after {
+    display: none;
+  }
+
+  .ngx-slider .ngx-slider-bubble {
+    bottom: 14px;
+  }
+
+  .ngx-slider .ngx-slider-limit {
+    font-weight: bold;
+    color: #B5B5B5;
+    ;
+  }
+
+  .ngx-slider .ngx-slider-tick {
+    width: 2px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #B5B5B5;
+    ;
+    top: -1px;
+  }
+
+  .ngx-slider .ngx-slider-tick-legend {
+    top: 18px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    color: #292929;
+    cursor: default;
+    white-space: nowrap
+  }
+
+  .ngx-slider .ngx-slider-ticks {
+    left: 5px;
+  }
+
+  .ngx-slider .ngx-slider-tick.ngx-slider-selected {
+    background: #B5B5B5;
+    ;
+  }
+}
+
+:host ::ng-deep .slider-label {
+  // width: 120px;
+  white-space: nowrap;
+  // display: block;
+  display: flex;
+  justify-content: center;
+  cursor: default;
+  position: relative;
+  // right: 30px;
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 700;
+  top: 12px;
+}
+
+:host ::ng-deep .ciel-floor-label {
+  // width: 120px;
+  white-space: nowrap;
+  // display: block;
+  display: flex;
+  justify-content: center;
+  cursor: default;
+  position: relative;
+  // right: 30px;
+  font-size: 10px;
+  // padding-top: 8px;
+  font-weight: 600;
+}
+
+:host ::ng-deep .slider-icon {
+  cursor: default;
+  //  position: relative;
+  //  right: 11px;
+}

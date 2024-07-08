@@ -1,0 +1,66 @@
+@mixin textDecoration($font-weight, $font-size, $line-height, $color) {
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $color;
+}
+
+.title {
+    @include textDecoration(500, 18px, 24px, #000000);
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.card {
+    background: #FFFFFF !important;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.font-weight-500 {
+    font-weight: 500;
+}
+
+// for styhling height of ng select. first give static height and then set height through min-heigh
+:host ::ng-deep .ng-select.ng-select-single .ng-select-container {
+    height: 30px;
+    min-height: 2px;
+}
+
+// for styling of selected value from options
+:host ::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    padding-top: 2px !important;
+}
+
+// for styling of cross icon
+:host ::ng-deep .ng-select .ng-clear-wrapper {
+    display: none !important;
+}
+
+//  for styling of arrow wrapper
+:host ::ng-deep .ng-select .ng-arrow-wrapper {
+    padding-top: 3px !important;
+}
+
+// for styling of border color when focused and option is selected
+:host ::ng-deep .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    border-color: #009999 !important;
+}
+
+
+// map
+.alphaFinderMap {
+    height: 523px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.map-frame {
+    // padding: 1rem 2rem;
+}
+
+.index-nmbr {
+    @include textDecoration(700, 14px, 22px, #006666)
+}

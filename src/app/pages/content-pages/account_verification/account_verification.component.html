@@ -1,0 +1,43 @@
+<!--Verification Page Starts-->
+<section *ngIf="renderPage" id="verification_code">
+  <div class="row auth-height full-height-vh m-0" style="background: rgba(12, 40, 40, 0.62);">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="card overflow-hidden bg-transparent">
+        <div class="card-content bg-transparent">
+          <div class="card-body login-img bg-transparent">
+            <div class="row m-0 bg-transparent">
+              <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center text-center py-2 "
+                style="background: rgba(112, 112, 112, 0.56078);">
+                <img src="../../assets/img/logos/alphaGeo-login.png"
+                  alt="Login to access AlphaGeo: future-proof analytics on one platform" class="img-fluid logo-w"
+                  width="400" height="230" />
+              </div>
+              <!-- Register -->
+              <div class="col-lg-6 col-md-12 px-4 py-3 bg-white">
+                <div class="container py-3">
+                  <h3 class="text-center py-2 fw-600">Verify Your Email</h3>
+                  <div class="py-2">
+                    <p>In order to activate your account, please enter the verification code sent to your registered
+                      email.</p>
+                  </div>
+                  <div class="placement">
+                    <ngx-otp-input #ngxotp [config]="otpInputConfig" (otpChange)="onCodeChanged($event)"
+                      (fill)="onCodeCompleted($event)"></ngx-otp-input>
+                  </div>
+                  <!-- <code-input class="code-input" [isCodeHidden]="false" [codeLength]="6" [isCharsCode]="false"
+                            (codeChanged)="onCodeChanged($event)" (codeCompleted)="onCodeCompleted($event)">
+                        </code-input> -->
+                  <div class="mt-3 text-center">
+                    <span>Didn't receive code?</span> <a class="clr_green" *ngIf="show_resend_code"
+                      (click)="resendCode()">
+                      Resend code</a> <span *ngIf="!show_resend_code"> Wait for ( {{time}}s )</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

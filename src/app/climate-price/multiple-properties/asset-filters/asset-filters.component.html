@@ -1,0 +1,167 @@
+<div>
+    <div class="w-100 d-flex align-items-center justify-content-between accordion page">
+        <div class="d-flex align-items-center">
+            <div class="cursor-pointer" (click)="toggle()">
+                <div class="app-tooltip right filter-header-label">
+                    Data Filter
+                    <span class="tooltiptext">
+                        Compartmentalize your analysis with dynamic filters that can be applied to capture any point of
+                        view. <a class="anchor" href="https://support.alphageo.ai/knowledge/data-filter"
+                            target="_blank">Learn More</a>
+                    </span>
+                </div>
+                <img id="{{arrowId}}" [ngClass]=" accordianOpen ? 'accordian-arrow-down' : 'accordian-arrow-up' "
+                    src="assets/img/svg/climate_price/up_arrow.svg" class="ml-1 mr-2">
+            </div>
+            <div class="properties-selected">{{totalAssets}}
+                {{ totalAssets === 1 ? 'Asset' : 'Assets'}} </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="btn white-btn"
+                (click)="!isSaveCurrentFilterBtnDisabled && userFiltersComponent.openModal(userFiltersComponent.createNewFilterModal)"
+                *ngIf="accordianOpen && !shareableLink" [ngClass]="{'disabled' : isSaveCurrentFilterBtnDisabled}"> Save
+                Current Filter
+            </div>
+            <div class="btn white-btn mx-2"
+                (click)="userFiltersComponent.openModal(userFiltersComponent.savedFiltersModal)"
+                *ngIf="accordianOpen && !shareableLink" container="body">
+                Saved Filters </div>
+            <div class="btn add-to-btn" [ngClass]="{'disabled' : apiCallInProgress }"
+                *ngIf="permissions.showAddToComparisonBtn" [ngbPopover]="popContent"
+                [disablePopover]="apiCallInProgress" [autoClose]="'outside'" container="body"
+                popoverTitle="Please name the asset grouping you are using for comparison."
+                [comparisonName]="comparisonName">
+                Add to Comparison
+            </div>
+            <ng-template #popContent>
+                <div class="d-flex filter-popover mb-1">
+                    <input [(ngModel)]="comparisonName" (keyup)="popoverInputKeyup()" id="popover-comparison-name-input"
+                        class="form-control">
+                    <div class="ml-1 btn green-button" [ngClass]="{'disabled' : !comparisonName.length }"
+                        (click)="saveComparison()">Save</div>
+                </div>
+                <span id="comparison-popover-error-msg" class="error-msg d-none">
+                    Comparison view with this title already exists. Please rename and save again!
+                </span>
+            </ng-template>
+        </div>
+    </div>
+    <div class="panel page" id="{{panelId}}">
+        <div class="grey-border  col-12 font-small-2 font-weight-500 clear-all-filters text-end mt-2"
+            *ngIf="!shareableLink">
+            <span class="cursor-pointer" (click)="ResetAllFilters(); ApplyFilter.next()">Clear All
+                Filters</span>
+        </div>
+        <form [formGroup]="filters" class="page">
+            <app-tiers-dropdowns [form]="filters" (TotalAssetCount)="totalAssets = $event"
+                (FetchAssetsFilters)="getAssetFilters()" (PatchValues)="patchValues($event)"
+                (ApplyFilter)="ApplyFilter.next()" (TierNamesChanged)="TierNamesChanged.emit($event)">
+            </app-tiers-dropdowns>
+            <div class="row mt-3">
+                <div class="col-md-3 pr-0">
+                    <label>Country</label>
+                    <ng-select [searchable]="true" [clearable]="true" [dropdownPosition]="'bottom'" [appendTo]="'body'"
+                        formControlName="selectedCountry">
+                        <ng-option [value]="''"><span class="fz-14px">All Countries</span></ng-option>
+                        <ng-option *ngFor="let item of assetFilters?.countries" [value]="item"><span
+                                class="fz-14px">{{item}}</span>
+                        </ng-option>
+                    </ng-select>
+                </div>
+                <div class="col-md-3 pr-0">
+                    <label>State</label>
+                    <ng-select [items]="assetFilters?.states" [clearSearchOnAdd]="true" [closeOnSelect]="false"
+                        [dropdownPosition]="'bottom'" [multiple]="true" clearAllText="Clear" placeholder="All States"
+                        [appendTo]="'body'" formControlName="selectedStates" [bindLabel]="'text'">
+                        <ng-template ng-header-tmp>
+                            <div class="d-flex py-2 justify-content-center">
+                                <div class="header-optn-text" (click)="selectAll('selectedStates', 'states')"> Select
+                                    All </div>
+                                <div class="header-optn-text ml-2" (click)="unSelectAll('selectedStates')"> Deselect
+                                    All </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <div class="d-flex justify-content-between fz-14px">
+                                {{item}} {{item.selected}}
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                                    [ngModelOptions]="{standalone: true}" />
+                            </div>
+                        </ng-template>
+                        <ng-template ng-multi-label-tmp let-items="items">
+                            <div class="fz-14px">
+                                {{ filters.value.selectedStates.length > 1 ? filters.value.selectedStates.length + ' states selected' : filters.value.selectedStates.length + ' state selected'  }}
+                            </div>
+                        </ng-template>
+                    </ng-select>
+                </div>
+                <div class="col-md-3 pr-0">
+                    <label>City</label>
+                    <ng-select [items]="assetFilters?.cities" [clearSearchOnAdd]="true" [closeOnSelect]="false"
+                        [dropdownPosition]="'bottom'" [multiple]="true" clearAllText="Clear" placeholder="All Cities"
+                        [appendTo]="'body'" formControlName="selectedCities" [bindLabel]="'text'">
+                        <ng-template ng-header-tmp>
+                            <div class="d-flex py-2 justify-content-center">
+                                <div class="header-optn-text" (click)="selectAll('selectedCities', 'cities')"> Select
+                                    All </div>
+                                <div class="header-optn-text ml-2" (click)="unSelectAll('selectedCities')"> Deselect
+                                    All </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <div class="d-flex justify-content-between fz-14px">
+                                {{item}} {{item.selected}}
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                                    [ngModelOptions]="{standalone: true}" />
+                            </div>
+                        </ng-template>
+                        <ng-template ng-multi-label-tmp let-items="items">
+                            <div class="fz-14px">
+                                {{ filters.value.selectedCities.length > 1 ? filters.value.selectedCities.length + ' cities selected' : filters.value.selectedCities.length + ' city selected'  }}
+                            </div>
+                        </ng-template>
+                    </ng-select>
+                </div>
+                <div class="col-md-3">
+                    <label>Property Type</label>
+                    <ng-select [items]="assetFilters?.property_types" [clearSearchOnAdd]="true" [closeOnSelect]="false"
+                        [appendTo]="'body'" [dropdownPosition]="'bottom'" labelForId="state" [multiple]="true"
+                        clearAllText="Clear" placeholder="All Property Types" formControlName="selectedPropetryTypes"
+                        [bindLabel]="'text'">
+                        <ng-template ng-header-tmp>
+                            <div class="d-flex py-2 justify-content-center">
+                                <div class="header-optn-text"
+                                    (click)="selectAll('selectedPropetryTypes', 'property_types')"> Select All </div>
+                                <div class="header-optn-text ml-2" (click)="unSelectAll('selectedPropetryTypes')">
+                                    Deselect All </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <div class="d-flex justify-content-between fz-14px">
+                                {{item}} {{item.selected}}
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"
+                                    [ngModelOptions]="{standalone: true}" />
+                            </div>
+                        </ng-template>
+                        <ng-template ng-multi-label-tmp let-items="items">
+                            <div class="fz-14px">
+                                {{ filters.value.selectedPropetryTypes.length > 1 ? filters.value.selectedPropetryTypes.length + ' property types selected' : filters.value.selectedPropetryTypes.length + ' property type selected'  }}
+                            </div>
+                        </ng-template>
+                    </ng-select>
+                </div>
+                <div class="col-md-12" *ngIf="!shareableLink">
+                    <div class="apply-filter-btn mt-3" (click)="applyFilter()"
+                        [ngClass]="{'disabled' : apiCallInProgress }">
+                        Apply Filter
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--create new and saved filters Modal -->
+<app-user-filters [form]="filters" [totalAssets]="totalAssets"
+    (LoadFilter)="patchValues($event); SavedFilterApplied.next()">
+</app-user-filters>

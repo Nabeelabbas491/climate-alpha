@@ -1,0 +1,61 @@
+<div class="continer-fluid">
+    <div class="card main-card">
+        <div class="pr-3">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="pl-3 title">Search Library</div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <fieldset class="form-group">
+                        <input (keyup)="search($event.target.value)" placeholder="Search by keywords"
+                            class="form-control">
+                    </fieldset>
+                </div>
+            </div>
+            <section class="features-section">
+                <div class="row px-3 pt-3" *ngIf="savedFeaturesList.length">
+                    <div class="col-md-4 pb-30" *ngFor="let item of savedFeaturesList; let i = index">
+                        <div class="saved-search-box p-2" (click)="searchId = item.id"
+                            [ngStyle]="{ 'background' : searchId == item.id ? '#F9F9F9' : '' , 'border' : searchId == item.id  ? '1px solid #009999' : ''}">
+                            <div class="d-flex justify-content-between">
+                                <span class="title">{{item.title}}</span>
+                                <span class="d-flex align-items-center">
+                                    <i class="green_clr cursor-pointer ft ft-edit-3 pr-1" *ngIf="item.user == user.id"
+                                        (click)="handleNavigation('/alpha-finder/dashboard/', item)"></i>
+                                    <i class="green_clr cursor-pointer ft ft-trash-2" [ngbPopover]="popContent"
+                                        *ngIf="item.user == user.id" container="body"
+                                        popoverTitle="Are you sure you want to delete your saved search ?"></i>
+                                </span>
+                                <ng-template #popContent>
+                                    <button class="apply_btns" (click)="deleteFeature(item,i)">Yes</button>
+                                    <button class="ml-1 apply_btns">No</button>
+                                </ng-template>
+                            </div>
+                            <div class="created-at mt-3">
+                                {{item.updated_at}}
+                            </div>
+                            <div class="description mt-3">
+                                {{item.description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center" *ngIf="!savedFeaturesList.length">
+                    <span>No items found!</span>
+                </div>
+            </section>
+        </div>
+        <footer class="footer d-flex relative">
+            <div>
+                <div class="search-alpha-btn" (click)="findAlpha()">Find Alpha</div>
+            </div>
+            <div class="d-flex footer-right-btn-main pr-3">
+                <div class="go-to-features-btn" [routerLink]="['/alpha-finder/dashboard/' + country.path ]">
+                    <span class="d-flex align-items-center"> <img src="{{featureIcon}}" class="pr-1">Back to Feature
+                        Selection</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

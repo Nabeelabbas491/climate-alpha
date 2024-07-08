@@ -1,0 +1,424 @@
+<div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 ">
+                    <!-- hedaer -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <button (click)="addRow()" class=" white-btn">
+                                <img src="assets/img/svg/climate_price/Add.svg" class=" mr-1"> Add Property
+                            </button>
+                            <button class="ml-2 white-btn" (click)="openModal(uploadPortfolioModal)">
+                                <img src="assets/img/svg/climate_price/Upload_2.svg" class=" mr-1">
+                                Upload Property List
+                            </button>
+                            <span class="unSelect-all-text ml-2" (click)="unSelectAll()">
+                                Unselect All
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="app-tooltip left">
+                                <img class="info-icon mr-1" src="assets/img/svg/shared/info.svg"
+                                    *ngIf="permissions.showInfoIcon">
+                                <span class="tooltiptext">
+                                    After selecting an asset (or multiple assets), right-click to edit, duplicate
+                                    or delete the entry(-ies). <br>
+                                    <a class="anchor" href="https://support.alphageo.ai/knowledge/property-table"
+                                        target="_blank">Learn
+                                        More</a>
+                                </span>
+                            </div>
+                            <!-- search and cross icon inside input -->
+                            <div style="position: absolute; right: 1.3%; top: 0.8%;">
+                                <img src="assets/img/svg/Search_no_color.svg" *ngIf="search.length == 0">
+                                <!-- <img src="assets/img/svg/climate_price/Close.svg" *ngIf="search.length >= 1"
+                                    (click)=""> -->
+                            </div>
+                            <input id="myInput" (keyup)="getData()" [(ngModel)]="search" class="form-control"
+                                style="font-size: 12px;height: 30px;"
+                                placeholder="Search by property name, address or zip">
+                        </div>
+                    </div>
+                    <!-- right click menu -->
+                    <div id="right_menu" style="position: absolute;">
+                        <ul class="navbar-nav " [ngbCollapse]="false">
+                            <li class="nav-item" ngbDropdown display="dynamic" id="menu" #menu>
+                                <a class="nav-link position-relative " id="dropdownBasic3" ngbDropdownToggle></a>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="text-left p-0"
+                                    style="margin: 0" id="right_menu_items">
+                                    <a *ngFor="let item of menuItems; let last = last"
+                                        class="dropdown-item cursor-pointer" [ngClass]="{'red': last}"
+                                        (click)="onMenuItemSelection(item)">
+                                        <img src={{item.icon}} width="12px" height="12px"><span class="pl-1">
+                                            {{ item.name}}</span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="over-flow mt-2" (wheel)="onWheel($event)">
+                        <table id="myTable" class="table mb-0">
+                            <!-- table header -->
+                            <thead (mouseenter)="closeAllOpenedPopovers()">
+                                <tr class="table_header_row" style="border: 0;">
+                                    <!-- edit column header -->
+                                    <th style="border: 0;background-color: #fff;" class="first-col"
+                                        [ngClass]="{'zero-width' :  isAnyRowOnEditMode}"
+                                        [ngStyle]="{'left' : staticCols?.editColumn }" *ngIf="rowAction == 'edit' ">
+                                        <div *ngIf="showBulkOperationIcons">
+                                            <img src="assets/img/svg/data-manager/save-all.svg" class="img_btn_size"
+                                                (click)="update()">
+                                            <img src="assets/img/svg/data-manager/cancel-all.svg" class="img_btn_size"
+                                                (click)="revertAllRowEdit()">
+                                        </div>
+                                    </th>
+                                    <!-- check box header -->
+                                    <th *ngIf="showCheckBoxColumn" class="pdf_none text-center second-col"
+                                        [ngStyle]="{'left' : staticCols?.checkBoxColumn }"
+                                        style="background-color: #4A7182;">
+                                        <div *ngIf="!isTrialUser" class="header-checkbox"
+                                            (click)="onHeaderCheckBoxChange(p)" [ngbPopover]="modalSelectAll"
+                                            triggers="manual" #p="ngbPopover" [container]="'body'"
+                                            placement="bottom-left"></div>
+                                    </th>
+                                    <!-- Status -->
+                                    <th class="third-col" [ngStyle]="{'left' : staticCols?.statusColumn }">
+                                        <div class="d-flex justify-content-center">
+                                            <span (click)="sortColumn(headers[0])"
+                                                style="cursor: pointer;user-select: none;white-space: nowrap"
+                                                class="title"> Status <img
+                                                    [ngClass]="{'rotate-180' : headers[0].sortOrder == 'asc', 'rotate-0' : headers[0].sortOrder == 'desc'   }"
+                                                    src="assets/img/svg/climate_price/Sort icon.svg"></span>
+                                        </div>
+                                    </th>
+                                    <!-- headers -->
+                                    <th class="text-center sticky-top" *ngFor="let item of headers; let i = index"
+                                        [ngStyle]="{'background' : item.color, 'display' : item.show ? 'revert' : 'none'}">
+                                        <div class="d-flex justify-content-center">
+                                            <span style="cursor: pointer;user-select: none;white-space: nowrap"
+                                                (click)="sortColumn(item)" class="title"> {{item.title}} <img
+                                                    [ngClass]="{'rotate-180' : item.sortOrder == 'asc', 'rotate-0' : item.sortOrder == 'desc' }"
+                                                    src="assets/img/svg/climate_price/Sort icon.svg"></span>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <!-- table body -->
+                            <tbody *ngIf="assets?.length > 0" class="over-flow-y">
+                                <tr *ngFor="let item of assets | paginate: { itemsPerPage: rowsPerPage, currentPage: pageNumber, totalItems: totalAssets }; let i =index;"
+                                    id="api-data-table-{{i}}" (mouseenter)="closeAllOpenedPopovers()"
+                                    [ngClass]="{'table-striped': item.checked, 'border-left' : item.checked, 'data-row' : !item.uuid || item.editRow }"
+                                    (contextmenu)="rightclick($event,i); $event. preventDefault();">
+                                    <!-- edit action column cross and tick -->
+                                    <td *ngIf="rowAction == 'edit'" class="edit-column first-col"
+                                        [ngStyle]="{'left' : staticCols?.editColumn }">
+                                        <div *ngIf="item.editRow">
+                                            <div (click)=" item.uuid ? update(assets[i]) : save(i)">
+                                                <img src="assets/img/svg/climate_price/tick.svg" class="img_btn_size">
+                                            </div>
+                                            <div (click)="revertRowEdit(item,i)">
+                                                <img src="assets/img/svg/climate_price/cross.svg" class="img_btn_size">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- checkbox column -->
+                                    <td *ngIf="showCheckBoxColumn" class="second-col"
+                                        (mouseenter)="closeAllOpenedPopovers()"
+                                        [ngStyle]="{'left' : staticCols?.checkBoxColumn, 'background' : item.checked ? '#F1F1F3' : '#fff' }">
+                                        <input
+                                            [ngbPopover]=" (isTrialUser && item.process_status !== 'Failed') ? popover1 : '' "
+                                            placement="right" triggers="mouseenter" container="body" type="checkbox"
+                                            (change)="onCheckBoxChange(item)"
+                                            [disabled]="(isTrialUser && item.process_status !== 'Failed')"
+                                            class="{{ (isTrialUser && item.process_status !== 'Failed') ? 'cursor-help' : 'cursor-pointer' }}"
+                                            [(ngModel)]="item.checked">
+                                        <ng-template #popover1>
+                                            <div>Processed data cannot be edited with a trial subscription.</div>
+                                        </ng-template>
+                                    </td>
+                                    <!-- status -->
+                                    <td class="third-col"
+                                        [ngStyle]="{'left' : staticCols?.statusColumn,  'background' : item.checked ? '#F1F1F3' : '#fff' }">
+                                        <img [src]="icons[item.process_status]" [ngbPopover]=" popContent"
+                                            placement="right" triggers="mouseenter" container="body">
+                                        <!-- icon poperover -->
+                                        <ng-template #popContent>
+                                            <div *ngIf="item.process_status == 'Failed' ">
+                                                <div innerHtml="{{item.processing_error}}"> </div>
+                                                <a href="https://support.alphageo.ai/knowledge/location-not-found"
+                                                    target="_blank" class="failed-icon-tooltip">Learn more</a>
+                                            </div>
+                                            <div *ngIf="item.process_status == 'Processed' ">Data processed.</div>
+                                            <div *ngIf="item.process_status == 'Processing' ">Your data is processing.
+                                                Please check back again soon!</div>
+                                        </ng-template>
+                                    </td>
+                                    <!-- address -->
+                                    <td>
+                                        <div [ngClass]="{'link' : item.process_status == 'Processed'}"
+                                            *ngIf="!item.editRow" (click)="navigate(item, 'Property Name')">
+                                            {{item.address || '-'}} </div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <input class="form-control" [(ngModel)]="item.address">
+                                            <span class="steric">*</span>
+                                        </div>
+                                    </td>
+                                    <!-- city -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.city || '-'}}</div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <input class="form-control" [(ngModel)]="item.city">
+                                            <span class="steric">*</span>
+                                        </div>
+                                    </td>
+                                    <!-- state -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.state || '-'}}</div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <input class="form-control" [(ngModel)]="item.state">
+                                        </div>
+                                    </td>
+                                    <!-- zipcode -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.zip_code || '-'}}</div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <input class="form-control" [(ngModel)]="item.zip_code">
+                                        </div>
+                                    </td>
+                                    <!-- country -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.country_formatted || '-'}}</div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <input class="form-control" [(ngModel)]="item.country_formatted">
+                                            <span class="steric">*</span>
+                                        </div>
+                                    </td>
+                                    <!-- property type -->
+                                    <td class="position-relative">
+                                        <div *ngIf="!item.editRow">{{item.asset || '-'}}</div>
+                                        <div *ngIf="item.editRow">
+                                            <img ngbTooltip="Add a new property type"
+                                                (click)="selectedRowIndex = i; openModal(createNewPropertyModal)"
+                                                src="assets/img/svg/climate_price/Add_green.svg" class="add-icon">
+                                        </div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <ng-select [dropdownPosition]="'bottom'" [appendTo]="'body'" class="test"
+                                                placeholder="Portfolio Type" [(ngModel)]="item.asset" required
+                                                [clearable]="false" [items]="item.propertyTypes">
+                                                <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                    <span class="fz-12">{{item}}</span>
+                                                </ng-template>
+                                            </ng-select>
+                                            <span class="steric">*</span>
+                                        </div>
+                                    </td>
+                                    <!-- latitude -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">
+                                            {{ item.latitude | number : '.6-6' || '-'}}</div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <input class="form-control" [(ngModel)]="item.latitude">
+                                        </div>
+                                    </td>
+                                    <!-- longitude -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.longitude | number : '.6-6' || '-'}}</div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <input class="form-control" [(ngModel)]="item.longitude">
+                                        </div>
+                                    </td>
+                                    <!-- property name -->
+                                    <td>
+                                        <div [ngClass]="{'link' : item.process_status == 'Processed'}"
+                                            *ngIf="!item.editRow" (click)="navigate(item, 'Property Name')">
+                                            {{item.property_name || '-'}} </div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <input class="form-control" [(ngModel)]="item.property_name">
+                                        </div>
+                                    </td>
+
+                                    <!-- valuation -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.valuation || '-'}}</div>
+                                        <div *ngIf="item.editRow">
+                                            <input class="form-control" [(ngModel)]="item.valuation">
+                                        </div>
+                                    </td>
+                                    <!-- Year of valuation -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.year_valuation || '-'}}</div>
+                                        <div *ngIf="item.editRow">
+                                            <input class="form-control" [(ngModel)]="item.year_valuation">
+                                        </div>
+                                    </td>
+                                    <!-- tier 1 -->
+                                    <td class="position-relative">
+                                        <div *ngIf="!item.editRow && item.portfolio_name"
+                                            [ngClass]="{'link' : item.process_status == 'Processed'}"
+                                            (click)="navigate(item, 'Tier 1')">
+                                            {{item.portfolio_name }}
+                                        </div>
+                                        <div *ngIf="!item.editRow && !item.portfolio_name">
+                                            <img src="{{icons['Failed']}}"
+                                                ngbTooltip="Please assign a Tier 1 to this asset."
+                                                tooltipClass="unclassified-tooltip">
+                                            <span>
+                                                unclassified
+                                            </span>
+                                        </div>
+                                        <div *ngIf="item.editRow">
+                                            <img ngbTooltip="Add a new Tier 1"
+                                                (click)="selectedRowIndex = i; createPortfolioDialogComponent.open()"
+                                                src="assets/img/svg/climate_price/Add_green.svg" class="add-icon">
+                                        </div>
+                                        <div *ngIf="item.editRow" class="position-relative">
+                                            <ng-select *ngIf="item.editRow" [dropdownPosition]="'bottom'"
+                                                [appendTo]="'body'" placeholder="Portfolio Name" [(ngModel)]="item.file"
+                                                [clearable]="false" [items]="tierOneList" bindLabel="portfolio_name"
+                                                bindValue="uuid" (change)="onTierOneSelection(item,$event)"
+                                                (open)="onNgSelectOpen()">
+                                                <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                    <span class="fz-12">{{item.portfolio_name}}</span>
+                                                </ng-template>
+                                            </ng-select>
+                                            <span class="steric">*</span>
+                                        </div>
+                                    </td>
+                                    <!-- tier 2 -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.tier_2_name || '-' }}</div>
+                                        <ng-select *ngIf="item.editRow" [dropdownPosition]="'bottom'"
+                                            [appendTo]="'body'" (change)="onTierTwoSelection(item)"
+                                            [disabled]="item.disableTier2" [(ngModel)]="item.tier_2_id"
+                                            [clearable]="false" [searchable]="false" [items]="item.tier2List"
+                                            bindLabel="name" bindValue="uuid" (open)="onNgSelectOpen()">
+                                            <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                <span class="fz-12">{{item.name}}</span>
+                                            </ng-template>
+                                        </ng-select>
+                                    </td>
+                                    <!-- tier 3 -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.tier_3_name || '-' }}</div>
+                                        <ng-select *ngIf="item.editRow" [dropdownPosition]="'bottom'"
+                                            [appendTo]="'body'" (change)="onTierThreeSelection(item)"
+                                            [disabled]="item.disableTier3" [(ngModel)]="item.tier_3_id"
+                                            [clearable]="false" [searchable]="false" [items]="item.tier3List"
+                                            bindLabel="name" bindValue="uuid" (open)="onNgSelectOpen()">
+                                            <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                <span class="fz-12">{{item.name}}</span>
+                                            </ng-template>
+                                        </ng-select>
+                                    </td>
+                                    <!-- tier 4 -->
+                                    <td>
+                                        <div *ngIf="!item.editRow">{{item.tier_4_name || '-'}}</div>
+                                        <ng-select *ngIf="item.editRow" [dropdownPosition]="'bottom'"
+                                            [appendTo]="'body'" [disabled]="item.disableTier4" [(ngModel)]="item.tier_4"
+                                            [clearable]="false" [searchable]="false" [items]="item.tier4List"
+                                            bindLabel="name" bindValue="uuid" (open)="onNgSelectOpen()">
+                                            <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                <span class="fz-12">{{item.name}}</span>
+                                            </ng-template>
+                                        </ng-select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="assets?.length == 0" class="pt-2 text-center">No records found</div>
+                    <!-- pagination -->
+                    <div class="text-center pt-3" *ngIf="assets.length" (mouseenter)="closeAllOpenedPopovers()">
+                        <pagination-controls (pageChange)="pageNumber = $event; getData()" autoHide="true">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- popover on when header checkbox is checked -->
+    <ng-template #modalSelectAll>
+        <div class="popover_modal">
+            <div class="text-center pt-2 fw-400">
+                Would you like to select all {{totalAssets}}<br> properties or just what's on this page?
+            </div>
+            <div class="modal-footer justify-content-center pb-0">
+                <button type="button" class="small-font btn btn-primary white"
+                    (click)="checkRowsOfCurrentPageOnly()">This
+                    Page</button>
+                <button type="button" class="small-font btn btn-primary white" (click)="checkRowsOfAllPages()">Select
+                    All </button>
+            </div>
+        </div>
+    </ng-template>
+
+    <!-- Create new property Modal-->
+    <ng-template #createNewPropertyModal class="modal">
+        <div class="custom-padding">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold text-center">
+                    Create New Property Type
+                </h5>
+            </div>
+            <div class="modal-body px-0 text-center">
+                <fieldset class="form-group m-0">
+                    <input class="form-control w-100" #input (keydown.enter)="createNewProperty(input.value)">
+                </fieldset>
+            </div>
+            <div class="modal-footer p-0  pt-2">
+                <button type=" button" class="btn green-button fw-600" (click)="createNewProperty(input.value)">
+                    Confirm </button>
+                <button type="button" class="btn white-button fw-600" (click)="closeModal()">
+                    Cancel</button>
+            </div>
+        </div>
+    </ng-template>
+
+    <!-- create a new portfolio modal -->
+    <app-create-portfolio-dialog [modalConfig]="modalConfig" (result)="updateTier1Lists($event)">
+    </app-create-portfolio-dialog>
+
+    <!-- upload a new file modal -->
+    <ng-template #uploadPortfolioModal let-modal>
+        <app-upload-portfolio [portfolio_id]="selectedPortfolio" (fileuploaded)="fileuploaded()" id="file-docs">
+        </app-upload-portfolio>
+    </ng-template>
+
+    <!-- Modal -->
+    <section>
+        <ng-template #modal class="modal">
+            <div class="custom-padding">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold text-center">
+                        Do you really want to {{rowAction}} the selected item(s)?
+                    </h5>
+                </div>
+                <div class="modal-body px-0 text-center">
+                    <div *ngIf="selectedRows.length <= 10 && !isAllAssetSelected">
+                        <span class="pb-2" *ngFor="let item of selectedRows">
+                            <div> {{item.property_name}} </div>
+                        </span>
+                    </div>
+                    <span class="pb-2" *ngIf="selectedRows.length > 10 && !isAllAssetSelected">
+                        <div> {{selectedRows.length}} Assets Selected </div>
+                    </span>
+                    <span class="pb-2" *ngIf="isAllAssetSelected">
+                        <div> {{totalAssets - selectedRows.length}} Assets Selected </div>
+                    </span>
+                </div>
+                <div class="warning-text">
+                    All <span class="font-weight-bold ">lower-level tiers</span> will be {{rowAction}}d as well. We
+                    kindly advise
+                    that this action is
+                    irreversible, so please take this into consideration before
+                    proceeding.
+                </div>
+                <div class="modal-footer p-0  pt-2">
+                    <button type="button" class="btn btn-primary white fw-600" (click)="confirm()"> Confirm </button>
+                    <button type="button" class="btn btn-outline-secondary fw-600" (click)="closeModal()">
+                        Cancel</button>
+                </div>
+            </div>
+        </ng-template>
+    </section>

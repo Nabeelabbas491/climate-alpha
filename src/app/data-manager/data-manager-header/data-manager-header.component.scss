@@ -1,0 +1,16 @@
+@import "assets/style/index";
+
+.header div{
+   *{
+     @include font(400, 14px, 24px, #292929);
+     padding: 6px 16px;
+     cursor: pointer;
+   }
+
+   .selected-option{
+    @include font(600, 14px, 24px, #292929);
+    border-bottom: 3px solid #292929;
+   }
+
+}
+

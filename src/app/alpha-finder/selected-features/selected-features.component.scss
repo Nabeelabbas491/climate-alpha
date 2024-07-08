@@ -1,0 +1,59 @@
+@mixin textDecoration($font-weight, $font-size, $line-height, $color) {
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $color;
+}
+
+@mixin contentSection($background, $borderRadius, $height) {
+    background: $background;
+    border-radius: $borderRadius;
+    height: $height;
+}
+
+.card {
+    background: #FFFFFF !important;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.summray-box {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(150, 150, 150, 0.5);
+    border-radius: 5px;
+    padding: 0.3rem 0rem;
+}
+
+.category {
+    @include textDecoration(600, 14px, 17px, #000000)
+}
+
+.line {
+    border-color: #F1F1F3;
+    border: 1px solid #F1F1F3;
+}
+
+.green_clr {
+    color: #009999 !important;
+    font-size: 1.5rem;
+}
+
+img {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.title {
+    @include textDecoration(400, 14px, 17px, #000000)
+}
+
+.feature-section {
+    @include contentSection(#FFFFFF, 10px, 832px);
+    overflow: auto
+}
+
+.feature-title {
+    @include textDecoration(600, 20px, 22px, #000000)
+}

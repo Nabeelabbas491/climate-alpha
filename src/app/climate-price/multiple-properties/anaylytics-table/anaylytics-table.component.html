@@ -1,0 +1,99 @@
+<div class="table-loader" *ngIf="!allAssets">
+    <app-loader></app-loader>
+</div>
+<div *ngIf="allAssets">
+    <!-- header row-->
+    <div class="header row">
+        <div class="col-md-6 d-flex align-items-center">
+            <div class="selected-properties"> {{totalRecords}} {{ totalRecords > 1 ? 'Assets' : 'Asset'}} </div>
+            <div *ngIf="tempHiddenProperties.length || confirmedhiddenProperties.length" class="hidden-properties ml-2">
+                ({{ showEyeColumn ? tempHiddenProperties.length : confirmedhiddenProperties.length }} hidden)
+            </div>
+            <div *ngIf="showEyeColumn" class="d-flex align-items-center">
+                <div class="hide-unhide-all-text ml-2" (click)="hideAllRows()"
+                    [ngStyle]="{'color' : showAll ? '#B5B5B5' : '#292929' }">Hide All</div>
+                <div class="ml-1">/</div>
+                <div class="hide-unhide-all-text ml-1" (click)="showAllRows()"
+                    [ngStyle]="{'color' : hideAll ? '#B5B5B5'  : '#292929' }">Show All</div>
+                <div class="add-to-btn ml-2" (click)="confirm()">Confirm </div>
+                <div class="white-btn ml-2" (click)="cancel()"> Cancel </div>
+            </div>
+            <div class="add-to-btn ml-2" *ngIf="!showEyeColumn" (click)="showEyeColumn = !showEyeColumn;">
+                Hide / Unhide
+            </div>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-end">
+            <span class="rows-per-page">Rows per page</span>
+            <ng-select [searchable]="false" [items]="rowsPerPageList" bindLabel="title" [(ngModel)]="rowsPerPage"
+                (change)="pageNumber = 1; getAssets()" class="dropdown mx-2">
+            </ng-select>
+            <fieldset class="form-group m-0">
+                <input class="form-control" placeholder="Search property" [(ngModel)]="search"
+                    (keyup)="(search.length > 2 || !search.length) && pageNumber = 1; getAssets()">
+                <img *ngIf="!search.length" src="assets/img/svg/Search_no_color.svg" class="search-icon">
+            </fieldset>
+        </div>
+    </div>
+    <!-- table -->
+    <div class="over-flow mt-2">
+        <table id="analytics-table" class="table mb-0">
+            <thead>
+                <tr class="header-row">
+                    <th class="bg-transparent border-unset d-flex justify-content-center align-items-center"
+                        *ngIf="showEyeColumn">
+                        <img src="assets/img/svg/climate_price/analytical-table/outlined.svg" class="cursor-pointer"
+                            (click)="sortHiddenRows(true)">
+                    </th>
+                    <th class="text-center header-column border" *ngFor="let item of headers; let i = index"
+                        [ngClass]="{'d-none' : !item.show}">
+                        <span class="cursor-pointer" (click)="sort(item)">{{item.title}} <img
+                                src="assets/img/svg/climate_price/analytical-table/sort.svg"> </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allAssets | paginate: { itemsPerPage: rowsPerPage, currentPage: pageNumber, totalItems: totalRecords  }; let i =index"
+                    class="data-row" [ngClass]="{'hide-row' : !item.show}">
+                    <td class="data-column border-unset" *ngIf="showEyeColumn">
+                        <img class="cursor-pointer" *ngIf="!item.show" (click)="onHideOrShow(item)"
+                            src="assets/img/svg/climate_price/analytical-table/hidden-property.svg">
+                        <img class="cursor-pointer" *ngIf="item.show" (click)="onHideOrShow(item)"
+                            src="assets/img/svg/climate_price/analytical-table/visible-property.svg">
+                    </td>
+                    <td class="data-column border">
+                        <span class="property-name" (click)="loadSingleAsset(item)"> {{item.address}}
+                        </span>
+                    </td>
+                    <td class="data-column border">
+                        <span> {{item.valuation | FormatByComma }} </span>
+                    </td>
+                    <td class="data-column border">
+                        <span> {{item.physical_impact[selectedTimePeriod.key] | FormatByComma }} </span>
+                    </td>
+                    <td class="data-column border">
+                        <span> {{item.heat_score[selectedTimePeriod.key] || 'N/A'}} </span>
+                    </td>
+                    <td class="data-column border">
+                        <span> {{item.drought_score[selectedTimePeriod.key] || 'N/A'}} </span>
+                    </td>
+                    <td class="data-column border">
+                        <span> {{item.wind_score[selectedTimePeriod.key] || 'N/A'}} </span>
+                    </td>
+                    <td class="data-column border">
+                        <span> {{item.inland_flooding_score[selectedTimePeriod.key] || 'N/A'}} </span>
+                    </td>
+                    <td class="data-column border">
+                        <span> {{item.coastal_flooding_score[selectedTimePeriod.key] || 'N/A'}} </span>
+                    </td>
+                    <td class="data-column border">
+                        <span> {{item.fire_score[selectedTimePeriod.key] || 'N/A'}} </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pagination *ngIf="allAssets.length >= rowsPerPage"-->
+    <div class="text-center mt-2">
+        <pagination-controls (pageChange)="pageNumber = $event; getAssets()" autoHide="true"></pagination-controls>
+    </div>
+</div>

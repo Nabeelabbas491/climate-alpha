@@ -1,0 +1,45 @@
+<!-- line and bar graph modal -->
+<div *ngIf="showModal" class="backdrop"></div>
+<div class="container-fluid" *ngIf="showModal">
+    <div class="modal-box">
+        <span class="cancel-btn" (click)="closeModal()">x</span>
+        <div class="h-100 py-4 content">
+            <div class="px-3">
+                <div class="d-flex align-items-center">
+                    <span class="indicator-name">{{data?.indicator}}</span>
+                    <span class="chip ml-2">
+                        {{ data?.meta.graph_type == 'bar' ? 'Stationary' : 'Time-series' }}</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="label">Methodology </div>
+                        <div class="text pt-1">{{data?.meta.methodology}}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="label">{{data?.meta.sources.length > 1 ? 'Datasets' : 'Dataset'}}: </div>
+                        <ul class="list pt-1">
+                            <li class="text" *ngFor="let item of data?.meta.sources" innerHTML="{{item}}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- chart canvas -->
+            <div class="pr-2" style="height: 100%;">
+                <canvas id="graphId" (mouseout)="mouseOut()"></canvas>
+            </div>
+            <!-- line graph bottom legends -->
+            <!-- <div class="legends mx-3 py-2 mt-3" *ngIf="isLineGraph">
+                <div class=" row px-2 w-100">
+                    <div class="col-md-4 d-flex align-items-center"
+                        *ngFor='let item of data?.selectedLocations | keyvalue : returnZero'>
+                        <div class="tooltip-box" [ngStyle]="{'background-color' : item.value.graphLineColor }"></div>
+                        <div class="address ml-1"> {{item.value.name}} </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<!-- Line graph tooltip -->
+<div id="custom-tooltip" style="background-color: #fff;display: none;"></div>

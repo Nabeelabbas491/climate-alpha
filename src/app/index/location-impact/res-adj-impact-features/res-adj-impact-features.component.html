@@ -1,0 +1,21 @@
+<div class="resilience">
+    <!-- headings -->
+    <!-- [ngStyle]="{'width' : (100 - (features.length * 20 ) + '%') }" -->
+    <div class="w-100 border-none mt-3">
+        <div class="feature-label w-40"> {{label}}
+        </div>
+        <div *ngFor="let feature of features" class="column-header align-items-end justify-content-center w-20">
+            <div class="label">{{feature.label}}</div>
+        </div>
+    </div>
+    <!-- feature values and description -->
+    <div class="w-100 mt-2" *ngFor="let item of selectedIndicator?.features">
+        <div class="feature w-40">
+            <span class="pr-1 line-height-16px" placement="top" [ngbTooltip]="item.Tooltip"
+                tooltipClass="featureTooltip">{{item.Description}}</span>
+        </div>
+        <div *ngFor="let feature of features" class="label w-20">{{item[feature.key] | riValue}}
+            <span *ngIf="item[feature.key] !== '' " class="event">{{item.Unit}}</span>
+        </div>
+    </div>
+</div>

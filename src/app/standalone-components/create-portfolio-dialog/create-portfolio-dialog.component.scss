@@ -1,0 +1,94 @@
+.custom-padding {
+  padding: 30px !important;
+
+  align-items: center;
+}
+
+.modal {
+  text-align: center;
+  // font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 5.73966px;
+  line-height: 150%;
+  /* identical to box height, or 9px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+:host ::ng-deep .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+  border-radius: 10px !important;
+  width: 660px !important;
+}
+
+.btn-outline-secondary {
+  color: #000000;
+  font-weight: 600;
+  border: 1px solid #DDDDDD;
+}
+
+.btn-outline-secondary:hover {
+  color: white;
+}
+
+.btn-primary {
+  font-weight: 600;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.modal-footer {
+  border-top: 0;
+  justify-content: center;
+}
+
+.modal-body {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.btn-primary {
+  color: white !important;
+}
+
+input,
+textarea {
+
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  font-size: 12px;
+  // font-family: 'Montserrat';
+  z-index: 1;
+  position: relative;
+  color: #B5B5B5;
+  resize: none;
+}
+
+.asterisk_input::after {
+  content: " * ";
+
+  color: #e32;
+
+}
+
+.textarea-limit {
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #B5B5B5;
+  font-size: 12px;
+
+}
+
+.fw-400 {
+  font-weight: 400 !important;
+}
+
+.modal-lg .modal-content {}

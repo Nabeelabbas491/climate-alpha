@@ -1,0 +1,34 @@
+<div>
+    <div class="w-100 d-flex align-items-center justify-content-between accordion">
+        <div class="d-flex align-items-center justify-content-between">
+            <div (click)="toggle()">
+                <span class="filter-header-label"
+                    [ngbTooltip]="'Select a portfolio for a top-level view of its performance and/or to edit/ add new data hierarchies.'"
+                    placement="right"> Portfolio Selector </span>
+                <img id="{{arrowId}}" [ngClass]=" accordianOpen ? 'accordian-arrow-down' : 'accordian-arrow-up' "
+                    src="assets/img/svg/climate_price/up_arrow.svg" class="ml-1 mr-2">
+            </div>
+        </div>
+    </div>
+    <div class="panel" id="{{panelId}}">
+        <form [formGroup]="filters">
+            <div class="grey-border mt-3">
+                <div class="row">
+                    <div class="col-md-12 d-flex align-items-end justify-content-end">
+                        <a class="font-small-2 font-weight-500 clear-all-filters mr-3 mt-1"><span
+                                (click)="ResetAllFilters(); ApplyFilter.next(payLaodTier4)">Clear All Filters</span></a>
+                    </div>
+                </div>
+                <app-tiers-dropdowns [form]="filters" (PatchValues)="patchValues($event)"
+                    [allowTiersHeadingsEdit]="true"></app-tiers-dropdowns>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="apply-filter-btn mt-3" (click)="ApplyFilter.next(payLaodTier4)">
+                            Apply Selection
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

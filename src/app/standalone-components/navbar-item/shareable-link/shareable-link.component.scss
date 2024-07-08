@@ -1,0 +1,133 @@
+.body {
+    width: max-content;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    border-bottom: 1px solid lightgrey
+}
+
+.text span {
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 30px;
+    color: #000000;
+}
+
+.link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #C4C4C4;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 12px;
+    gap: 10px;
+    width: 286px;
+    height: 25px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.btn {
+    color: #FFFFFF;
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 8px;
+    gap: 8px;
+    width: 400px;
+    height: 29px;
+    color: #fff;
+    background: #009999;
+    border-radius: 5px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.disabled {
+    background-color: #F1F1F3 !important;
+    color: #B5B5B5 !important;
+}
+
+.select-dropdown {
+    width: 120px;
+    height: 28px;
+}
+
+// for styhling height of ng select. first give static height and then set height through min-heigh
+:host ::ng-deep {
+
+    .ng-select.ng-select-single .ng-select-container {
+        height: 30px;
+        min-height: 2px;
+    }
+
+    // for styling of selected value from options
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+        padding-top: 2px !important;
+    }
+
+    // for styling of cross icon
+    .ng-select .ng-clear-wrapper {
+        display: none !important;
+    }
+
+    //  for styling of arrow wrapper
+    .ng-select .ng-arrow-wrapper {
+        padding-top: 3px !important;
+    }
+
+    // for styling of border color when focused and option is selected
+    .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+        border-color: #009999 !important;
+    }
+
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+        font-size: 14px;
+    }
+
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+        font-size: 14px;
+    }
+
+    .ng-dropdown-panel .scroll-host::-webkit-scrollbar {
+        width: 5px !important;
+    }
+
+    .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {
+        background: #adb5bd !important;
+    }
+
+}
+
+.tooltiptext {
+    width: 300px;
+    top: 108%;
+    margin-left: -146px;
+}

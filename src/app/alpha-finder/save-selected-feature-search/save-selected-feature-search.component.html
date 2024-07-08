@@ -1,0 +1,51 @@
+<div class="continer-fluid">
+    <div class="card main-card">
+        <div class="row p-3">
+            <div class="col-md-4">
+                <div class="selected-features-section p-3">
+                    <span class="selected-feature-title">Selected Features</span>
+                    <details open class="pt-3" *ngFor="let category of categories; let i = index">
+                        <summary class="category">{{category.title}} ({{category.sub_categories.length}})</summary>
+                        <div class="summray-box d-flex justify-content-between align-items-center mt-2 px-2"
+                            *ngFor="let subCategory of category.sub_categories; let subIndex = index">
+                            <span class="summray-box-title">{{subCategory.title}}</span>
+                            <span (click)="deleteSubCategory(i,subIndex)"><i
+                                    class="cursor-pointer ft ft-trash-2"></i></span>
+                        </div>
+                    </details>
+                </div>
+            </div>
+            <div class="col-md-8 px-4">
+                <div class="selected-feature-title pt-3">Save New Search</div>
+                <div class="save-feature-section d-flex justify-content-center pt-5">
+                    <div class="webkit-fill-available">
+                        <span class="label">Search Name*</span>
+                        <fieldset class="form-group">
+                            <input required minlength="0" maxlength="20" [(ngModel)]="searchName"
+                                placeholder="Enter Selection Name" class="form-control">
+                            <span class="input-limit">{{searchName.length}} / 20</span>
+                        </fieldset>
+                        <br>
+                        <br>
+                        <span class="label">Search Description</span>
+                        <fieldset class="form-group">
+                            <textarea #textarea placeholder="Enter Search Description" [(ngModel)]="searchDescription"
+                                class="form-control ng-pristine ng-valid ng-touched" minlength="0" maxlength="200"
+                                rows="5" ng-reflect-maxlength="200" ng-reflect-name="preset_description"></textarea>
+                            <span class="textarea-limit">{{searchDescription.length}} / 200</span>
+                        </fieldset> <br>
+                        <div *ngIf="showCheckBox" class="d-flex align-items-center pb-3">
+                            <input type="checkbox" [(ngModel)]="visible_to_all" class=""> <span class="ml-1">Save as a
+                                template for all user accounts</span>
+                        </div>
+                        <div class="d-flex">
+                            <div class="save-btn" (click)="onSave()">Save Search</div> &nbsp; &nbsp;
+                            <div class="cancel-btn" (click)="handleNavigation('/alpha-finder/dashboard/')">
+                                Cancel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

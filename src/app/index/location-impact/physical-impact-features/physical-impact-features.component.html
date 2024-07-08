@@ -1,0 +1,31 @@
+<div id="features-container" class="risk">
+    <!-- headings   -->
+    <div class="w-100 border-none mt-3">
+        <div class="feature-label w-20">
+            {{label}}
+        </div>
+        <div *ngFor="let feature of features" class="column-header relative cursor-pointer w-20 align-item"
+            (click)="ToggleItem.emit(feature)">
+            <div class="overlap-grey-box" *ngIf="selectedToggleItem?.key == feature.key "
+                [ngStyle]="{'height' : greyishBoxHeight}"></div>
+            <div class="label">{{feature.label}}</div>
+            <div class="sub-label">{{feature.year}}</div>
+        </div>
+    </div>
+    <!-- features description and values  -->
+    <div class="w-100 mt-2" *ngFor="let item of selectedIndicator?.features">
+        <div class="feature w-20 align-items-center">
+            <span class="pr-1 line-height-16px" placement="top" [ngbTooltip]="item.Tooltip"
+                tooltipClass="{{item.Tooltip.length <= 60 ? 'featureTooltip-200px' : 'featureTooltip-280px' }}">
+                {{item.Description}}
+            </span>
+        </div>
+        <div *ngFor="let feature of features" class="cursor-pointer d-flex  align-items-center justify-item w-20 "
+            (click)="ToggleItem.emit(feature)">
+            <span class="{{feature.key}} label fit-content">
+                {{item[feature.key] | riValue}}
+                <span *ngIf="item[feature.key] !== '' " class="event">{{item.Unit}}</span>
+            </span>
+        </div>
+    </div>
+</div>

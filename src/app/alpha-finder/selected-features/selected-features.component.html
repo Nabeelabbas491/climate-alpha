@@ -1,0 +1,23 @@
+<div class="continer-fluid">
+    <div class="card">
+        <div class="feature-section">
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <span class="feature-title">Selected Features</span>
+                <i ngbTooltip="Return to Feature Selection" class="green_clr cursor-pointer ft ft-edit-3 pl-3"
+                    [routerLink]="['/alpha-finder/dashboard/' + country?.path]"></i>
+            </div>
+            <hr class="my-0 line">
+            <details open class="pt-3 p-3" *ngFor="let item of features">
+                <summary class="category">{{item.title}} ({{item.sub_categories.length}})</summary>
+                <div class="summray-box d-flex align-items-center justify-content-between mt-2 px-2"
+                    *ngFor="let subItem of item.sub_categories"
+                    [ngStyle]="{ 'background' : !subItem.showResult ? '#F1F1F3' : '' }">
+                    <span class="title"
+                        [ngStyle]="{ 'color' : !subItem.showResult ? '#616161' : '' }">{{subItem.title}}</span>
+                    <img src="../../../assets/img/svg/{{ subItem.showResult ? 'show' : 'hide'}}.svg" class="eyes"
+                        (click)="updateData(subItem)">
+                </div>
+            </details>
+        </div>
+    </div>
+</div>

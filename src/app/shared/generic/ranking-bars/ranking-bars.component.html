@@ -1,0 +1,29 @@
+<div class="continer-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="py-3 text-center">
+                <span class="title" *ngIf="showTitle">{{title}}</span> <br>
+                <span class="sub-title" *ngIf="showSubTitle">{{subTitle}}</span> <br>
+            </div>
+            <div class="bars-container">
+                <div class="row pt-2 d-flex align-items-center" *ngFor="let item of barsListing; let i=index">
+                    <div class="col-md-4 d-flex align-items-center px-0">
+                        <span class="px-3 index-nmbr" *ngIf="showCount">{{i+1}}.</span>
+                        <span class="text">{{item?.name}}</span>
+                    </div>
+                    <div [ngClass]="showValue ? 'col-md-7' : 'col-md-8'">
+                        <div class="progress pr-1">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                aria-valuemax="100" style="border-radius: 0.25rem;"
+                                [ngStyle]="{'width' : item.width , 'background' : item.bgColor}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 text" *ngIf="showValue">
+                        {{item?.value}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

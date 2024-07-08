@@ -1,0 +1,340 @@
+@mixin textDecoration($font-weight, $font-size, $line-height, $color) {
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $color;
+}
+
+@mixin featureBox($background, $borderColor) {
+    border-radius: 5px;
+    height: 180px;
+    box-sizing: border-box;
+    background: $background;
+    border: 1px solid $borderColor;
+    border-left: 5px solid
+}
+
+@mixin button($padding, $width, $height, $background, $color) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $padding;
+    gap: 8px;
+    width: $width;
+    height: $height;
+    background: $background;
+    border-radius: 5px;
+    color: $color;
+    cursor: pointer;
+}
+
+header {
+    position: relative;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
+}
+
+.features {
+    height: 38rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.webkit-fill-available {
+    width: -webkit-fill-available;
+}
+
+.unselect-all-title {
+    @include textDecoration(500, 16px, 24px, #009999);
+    cursor: pointer;
+    text-decoration: underline;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.clr-green {
+    color: #009999
+}
+
+.footer {
+    padding: unset;
+    height: 70px;
+    border-top: 2px solid #B5B5B5;
+    position: relative;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.search-btns {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+
+.search-details {
+    background: #F1F1F3;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: unset;
+}
+
+.feature-item {
+    @include textDecoration(600, 16px, 24px, #B5B5B5);
+    width: 12rem;
+    border-bottom: 2px solid #B5B5B5;
+}
+
+.selected-feature-item {
+    @include textDecoration(600, 16px, 24px, #B5B5B5);
+    border-bottom: 3px solid #009999;
+    color: #009999;
+}
+
+.feature-label {
+    @include textDecoration(600, 16px, 24px, #B5B5B5);
+    color: #009999;
+}
+
+.edit-search-box {
+    background: #F1F1F3;
+    border-radius: 10px;
+    height: 86px
+}
+
+.input-search-main {
+    position: absolute;
+    width: -webkit-fill-available;
+    top: 3rem;
+    z-index: 999999;
+}
+
+.input-search-box {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 2px;
+    height: 13rem;
+    overflow: auto;
+    position: absolute;
+    z-index: 99999;
+    width: 94%;
+    top: 116%
+}
+
+.subCategory-section {
+    // overflow: auto;
+}
+
+.search-icon {
+    position: absolute;
+    right: 6%;
+    bottom: 26%;
+}
+
+.abs-lf-0 {
+    position: absolute;
+    left: 0
+}
+
+.header-items {
+    display: flex;
+    justify-content: space-evenly !important;
+    border-bottom: 2px solid #F1F1F3;
+}
+
+.br-btm {
+    border-bottom: 2px solid #F1F1F3;
+}
+
+.green_clr {
+    color: #009999 !important;
+    font-size: 18px;
+}
+
+
+.feature-box-default {
+    @include featureBox(#FFFFFF, #DDDDDD);
+}
+
+.feature-box-checked {
+    @include featureBox(#F9F9F9, #009999);
+}
+
+.feature-box-searched {
+    @include featureBox(rgba(0, 153, 153, 0.1), #009999);
+}
+
+.feature-title {
+    @include textDecoration(500, 14px, 17px, #000000);
+}
+
+.feature-description {
+    @include textDecoration(400, 12px, 15px, #000000);
+}
+
+.search-box-lable {
+    @include textDecoration(500, 16px, 24px, #009999);
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.search-box-lable:hover {
+    background-color: #e2f5ff
+}
+
+.search-box-feature {
+    @include textDecoration(500, 16px, 24px, #000000);
+}
+
+.search-alpha-btn {
+    @include button(8px 16px, 253px, 40px, #009999, #FFFFFF);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%
+}
+
+.load-save-search-btn {
+    @include button(5px 16px, unset, 32px, #FFFFFF, #000000);
+    border: 1px solid #D9D9D9;
+}
+
+.edit-feature-title {
+    @include textDecoration(600, 20px, 22px, #000000)
+}
+
+.edit-created-at {
+    @include textDecoration(500, 14px, 22px, #009999)
+}
+
+.edit-description {
+    @include textDecoration(400, 12px, 14px, #000000)
+}
+
+.update-save-new-search-btn {
+    @include button(8px 16px, 253px, 40px, #009999, #FFFFFF);
+}
+
+.cancel-edit-btn {
+    @include button(8px 16px, 253px, 40px, #FFFFFF, #000000);
+    border: 1px solid #D9D9D9;
+}
+
+
+input[type=checkbox] {
+    accent-color: #009999;
+}
+
+// for styhling height of ng select. first give static height and then set height through min-heigh
+:host ::ng-deep .ng-select.ng-select-single .ng-select-container {
+    height: 30px;
+    min-height: 2px;
+}
+
+// for styling of selected value from options
+:host ::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    padding-top: 2px !important;
+}
+
+// for styling of cross icon
+:host ::ng-deep .ng-select .ng-clear-wrapper {
+    padding-top: 6px;
+    padding-left: 8px;
+    display: none;
+}
+
+// icon size cross
+:host ::ng-deep .ng-select .ng-clear-wrapper .ng-clear {
+    font-size: 20px;
+}
+
+// color on hover over cross icon
+:host ::ng-deep .ng-select .ng-clear-wrapper:hover .ng-clear {
+    color: #009999;
+}
+
+
+//  for styling of arrow wrapper
+:host ::ng-deep .ng-select .ng-arrow-wrapper {
+    padding-top: 3px !important;
+}
+
+// for styling of border color when focused and option is selected
+:host ::ng-deep .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    border-color: #009999 !important;
+}
+
+
+// width of whole carousel inside
+:host ::ng-deep .owl-carousel .owl-stage {
+    //width: 85rem !important;
+}
+
+// width of a each single option inside swiper
+:host ::ng-deep .owl-carousel.owl-drag .owl-item {
+    text-align: center;
+    //width: 180px !important;
+}
+
+.mt-6 {
+    margin-top: 5rem !important;
+}
+
+.chips-container {
+    height: 26px;
+    display: flex;
+    align-items: center;
+}
+
+@mixin chips($bgColor, $width) {
+    background: $bgColor;
+    border-radius: 45px;
+    width: $width;
+    height: 22px;
+    radius: 45px;
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// .pstv{
+//     @include chips(rgba(0, 153, 107, 0.2),75px)
+// }
+
+// .ngtv{
+//     @include chips(rgba(234, 20, 20, 0.2),75px)
+// }
+
+// .cbsa-city-county-state{
+//     @include chips(rgba(97, 97, 97, 0.2),60px)
+// }
+
+// .year{
+//     @include chips(rgba(52, 134, 170, 0.2),60px)
+// }
+
+.chip {
+    @include chips(rgba(97, 97, 97, 0.2), 60px)
+}
+
+.scale {
+    width: unset;
+    padding: 0 5px;
+}

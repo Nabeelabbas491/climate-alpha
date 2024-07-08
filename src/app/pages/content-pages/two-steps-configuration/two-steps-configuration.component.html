@@ -1,0 +1,150 @@
+<!--Login Page Starts-->
+<section id="login">
+    <div class="container-fluid" style="background: rgba(12, 40, 40, 0.62);">
+        <div class="row full-height-vh m-0">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="card bg-transparent">
+                    <div class="card-content bg-transparent">
+                        <div class="card-body login-img bg-transparent">
+                            <div class="row m-0 bg-transparent">
+                                <div
+                                    class="col-lg-6 d-flex justify-content-center align-items-center p-4 text-center align-middle grey-overlay">
+                                    <img src="../../assets/img/logos/alphaGeo-login.png"
+                                        alt="Login to access AlphaGeo: future-proof analytics on one platform"
+                                        class="img-fluid logo-w" width="400" height="230" />
+                                </div>
+                                <ng-container [ngSwitch]="setupMFA">
+                                    <div class="col-lg-6 col-md-12 bg-white p-4">
+                                        <div class="content-container">
+                                            <h4 class="card-title mb-3 text-center">Security</h4>
+                                            <div>
+                                                <p *ngSwitchCase="'setup-messege'">For enhanced security, we
+                                                    strongly
+                                                    recommend setting up multi-factor
+                                                    authentication (MFA) on your account. MFA is a security process
+                                                    that
+                                                    requires
+                                                    users to verify their identity using multiple independent
+                                                    credentials,
+                                                    enhancing
+                                                    protection against unauthorized access.
+                                                </p>
+                                                <!-- type of authentication selection interface for user -->
+                                                <div *ngSwitchCase="'setup-selection'">
+                                                    <p>
+                                                        {{
+                                                            user.email_mfa_enabled || user.totp_mfa_enabled  ?
+                                                            'Select which modes you wish to want to use for login.'
+                                                            : 'Select which modes you wish to setup Multi factor
+                                                            authentication.'
+                                                         }}
+                                                    </p>
+                                                    <div>
+                                                        <div class="mfa-item" (click)="getGoogleAuthenticatorOTP()"
+                                                            id="mfa-totp">
+                                                            <i class="fa fa-mobile fa-3x px-2"></i>
+                                                            <p class="fz-14 m-0">Receive verification codes via
+                                                                Authenticator
+                                                                App
+                                                            </p>
+                                                        </div>
+                                                        <div id="mfa-email" class="mfa-item mt-2"
+                                                            (click)="getGmailAuthenticationLink()">
+                                                            <i class="fa fa-envelope-o px-2"
+                                                                style="font-size: 2rem;"></i>
+                                                            <p class="fz-14 m-0">Receive verification codes via
+                                                                Email
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2"
+                                                        *ngIf="(user.email_mfa_enabled || user.totp_mfa_enabled) && !configureAnotherSetup">
+                                                        <a (click)="configureAnotherSetup = true; showMFApage()">
+                                                            Configure another method
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- mobile autheticator app -->
+                                                <div *ngSwitchCase="'setup-authenticator-app'">
+                                                    <p class="text-center mb-0">
+                                                        Enter the OTP from the Authenticator app. We support both Google
+                                                        and Microsoft authenticator apps for this purpose.
+                                                    </p>
+                                                    <div class="d-flex justify-content-center">
+                                                        <qrcode *ngIf="!user.totp_mfa_enabled" [qrdata]="qrCode"
+                                                            [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+                                                    </div>
+                                                </div>
+                                                <!-- email authetication -->
+                                                <div *ngSwitchCase="'setup-email'">
+                                                    <p class="text-center mb-0">
+                                                        OTP code sent to your registered email
+                                                    </p>
+                                                    <p class="text-center">( {{user.username}} )</p>
+                                                    <div class="my-2 text-center" *ngIf="!isEmailOTPexpired">
+                                                        Code expires in {{ minutes }}:{{ seconds | number: '2.0' }}
+                                                    </div>
+                                                    <div class="my-2 d-flex align-items-center justify-content-center"
+                                                        *ngIf="isEmailOTPexpired">
+                                                        Code expired, get another code
+                                                        <button class="btn ml-2 w-115px"
+                                                            (click)="getGmailAuthenticationLink()"
+                                                            [disabled]="!isEmailOTPexpired">
+                                                            <a class="text-decoration-none text-white">Re-send
+                                                                OTP</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!-- common functionalities for mobile and email authentication -->
+                                                <div
+                                                    *ngIf=" setupMFA == 'setup-email' ||  setupMFA == 'setup-authenticator-app' ">
+                                                    <div class="placement d-flex justify-content-center">
+                                                        <ngx-otp-input [config]="otpInputConfig"
+                                                            (otpChange)="onCodeChanged($event)"
+                                                            (fill)="onCodeCompleted($event)"></ngx-otp-input>
+                                                    </div>
+                                                    <div class="mt-2"
+                                                        *ngIf="!user.email_mfa_enabled && !user.totp_mfa_enabled">
+                                                        <a (click)="setupMFA = 'setup-selection' ">Select a
+                                                            different
+                                                            method</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div *ngIf="!user.email_mfa_enabled && !user.totp_mfa_enabled"
+                                                    class="d-flex justify-content-center align-items-center mt-3">
+                                                    <button class="btn mr-2" *ngSwitchCase="'setup-messege'"
+                                                        (click)="authorizeUserAccess()">
+                                                        <a class="text-decoration-none text-white">Remind me Later</a>
+                                                    </button>
+                                                    <button class="btn" *ngSwitchCase="'setup-messege'"
+                                                        (click)="setupMFA = 'setup-selection'">
+                                                        <a class="text-decoration-none text-white">Set up MFA</a>
+                                                    </button>
+                                                    <button class="btn w-100" *ngSwitchCase="'setup-selection'"
+                                                        (click)="authorizeUserAccess()">
+                                                        <a class="text-decoration-none text-white">Remind me Later</a>
+                                                    </button>
+                                                </div>
+                                                <button class="btn w-100 mt-2" (click)="verifyOTP()"
+                                                    *ngIf=" setupMFA == 'setup-email' ||  setupMFA == 'setup-authenticator-app' ">
+                                                    <a class="text-decoration-none text-white">Verify</a>
+                                                </button>
+                                                <button class="btn w-100 mt-3" *ngIf="configureAnotherSetup"
+                                                    (click)="configureAnotherSetup = false; showMFApage()">
+                                                    <a class="text-decoration-none text-white">back</a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Login Page Ends-->

@@ -1,0 +1,846 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import 'path/to/styles.css'; */
+@import "assets/style/index";
+
+.logo-w {
+    max-width: 50%;
+}
+
+.graph_y_label {
+    font-size: 0.8rem;
+    color: #000000;
+    text-transform: capitalize !important;
+}
+
+.graph_y_label_wt {
+    /* class without text-transform label */
+    font-size: 0.8rem;
+    color: #000000;
+
+}
+
+.csv {
+    position: absolute;
+    /* right: 9%;
+    top: 6%; */
+    right: 8.5%;
+    top: 6%;
+}
+
+.add_to_report {
+    position: absolute;
+    right: 5%;
+    top: 6%;
+}
+
+.csv_state {
+    position: absolute;
+    /* right: 9%;
+    top: 6%; */
+    right: 8%;
+    top: 8%;
+}
+
+.add_to_report_state {
+    position: absolute;
+    right: 1%;
+    top: 8%
+}
+
+/* resilience Index */
+.tp-100 {
+    padding-top: 4rem;
+}
+
+
+.pdf_view_display {
+    display: none !important;
+}
+
+.report_view_display {
+    display: block !important;
+}
+
+.side_box_small {
+    width: 1rem;
+    height: 1rem;
+    background-color: teal;
+}
+
+.side_rectangle {
+    width: 4rem;
+    height: 2rem;
+    background-color: teal;
+    position: absolute;
+    left: 0;
+}
+
+.side_box {
+    width: 3rem;
+    height: 3rem;
+    background-color: teal;
+    position: absolute;
+    left: 0;
+}
+
+@media print {
+    .pdf_view_display {
+        display: block !important;
+    }
+
+    .report_view_display {
+        display: none !important;
+    }
+}
+
+.card-title {
+    color: unset;
+}
+
+.btn-r-10 {
+    margin-right: 10px !important;
+}
+
+.card {
+    background: #FFFFFF !important;
+    box-shadow: 0px 0px 5px 3px rgb(0 0 0 / 8%);
+    border-radius: 10px;
+}
+
+
+/* // append modal up angiants dark blurry screen backgroun */
+.modal-backdrop.show {
+    z-index: 9 !important;
+}
+
+.fz-20 {
+    font-size: 20px;
+}
+
+.fz-18 {
+    font-size: 18px;
+}
+
+.green_clr {
+    color: #009999;
+}
+
+* {
+    scroll-margin-top: 67.5px;
+}
+
+.header-green {
+    color: #4A7182;
+    ;
+}
+
+.btn {
+    text-transform: capitalize;
+}
+
+
+.marker_cluster_s div {
+    border-radius: 20px !important;
+    width: 40px !important;
+    height: 40px !important;
+    text-align: center !important;
+    font-size: 18px !important;
+    padding-top: 5px;
+}
+
+.marker_cluster_m div {
+    border-radius: 30px !important;
+    width: 60px !important;
+    height: 60px !important;
+    text-align: center !important;
+    font-size: 20px !important;
+    padding-top: 15px !important;
+    box-sizing: border-box !important;
+}
+
+.marker_cluster_l div {
+    border-radius: 40px !important;
+    width: 80px !important;
+    height: 80px !important;
+    text-align: center !important;
+    font-size: 24px !important;
+    padding-top: 25px !important;
+    box-sizing: border-box !important;
+}
+
+.marker-cluster-single div {
+    border-radius: 40px !important;
+    width: 15px !important;
+    height: 15px !important;
+    box-sizing: border-box !important;
+}
+
+.multi_asset_map_legend {
+    background: #24272f !important;
+    color: #9ba0ac !important;
+}
+
+.marker-cluster {
+    background-clip: padding-box;
+    border-radius: 20px;
+}
+
+.multi_asset_tt {
+    background: #24272f !important;
+    border: #24272f !important;
+    color: white !important;
+}
+
+.leaflet-tooltip-left:before {
+    border-left-color: #24272f !important;
+}
+
+.leaflet-tooltip-right:before {
+    border-right-color: #24272f !important;
+}
+
+.multi_asset_popup>div:first-child {
+    background: #24272f !important;
+    color: white;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: #24272f !important;
+}
+
+.multi-asset-legend-title {
+    background: #2a323b;
+    margin-bottom: 9px;
+    border-radius: 4px 4px 0px 0px;
+    padding: 7px 10px;
+    text-align: left;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-top: -6px;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+}
+
+.extra_margin {
+    /*  margin-left: 20rem !important; */
+    margin-left: 19.5rem !important;
+}
+
+.backdrop {
+    transition: opacity 0.15s linear;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    opacity: 0.7;
+    height: 100vh;
+    background-color: #000;
+    z-index: 9;
+}
+
+.info-icon-anchor {
+    display: flex !important;
+}
+
+.info-icon {
+    user-select: none;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.mb-18 {
+    margin-bottom: 18px !important;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.invalid {
+    border-color: red !important;
+    box-shadow: none !important;
+}
+
+.valid {
+    box-shadow: 0 0 0 0.2rem rgba(0, 157, 160, 0.25) !important;
+    border-color: #009DA0 !important;
+}
+
+.error-msg {
+    @include font(500, 12px, 14px, red)
+}
+
+.bg-unset {
+    background-color: unset !important;
+}
+
+
+//#region buttons
+.white-button {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    text-transform: none;
+}
+
+.green-button {
+    padding: 0 10px;
+    background: #009999;
+    width: auto;
+    border-radius: 5px;
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    text-transform: none;
+}
+
+.btn {
+    height: 27px;
+    width: auto;
+    @include font(500, 12px, 14px, rgba(41, 41, 41, 1));
+}
+
+.disabled {
+    background-color: #F1F1F3 !important;
+    color: #B5B5B5 !important;
+    cursor: default !important;
+    user-select: none;
+}
+
+// #endregion buttons
+
+//#region tabs
+.map-tabs {
+
+    .tab-item {
+        @include font(400, 14px, 24px, #292929);
+        padding: 6px 22px;
+        cursor: pointer;
+    }
+
+    .selected-tab {
+        @include font(600, 14px, 24px, #292929);
+        border-bottom: 3px solid #292929;
+    }
+
+}
+
+//#endregion tabs
+
+//#region list items bar
+.secondary-scroll {
+    overflow: auto;
+    background-color: rgba(221, 221, 221, 0.5) !important;
+}
+
+.secondary-scroll::-webkit-scrollbar {
+    height: 5px !important;
+    width: 5px !important;
+}
+
+.secondary-scroll::-webkit-scrollbar-thumb {
+    background: #adb5bd;
+}
+
+.items-list-bar {
+    height: 50px;
+    width: 100%;
+
+    .list-item {
+        height: 30px;
+        border-radius: 5px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 10px;
+        cursor: pointer;
+        white-space: nowrap;
+        @include font(500, 14px, 17px, rgba(41, 41, 41, 1));
+    }
+
+    .selected {
+        border: 1px solid rgba(0, 153, 153, 1);
+        background-color: #F2FAFA;
+    }
+}
+
+//#endregion list items bar 
+
+//#region custom tooltip css
+// https://www.w3schools.com/css/css_tooltip.asp
+.app-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.app-tooltip {
+    .anchor {
+        color: #009DA0;
+        text-decoration: underline;
+    }
+}
+
+.app-tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 9;
+    // font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.left {
+    .tooltiptext {
+        top: -31px;
+        right: 110%;
+        width: 300px;
+    }
+
+    .tooltiptext::after {
+        top: 50%;
+        left: 100%;
+        margin-top: -5px;
+        border-color: transparent transparent transparent black;
+    }
+}
+
+.right {
+    .tooltiptext {
+        top: -31px;
+        left: 110%;
+        width: 300px;
+    }
+
+    .tooltiptext::after {
+        right: 100%;
+        top: 50%;
+        margin-top: -5px;
+        border-color: transparent black transparent transparent;
+    }
+}
+
+.top {
+    .tooltiptext {
+        bottom: 120%; // change this to move tooltip up and down
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .tooltiptext::after {
+        left: 50%;
+        top: 100%;
+        margin-left: -5px;
+        border-color: black transparent transparent transparent;
+    }
+}
+
+.bottom {
+    .tooltiptext {
+        top: 150%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .tooltiptext::after {
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-color: transparent transparent black transparent;
+    }
+}
+
+.app-tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+}
+
+.app-tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+//#endregion custom tooltip css
+
+//#region colors
+.bg-dark-green {
+    background-color: rgba(74, 113, 130, 1)
+}
+
+.clr-black {
+    color: rgba(0, 0, 0, 1)
+}
+
+.clr-teal {
+    color: rgba(0, 153, 153, 1)
+}
+
+.clr-white {
+    color: #fff
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.bg-dark-grn {
+    background-color: #009999
+}
+
+.text-500 {
+    color: #292929;
+}
+
+//#endregion colors
+
+//#region fonts
+
+// weight
+
+.fw-400 {
+    font-weight: 400
+}
+
+.fw-500 {
+    font-weight: 500
+}
+
+.fw-600 {
+    font-weight: 600
+}
+
+.fw-700 {
+    font-weight: 700
+}
+
+// sizes
+
+.fz-5 {
+    font-size: 5px
+}
+
+.fz-6 {
+    font-size: 6px
+}
+
+.fz-7 {
+    font-size: 7px
+}
+
+.fz-8 {
+    font-size: 8px
+}
+
+.fz-9 {
+    font-size: 9px
+}
+
+.fz-10 {
+    font-size: 10px
+}
+
+.fz-11 {
+    font-size: 11px
+}
+
+.fz-12 {
+    font-size: 12px
+}
+
+.fz-13 {
+    font-size: 13px
+}
+
+.fz-14 {
+    font-size: 14px
+}
+
+.fz-15 {
+    font-size: 15px
+}
+
+.fz-16 {
+    font-size: 16px
+}
+
+.fz-17 {
+    font-size: 17px
+}
+
+.fz-18 {
+    font-size: 18px
+}
+
+.fz-19 {
+    font-size: 19px
+}
+
+.fz-20 {
+    font-size: 20px
+}
+
+.fz-21 {
+    font-size: 21px
+}
+
+.fz-22 {
+    font-size: 22px
+}
+
+.fz-23 {
+    font-size: 23px
+}
+
+.fz-24 {
+    font-size: 24px;
+}
+
+.fz-25 {
+    font-size: 25px;
+}
+
+.fz-26 {
+    font-size: 26px;
+}
+
+.fz-27 {
+    font-size: 27px;
+}
+
+.fz-28 {
+    font-size: 28px;
+}
+
+.fz-29 {
+    font-size: 29px;
+}
+
+.fz-30 {
+    font-size: 30px;
+}
+
+.fz-31 {
+    font-size: 31px;
+}
+
+.fz-32 {
+    font-size: 32px;
+}
+
+.fz-33 {
+    font-size: 33px;
+}
+
+.fz-34 {
+    font-size: 34px;
+}
+
+.fz-35 {
+    font-size: 35px;
+}
+
+.fz-36 {
+    font-size: 36px;
+}
+
+.fz-40 {
+    font-size: 40px;
+}
+
+.fz-44 {
+    font-size: 44px;
+}
+
+.fz-48 {
+    font-size: 48px;
+}
+
+// line heights
+
+.line-h-6 {
+    line-height: 6px
+}
+
+.line-h-7 {
+    line-height: 7px
+}
+
+.line-h-8 {
+    line-height: 8px
+}
+
+.line-h-9 {
+    line-height: 9px
+}
+
+.line-h-10 {
+    line-height: 10px
+}
+
+.line-h-11 {
+    line-height: 11px
+}
+
+.line-h-12 {
+    line-height: 12px
+}
+
+.line-h-13 {
+    line-height: 13px
+}
+
+.line-h-14 {
+    line-height: 14px
+}
+
+.line-h-15 {
+    line-height: 15px
+}
+
+.line-h-16 {
+    line-height: 16px
+}
+
+.line-h-17 {
+    line-height: 17px
+}
+
+.line-h-18 {
+    line-height: 18px
+}
+
+.line-h-19 {
+    line-height: 1px
+}
+
+.line-h-20 {
+    line-height: 20px
+}
+
+.line-h-21 {
+    line-height: 21px
+}
+
+.line-h-22 {
+    line-height: 22px
+}
+
+.line-h-23 {
+    line-height: 23px
+}
+
+.line-h-24 {
+    line-height: 24px
+}
+
+.line-h-25 {
+    line-height: 25px
+}
+
+.line-h-26 {
+    line-height: 26px
+}
+
+.line-h-100-prcnt {
+    line-height: 100%;
+}
+
+// letter spacing
+
+.ls-1 {
+    letter-spacing: 1px;
+}
+
+//#endregion fonts
+
+
+//#region widths
+
+.w-14 {
+    width: 14%;
+}
+
+.w-42 {
+    width: 42%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.w-44 {
+    width: 44%;
+}
+
+
+.w-58 {
+    width: 58%;
+}
+
+.w-60 {
+    width: 60% !important;
+}
+
+.w-full {
+    width: 100%;
+}
+
+//#endregion widths
+
+.custom-btn {
+    border: 0;
+}
+
+button:focus {
+    outline: 0;
+    // box-shadow: 0 0 0 .2rem #009999;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.banner {
+    border-radius: 10px;
+    border: 1px solid #099;
+    background: rgba(0, 153, 153, 0.20);
+    padding: 10px;
+
+    .title {
+        color: #000;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    .desc {
+        margin-top: 10px;
+        color: #000;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}

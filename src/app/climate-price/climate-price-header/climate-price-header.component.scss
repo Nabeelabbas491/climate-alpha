@@ -1,0 +1,94 @@
+@import "assets/style/index";
+
+#public-link-header{
+  background: #f1f1f3;
+  position: fixed;
+  z-index: 9;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0px;
+  padding-top: 20px;
+  margin-right: 1.5rem;
+  margin-left: 6.7rem;
+}
+
+.brdr-btm{
+  border-bottom: 1px solid #cdcfd2  !important;
+ }
+
+.header .options{
+
+   *{
+     @include font(400, 14px, 24px, #292929);
+     padding: 4px 16px;
+     cursor: pointer;
+   }
+
+   .selected-option{
+    @include font(600, 14px, 24px, #292929);
+    border-bottom: 3px solid #292929;
+   }
+
+   hr{
+    padding-bottom: 0 !important;
+   }
+
+   .count{
+    background-color: #CDE4E6;
+    padding: 0px 6px;
+    border-radius: 100%;
+    @include font(600, 12px, 24px, #277777)
+   }
+}
+
+.dropdown{
+   width: 170px;
+   position: absolute;
+   bottom: 8%;
+  .dropdown-label{
+    display: flex;
+    padding: 0;
+    @include font(500, 14px, 22px, #292929);
+  }
+}
+
+// for styhling height of ng select. first give static height and then set height through min-heigh
+:host ::ng-deep {
+
+  // ng-select{
+  //     height: 30px;
+  //     min-height: 2px; 
+  // }
+
+  .ng-select .ng-select-container {
+      height: 30px;
+      min-height: 2px;
+  }
+
+  // for styling of selected value from options
+  .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+      padding-top: 2px !important;
+  }
+
+  // for styling of cross icon
+  .ng-select .ng-clear-wrapper {
+      display: none !important;
+  }
+
+  //  for styling of arrow wrapper
+  .ng-select .ng-arrow-wrapper {
+      padding-top: 3px !important;
+  }
+
+  // for styling of border color when focused and option is selected
+  .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+      border-color: #009999 !important;
+  }
+
+  .ng-placeholder {
+      color: rgb(48, 48, 48) !important;
+      font-size: 14px;
+  }
+}
+

@@ -1,0 +1,91 @@
+@import "assets/style/index";
+
+header {
+    display: flex;
+    /* background: aliceblue; */
+    width: 100%;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.indicators-container {
+    border-radius: 10px;
+    border: 2px solid rgba(221, 221, 221, 1);
+    padding: 20px !important;
+}
+
+.description {
+    display: flex;
+    // align-items: center;
+    padding-right: 100px;
+    @include font(400, 13px, 15px, rgba(0, 0, 0, 1))
+}
+
+.py-20px {
+    padding: 20px 0px;
+}
+
+.h-100px {
+    height: 100px;
+}
+
+.h-240px {
+    height: 240px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.tab {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: #292929;
+    cursor: pointer;
+}
+
+
+
+.selected {
+    font-weight: 600;
+    border-bottom: 2px solid #292929;
+}
+
+.risk {
+    padding-right: 7px !important;
+    padding-left: 0px !important;
+}
+
+.resilience {
+    padding-left: 7px !important;
+    padding-right: 0px !important;
+}
+
+.rotate-180deg {
+    transform: rotate(180deg);
+}
+
+.arrow {
+    bottom: -10px;
+    position: relative;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.overflow {
+    overflow-x: auto;
+}
+
+
+.overflow::-webkit-scrollbar {
+    height: 1px !important;
+    width: 1px !important;
+}
+
+.overflow::-webkit-scrollbar-thumb {
+    background: transparent;
+}

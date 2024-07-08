@@ -1,0 +1,31 @@
+<div>
+    <fieldset class="form-group m-0">
+        <input class="form-control" id="search-input"
+            [placeholder]="analysisInProgress ? 'Location analysis in progress...' : 'Search by location address'"
+            #searchInput [disabled]="analysisInProgress" (keyup)="search()" [(ngModel)]="input">
+        <img *ngIf="!input.length" src="assets/img/svg/Search_no_color.svg" class="search-icon">
+        <span *ngIf="input.length" class="cancel-btn" (click)="input = '' ">x</span>
+        <div (click)="$event.stopPropagation()" class="search-result-container scroll"
+            [ngStyle]="{'height' : searchResult.length ? '250px' : 'unset' }" *ngIf="input.length > 1">
+            <div class="p-2 location-text" *ngIf="!searchResult.length">
+                {{searchStatus}}
+            </div>
+            <div *ngIf="searchResult.length">
+                <div class="location-container py-1"
+                    (click)="!analysisInProgress && item.checked = !item.checked; addLocation(item); "
+                    [ngClass]="{'disabled' : (selectedLocations.length > (allowedLocationsLimit-1) && !item.checked) || item.disabled }"
+                    *ngFor="let item of searchResult">
+                    <span class="location-text text-disabled px-2">{{item.name}}</span>
+                    <span class="pr-2 d-flex">
+                        <div class="loader" *ngIf="item.showSpinner"></div>
+                        <input *ngIf="!item.showSpinner" [(ngModel)]="item.checked" (change)="addLocation(item)"
+                            (click)="$event.stopPropagation()" type="checkbox"
+                            [disabled]="(selectedLocations.length > (allowedLocationsLimit-1) && !item.checked) || item.disabled">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<app-no-credits-left-modal></app-no-credits-left-modal>

@@ -1,0 +1,102 @@
+@mixin textDecoration($font-weight, $font-size, $line-height, $color) {
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $color;
+}
+
+@mixin button($padding, $width, $height, $background, $color) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $padding;
+    gap: 8px;
+    width: $width;
+    height: $height;
+    background: $background;
+    border-radius: 5px;
+    color: $color !important;
+    cursor: pointer;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+.card {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.progress {
+    background-color: transparent;
+    height: 1.5rem !important;
+    border-radius: unset;
+    width: -webkit-fill-available;
+}
+
+.bars-container {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.title {
+    @include textDecoration(500, 18px, 24px, #000000)
+}
+
+.sub-title {}
+
+.index-nmbr {
+    @include textDecoration(700, 14px, 22px, #006666)
+}
+
+.text {
+    @include textDecoration(500, 14px, 22px, #616161)
+}
+
+.text-disabled {
+    @include textDecoration(500, 14px, 22px, #B5B5B5)
+}
+
+
+.modal-heading {
+    @include textDecoration(600, 16px, 17px, #292929);
+}
+
+.btn-white {
+    @include button(8px 16px, 10rem, 40px, #FFFFFF, #000000);
+    border: 1px solid #D9D9D9;
+}
+
+.btn-green {
+    @include button(8px 16px, 10rem, 40px, #009999, #FFFFFF);
+    border: unset;
+}
+
+.btn-green-zipcode {
+    @include button(8px 16px, unset, 40px, #009999, #FFFFFF);
+    border: unset;
+}
+
+.modal-btn {
+    @include button(8px 16px, 253px, 40px, #009999, #FFFFFF);
+}
+
+.footer {
+    border-top: 1px solid #D9D9D9;
+    justify-content: center;
+}
+
+input[type=checkbox] {
+    accent-color: #009999;
+    cursor: pointer;
+}
+
+// append modal up angiants dark blurry screen backgroun
+::ng-deep .modal-backdrop.show {
+    z-index: 9 !important;
+}

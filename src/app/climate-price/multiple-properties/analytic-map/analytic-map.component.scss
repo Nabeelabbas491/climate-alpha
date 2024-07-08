@@ -1,0 +1,24 @@
+@import "assets/style/index";
+
+
+.map{
+    height: 42rem;
+    border-radius: 10px;
+    z-index: 3;
+}
+
+:host ::ng-deep .leaflet-touch .leaflet-control-attribution{
+    display: none;
+}
+
+.map-frame{
+  position: relative;
+}
+.cursor{
+  cursor: pointer !important;
+}
+
+.tooltiptext{
+  top: -42px;
+  right: 130%;
+}

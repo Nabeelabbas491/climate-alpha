@@ -1,0 +1,16 @@
+<div class="toggle-container">
+    <div class="mr-2">
+        <img (click)="onTimePeriodToggle('left')" class="cursor-pointer" height="10" width="10"
+            *ngIf="!selectedToggleItem.isFirst" src="assets/img/svg/climate_price/ri/left-poly.svg">
+        <img height="10" width="10" src="assets/img/svg/left_poly.svg" *ngIf="selectedToggleItem.isFirst">
+    </div>
+    <span class="px-2">
+        <span class="label">{{selectedToggleItem.label}}</span>
+        <span class="pl-1 sub-label">{{selectedToggleItem.year}}</span>
+    </span>
+    <div class="ml-2">
+        <img class="cursor-pointer" height="10" width="10" *ngIf="!selectedToggleItem.isLast"
+            (click)="onTimePeriodToggle('right')" src="assets/img/svg/climate_price/ri/right-poly.svg">
+        <img height="10" width="10" src="assets/img/svg/right_poly.svg" *ngIf="selectedToggleItem.isLast">
+    </div>
+</div>

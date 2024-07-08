@@ -1,0 +1,66 @@
+.fw-500 {
+  font-weight: 600;
+  color: white;
+}
+
+.border-rt-gr {
+  border-right: 1px solid grey;
+}
+
+.border_rows_content {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+.delete-file:hover {
+  color: red;
+}
+
+.card-title {
+  color: teal;
+  // filter: drop-shadow(10px 10px 15px teal);
+  font-weight: 600 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+  color: white !important;
+}
+
+.teal-dark {
+  background-color: rgb(0, 102, 102);
+  color: white
+}
+
+.teal-medium {
+  background-color: rgb(0, 128, 128);
+  color: white
+}
+
+.teal-light {
+  background-color: rgb(0, 153, 153);
+  color: white
+}
+
+.centered-element {
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // height: 100%;
+
+}
+
+.container {
+
+  position: relative;
+}
+
+.main-contentthis {
+  padding: 0
+}
+
+summary {
+  // font-family: 'Montserrat';
+}

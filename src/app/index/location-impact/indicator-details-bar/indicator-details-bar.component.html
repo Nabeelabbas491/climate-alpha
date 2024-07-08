@@ -1,0 +1,24 @@
+<div [ngStyle]="{
+    'background-color': colors[selectedIndicator.headline.Cat[selectedToggleItem?.key]]?.lightBackground,
+    'border-color' : showBorder && colors[selectedIndicator.headline.Cat[selectedToggleItem?.key]]?.mainColor}"
+    class="indicator-container {{colors[selectedIndicator.headline.Cat[selectedToggleItem?.key]]['hover-class']}}">
+    <div class="d-flex align-items-center">
+        <img src="{{indicatorsDict[selectedIndicator.headline.Title].icon}}">
+        <span class="indicator-title px-1">
+            {{selectedIndicator.headline.Title}}
+            <span class="subtitle px-1">
+                {{ type == 'risk' ? 'Physical' : 'Resilience-adjusted' }}
+            </span>
+        </span>
+    </div>
+    <div class="d-flex align-items-baseline px-2 fz-32 fw-600"
+        [ngStyle]="{'color' : colors[selectedIndicator.headline.Cat[selectedToggleItem?.key]]?.mainColor }">
+        <span *ngIf="scorekeys.Impact.key == selectedScoreType">
+            {{ selectedIndicator.headline[selectedScoreType][selectedToggleItem.key] | number: '1.0-2'}}
+        </span>
+        <span *ngIf="scorekeys.Score.key == selectedScoreType">
+            {{selectedIndicator.headline[selectedScoreType][selectedToggleItem.key] | number: '1.0-0'}}
+        </span>
+        <span class="fz-14 fw-400 clr-black pl-1">{{scorekeys[selectedScoreType]?.unit}}</span>
+    </div>
+</div>

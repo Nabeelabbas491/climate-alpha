@@ -1,0 +1,36 @@
+<div>
+    <section class="mb-18" *ngIf="!isComparisonComponent">
+        <app-climate-price-header [selectedSection]="'Single-asset View'">
+        </app-climate-price-header>
+    </section>
+    <div class="margin-top" *ngIf="!showDataProcessingMessage" id="single-asset">
+        <!-- map -->
+        <section>
+            <div class="mb-18">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card map-card">
+                            <app-singlpe-property-map (PropertyId)="loadSingleAsset($event)"
+                                (DataProcessingMsg)="showDataProcessingMessage = true"
+                                (AddToComparison)="addToComparison()">
+                            </app-singlpe-property-map>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div>
+                <app-global-overview [sliderId]="'single-asset-portfolio-analytics'"
+                    (ScenarioSelection)="loadSelectedScenarioScore($event)"></app-global-overview>
+            </div>
+        </section>
+    </div>
+</div>
+<section *ngIf="showDataProcessingMessage" class="margin-top">
+    <p>
+        <ngb-alert [dismissible]="false" class="alert alert-secondary alert-dismissible">
+            {{dataMessage}}
+        </ngb-alert>
+    </p>
+</section>

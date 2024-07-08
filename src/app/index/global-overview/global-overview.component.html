@@ -1,0 +1,20 @@
+<div [ngClass]="{'d-none' : !response }">
+    <div class="mb-18" [ngClass]="{'d-none' : !allowUserInput}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 benchmark">
+                    <app-benhmark-dropdown (BenchMarkSelection)="onBenchMarkSelection($event)"></app-benhmark-dropdown>
+                </div>
+                <div class="col-md-6 scenario">
+                    <app-scenarios (ScenarioSelection)="ScenarioSelection.next($event)"></app-scenarios>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-18">
+        <app-location-impact-analytics [data]="response?.risk.Analytics"></app-location-impact-analytics>
+    </div>
+    <div class="mb-18">
+        <app-location-impact></app-location-impact>
+    </div>
+</div>

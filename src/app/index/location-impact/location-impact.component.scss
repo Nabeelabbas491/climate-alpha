@@ -1,0 +1,301 @@
+@import "assets/style/index";
+
+.card {
+    @include card(100%, auto);
+    gap: 0px;
+}
+
+.heading {
+
+    display: flex;
+    align-items: center;
+    @include font(700, 20px, 24px, rgba(0, 0, 0, 1));
+
+    .box {
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        margin-right: 6px;
+    }
+}
+
+
+// .options-container {
+
+//     display: flex;
+//     border-bottom: 1px solid rgba(221, 221, 221, 1);
+
+//     @media only screen and (max-width: 1200px) {
+//         justify-content: space-between;
+//     }
+
+//     .option {
+//         @include font(400, 14px, 16px, rgba(41, 41, 41, 1));
+//         display: flex;
+//         align-items: center;
+//         padding: 0 1.6rem;
+//         padding-bottom: 4px;
+//         cursor: pointer;
+
+//         @media only screen and (max-width: 1400px) {
+//             padding: 0 12px
+//         }
+
+//         @media only screen and (max-width: 1200px) {
+//             padding: 0 10px 0
+//         }
+//     }
+
+//     .circle {
+//         width: 7px;
+//         height: 7px;
+//         display: inline-block;
+//         border-radius: 100%;
+//         margin-left: 4px;
+//     }
+
+//     .selected-option {
+//         @include font(600, 14px, 24px, rgba(41, 41, 41, 1));
+//         border-bottom: 2px solid black;
+//     }
+
+// }
+
+.custom-tooltip {
+
+    @include font(400, 12px, 14px, rgba(41, 41, 41, 1));
+
+    .bold {
+        @include font(700, 12px, 14px, rgba(41, 41, 41, 1));
+    }
+
+    .clr-red {
+        @include font(700, 12px, 14px, rgba(129, 0, 0, 1));
+    }
+
+    .clr-green {
+        @include font(700, 12px, 14px, rgba(0, 153, 153, 1));
+    }
+}
+
+
+// .indicator-container {
+//     // height: 80px;
+//     border-radius: 10px;
+//     padding: 20px;
+//     border: 1px solid rgba(221, 221, 221, 1);
+
+//     .vertical-line {
+//         border: 1px solid rgba(221, 221, 221, 1);
+//     }
+
+//     .indicator {
+//         white-space: nowrap;
+//         @include font(600, 18px, 19px, rgba(0, 0, 0, 1))
+//     }
+
+//     .risk {
+//         white-space: nowrap;
+//         font-weight: 700;
+//         font-size: 14px;
+//         line-height: 17px;
+//     }
+
+//     .description {
+//         display: flex;
+//         align-items: center;
+//         padding-right: 100px;
+//         @include font(400, 13px, 15px, rgba(0, 0, 0, 1))
+//     }
+
+// }
+
+.score {
+    @include font(500, 22px, 27px, #000000);
+    text-align: center;
+    padding: 0 10px;
+    border: 1px solid;
+    letter-spacing: 0.05em;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+
+    .total {
+        @include font(600, 12px, 17px, #000000);
+    }
+}
+
+.w-100 {
+    height: 57px;
+    border-radius: 10px;
+    display: flex;
+    padding: 0 20px;
+    border: 1px solid rgba(221, 221, 221, 1);
+
+    .w-20 {
+        width: 20%;
+    }
+
+    .label {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        position: relative;
+        @include font(600, 18px, 24px, rgba(41, 41, 41, 1));
+
+        .event {
+            margin-left: 6px;
+            display: content !important;
+            @include font(400, 12px, 24px, rgba(97, 97, 97, 1))
+        }
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+        @include font(400, 14px, 24px, rgba(41, 41, 41, 1));
+    }
+
+}
+
+.feature-label {
+    @include font(700, 13px, 15px, rgba(41, 41, 41, 1));
+    display: flex;
+    align-items: center;
+}
+
+.border-none {
+    border: unset;
+    width: 100%;
+    display: flex;
+    padding: 0 20px;
+
+    .column-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: center;
+
+        .label {
+            position: relative;
+            @include font(700, 13px, 15px, rgba(41, 41, 41, 1));
+        }
+
+        .sub-label {
+            text-align: end;
+            position: relative;
+            @include font(400, 13px, 15px, rgba(41, 41, 41, 1));
+            margin: 0 !important;
+        }
+    }
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.overlap-grey-box {
+    background-color: #ededed;
+    // f7f7f7
+    opacity: 0.5;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    // right: -10%;
+    border-radius: 5px;
+}
+
+.fit-content {
+    width: fit-content;
+}
+
+.line-height-16px {
+    line-height: 16px;
+}
+
+// #region Time Period Toggle css
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgb(221, 221, 221);
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 5px;
+    width: 300px;
+
+    .label {
+        @include font(700, 14px, 17px, rgba(41, 41, 41, 1));
+    }
+
+    .sub-label {
+        @include font(400, 14px, 17px, rgba(41, 41, 41, 1));
+    }
+}
+
+// #endregion Time Period Toggle css
+:host ::ng-deep .my-custom-class .tooltip-inner {
+    background-color: white;
+    padding: 6px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    opacity: 1;
+}
+
+%featureTooltip {
+    border-radius: 5px;
+    padding: 10px;
+    max-width: unset;
+    text-align: left;
+}
+
+:host ::ng-deep .featureTooltip-200px .tooltip-inner {
+    @extend %featureTooltip;
+    width: 200px;
+}
+
+:host ::ng-deep .featureTooltip-280px .tooltip-inner {
+    @extend %featureTooltip;
+    width: 280px;
+}
+
+:host ::ng-deep .my-custom-class.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: white;
+}
+
+:host ::ng-deep .my-custom-class.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: white;
+}
+
+:host ::ng-deep .my-custom-class.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: white;
+}
+
+:host ::ng-deep .my-custom-class.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: white;
+}
+
+.align-item {
+    align-items: center;
+}
+
+.justify-item {
+    justify-content: center;
+}
+
+@media print {
+    .align-item {
+        align-items: end;
+    }
+
+    .justify-item {
+        justify-content: end;
+    }
+}

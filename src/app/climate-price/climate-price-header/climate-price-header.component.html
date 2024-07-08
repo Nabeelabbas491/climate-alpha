@@ -1,0 +1,19 @@
+<div id="{{headerId}}">
+    <div class="header">
+        <header>
+            <div class="d-flex justify-content-center brdr-btm options">
+                <div *ngFor="let item of headerOptions" class="d-flex align-items-center"
+                    [ngClass]="{'selected-option' : item.section === selectedSection }" [routerLink]="[item.path]">
+                    {{item.section}}
+                </div>
+                <div *ngIf="comparisonCount" class="d-flex align-items-center"
+                    [routerLink]="['/portfolio-analytics/comparison']"
+                    [ngClass]="{'selected-option' : selectedSection === 'Comparison' }">
+                    Comparison <div class="count ml-1">({{comparisonCount}})</div>
+                </div>
+            </div>
+            <app-navbar-item id="navbarItems" class="navbar-items"></app-navbar-item>
+        </header>
+    </div>
+    <ng-content></ng-content>
+</div>

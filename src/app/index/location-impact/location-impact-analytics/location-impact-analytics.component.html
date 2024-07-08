@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 {{ i == 1 ? px-2 : 'p-0'}}" *ngFor="let item of data; let i = index">
+            <div class="details-card">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="fz-18 fw-700 line-h-24 text-500 mr-2">
+                        {{item.Title}}
+                    </div>
+                    <div class="d-flex scenario-container ml-2">
+                        <div class="scenario-text px-2 pb-1" *ngFor="let m of scenarios" [ngStyle]="{
+                                'color' : m.value == item.Cat && colors[item.Cat]?.mainColor,
+                             'border-color' :  m.value == item.Cat && colors[item.Cat]?.mainColor
+                             }">
+                            {{m.label}}
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-baseline my-3">
+                    <div class="fz-32 line-h-24 fw-700 text-500"
+                        [ngStyle]="{'color' : item.Data && colors[item.Cat]?.mainColor}">
+                        {{item.Data || 'N/A'}}
+                    </div>
+                    <div class="fz-16 line-h-normal fw-400 clr-black ml-1">
+                        {{item.Unit}}
+                    </div>
+                </div>
+                <div class="desc" innerHtml="{{item.Description}}"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,203 @@
+<div>
+    <!-- header -->
+    <section class="mb-18">
+        <app-data-manager-header [selectedSection]="'Summary'" (Scroll)="onScroll()"></app-data-manager-header>
+    </section>
+    <section *ngIf="!showDataProcessingMessage" class="margin-top">
+        <!-- trail user banner -->
+        <div class="mb-18">
+            <app-data-manager-trial-banner></app-data-manager-trial-banner>
+        </div>
+        <!-- filters -->
+        <div class="card filter-card mb-18">
+            <app-data-manager-filters (ApplyFilter)="applyFilters($event)"></app-data-manager-filters>
+        </div>
+        <!-- table -->
+        <div class="card table-card">
+            <div *ngIf="!data" class="loader">
+                <app-loader></app-loader>
+            </div>
+            <div *ngIf="data">
+                <div class="header row mb-2">
+                    <div class="col-md-8 d-flex align-items-center">
+                        <div class="pr-2">
+                            <span class="labels" *ngIf="count1"> {{ count1 }}
+                                {{ dataManagerFiltersComponent.tiersDropdownsComponent.tierHeadings.tier1 || 'Tier 1' }}{{ count1 > 1 && dataManagerFiltersComponent.tiersDropdownsComponent.tierHeadings.tier1 ? 's' : '' }}
+                            </span>
+                            <span *ngIf="count2" class="slash px-1"> /</span>
+                            <span class="labels" *ngIf="count2"> {{ count2 }}
+                                {{ dataManagerFiltersComponent.tiersDropdownsComponent.tierHeadings.tier2 || 'Tier 2' }}{{ count2 > 1 && dataManagerFiltersComponent.tiersDropdownsComponent.tierHeadings.tier2  ? 's' : '' }}
+                            </span>
+                            <span *ngIf="count3" class="slash px-1"> / </span>
+                            <span class="labels" *ngIf="count3"> {{ count3 }}
+                                {{ dataManagerFiltersComponent.tiersDropdownsComponent.tierHeadings.tier3 || 'Tier 3' }}{{ count3 > 1 && dataManagerFiltersComponent.tiersDropdownsComponent.tierHeadings.tier3  ? 's' : '' }}
+                            </span>
+                            <span *ngIf="count4" class="slash px-1"> / </span>
+                            <span class="labels" *ngIf="count4"> {{ count4 }}
+                                {{  dataManagerFiltersComponent.tiersDropdownsComponent.tierHeadings.tier4 || 'Tier 4' }}{{ count4 > 1 && dataManagerFiltersComponent.tiersDropdownsComponent.tierHeadings.tier4  ? 's' : '' }}
+                            </span>
+                        </div>
+                        <span class="collapse-all-text" (click)="expandAll()">Expand All</span>
+                        <span class="collapse-all-text px-2" (click)="collapseAll()">Collapse All</span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+                        <fieldset class="form-group m-0 mr-2">
+                            <input class="form-control" placeholder="Search" #input
+                                (keyup)="search($event.target.value)">
+                            <img *ngIf="!input.value.length" src="assets/img/svg/Search_no_color.svg"
+                                class="search-icon">
+                        </fieldset>
+                        <span class="white-btn w-164px" (click)="openAddNewTierModal()">
+                            <img src="assets/img/svg/climate_price/Add.svg" class="mr-1"> Add New
+                        </span>
+                        <app-add-new-teir-modal (AddRow)="addNewTierRow($event)"></app-add-new-teir-modal>
+                    </div>
+                </div>
+                <div id="right_menu" style="position: absolute;">
+                    <ul class="navbar-nav " [ngbCollapse]="false">
+                        <li class="nav-item" ngbDropdown display="dynamic" id="data-manager-menu">
+                            <a class="nav-link position-relative " id="dropdown" ngbDropdownToggle></a>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="text-left p-0 m-0">
+                                <a *ngFor="let item of menuItems; let last = last" class="dropdown-item"
+                                    [ngClass]="{'red': last}" (click)="onMenuItemSelection(item)">
+                                    <img src={{item.icon}} width="12px" height="12px"><span class="pl-1"
+                                        [ngStyle]="{'color' : item.color && item.color}">
+                                        {{ item.name}}</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="table-container">
+                    <table class="table mt-2">
+                        <thead>
+                            <tr>
+                                <th class="border-unset w-20px" *ngIf="rowAction == 'edit' ">
+                                    <div *ngIf="showBulkOperationIcons" class="bg-unset">
+                                        <img src="assets/img/svg/data-manager/save-all.svg" class="img_btn_size"
+                                            (click)="onTickAll()">
+                                        <img src="assets/img/svg/data-manager/cancel-all.svg" class="img_btn_size"
+                                            (click)="onCrossAll()">
+                                    </div>
+                                </th>
+                                <th class="header-th w-20px">
+                                    <input *ngIf="!isTrialUser" type="checkbox" [(ngModel)]="allChecked"
+                                        (change)="onHeaderColumnCheckboxChange($event)">
+                                </th>
+                                <th class="header-th">
+                                    <span (click)="sort()" class="cursor-pointer">
+                                        Tiers
+                                        <img src="assets/img/svg/climate_price/analytical-table/sort.svg">
+                                    </span>
+                                </th>
+                                <th class="header-th">No. Properties</th>
+                                <th class="header-th">Description</th>
+                                <th class="header-th">Date Created</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of data; let i = index" class="{{item.class}}"
+                                id="data-manager-summary-{{i}}"
+                                (contextmenu)="onRightclick($event, i); $event.preventDefault();"
+                                [ngClass]="{'expnaded-row' : item.expanded }">
+                                <td class="w-20px border-unset" *ngIf="rowAction == 'edit' ">
+                                    <div *ngIf="item.editRow">
+                                        <img class="w-h-22px" src="assets/img/svg/climate_price/tick.svg"
+                                            (click)="onTick(item, i)">
+                                        <img class="w-h-22px mt-1" (click)="onCross(item, i)"
+                                            src="assets/img/svg/climate_price/cross.svg">
+                                    </div>
+                                </td>
+                                <td class="w-20px data-column">
+                                    <!-- (change)="onCheckBoxChange(item, i)" -->
+                                    <input
+                                        ngbTooltip="{{ isTrialUser ? 'Processed data cannot be edited with a trial subscription.' : '' }}"
+                                        placement="right" container="body" tooltipClass="my-custom-class"
+                                        type="checkbox" [disabled]="isTrialUser" [(ngModel)]="item.checkbox">
+                                </td>
+                                <td class="data-column">
+                                    <div [ngStyle]="{'padding-left' : item.paddingLeft }">
+                                        <div *ngIf="!item.editRow">
+                                            <span *ngIf="item.children">
+                                                <!-- plus sign -->
+                                                <span class="cursor-pointer"
+                                                    *ngIf="!item.expanded && item.children.length"
+                                                    (click)="expandRow(item,i)">
+                                                    <img src="assets/img/svg/climate_price/summary/plus.svg">
+                                                </span>
+                                                <!-- minus sign -->
+                                                <span class="cursor-pointer"
+                                                    *ngIf="item.expanded && item.children.length"
+                                                    (click)="collapseRow(item,i)">
+                                                    <img src="assets/img/svg/climate_price/summary/minus.svg">
+                                                </span>
+                                            </span>
+                                            <span> {{item.data?.name}}</span>
+                                        </div>
+                                        <div *ngIf="item.editRow">
+                                            <fieldset class="form-group m-0">
+                                                <input #rowInput [(ngModel)]="item.data.name"
+                                                    class="w-100 form-control">
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="data-column">
+                                    <div>{{item.data?.property_count}}</div>
+                                </td>
+                                <td class="data-column">
+                                    <div *ngIf="!item.editRow">{{item.data?.description }}</div>
+                                    <div *ngIf="item.editRow">
+                                        <fieldset class="form-group m-0">
+                                            <input [(ngModel)]="item.data.description" class="w-100 form-control">
+                                        </fieldset>
+                                    </div>
+                                </td>
+                                <td class="data-column">
+                                    <div> {{item.data?.created_at | date }}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section *ngIf="showDataProcessingMessage" class="margin-top">
+        <p>
+            <ngb-alert [dismissible]="false" class="alert alert-secondary alert-dismissible">
+                {{dataMessage}}
+            </ngb-alert>
+        </p>
+    </section>
+    <!-- Modal -->
+    <section>
+        <ng-template #modal class="modal">
+            <div class="custom-padding">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold text-center">
+                        Do you really want to {{rowAction}} the selected item(s)?
+
+                    </h5>
+                </div>
+                <div class="modal-body px-0 text-center">
+                    <span class="pb-2" *ngFor="let item of selectedRows">
+                        <div> {{item.data.name}} </div>
+                    </span>
+                </div>
+                <div class="warning-text">
+                    All <span class="font-weight-bold ">lower-level tiers</span> will be {{rowAction}}d as well. We
+                    kindly advise
+                    that this action is
+                    irreversible, so please take this into consideration before
+                    proceeding.
+                </div>
+                <div class="modal-footer p-0  pt-2">
+                    <button type="button" class="btn btn-primary white fw-600" (click)="confirm()"> Confirm </button>
+                    <button type="button" class="btn btn-outline-secondary fw-600" (click)="closeModal()">
+                        Cancel</button>
+                </div>
+            </div>
+        </ng-template>
+    </section>
+</div>

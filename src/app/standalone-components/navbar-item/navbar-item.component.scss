@@ -1,0 +1,140 @@
+@import "assets/style/index";
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #f1f1f3;
+}
+
+.content {
+  height: 200vh;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+
+.final_btn {
+  background: #4A7782 0% 0% no-repeat padding-box;
+}
+
+.final_btn_txt {
+  text-align: center;
+  // font: normal normal medium 12px/15px Montserrat;
+  letter-spacing: 0.24px;
+  color: #FFFFFF;
+  border-radius: 4px;
+  width: 15%;
+  margin: auto 15%;
+}
+
+.add_btn {
+  text-align: right;
+}
+
+.btn_design {
+  background: #009999;
+  color: #fff !important;
+  border-radius: 5px;
+  padding: 0.5rem !important;
+}
+
+// ::ng-deep .api-menu .dropdown-toggle::after{
+//   display: none;
+// }
+
+.username {
+  // font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 30px;
+  /* identical to box height, or 214% */
+  text-transform: capitalize;
+  color: #000000;
+}
+
+::ng-deep .dropdown-toggle::after {
+  display: none;
+}
+
+
+.link {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+}
+
+.copy-button {
+  background-color: #009999;
+  color: #fff;
+  // padding: 10px ;
+  margin-left: 8px;
+  border-radius: 4px;
+  width: 3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh-button {
+  background-color: #009999;
+  color: #fff;
+  border-radius: 4px;
+  // padding: 10px;
+  margin-left: 8px;
+  cursor: pointer;
+  width: 3rem;
+  // border: 1px solid red !important;
+  display: flex;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-refresh {
+  font-size: 20px;
+}
+
+
+.menu-open {
+  border-radius: 100%;
+  background-color: #e4e4e4;
+  ;
+}
+
+.img-pd {
+  padding: 0.5rem;
+}
+
+#app-header {
+  transition: visibility 0.3s ease;
+}
+
+.downlaod-csv {
+
+  .heading {
+    @include font(700, 16px, 22px, #292929)
+  }
+
+  .text {
+    @include font(400, 14px, 17px, #292929)
+  }
+
+}
+
+.w-300px {
+  width: 300px;
+}
+
+::ng-deep .toastr-data-download-error {
+  text-decoration: underline !important;
+}

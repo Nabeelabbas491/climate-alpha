@@ -1,0 +1,41 @@
+<div class="container-fluid mt-6">
+    <div class="row">
+        <div class="col-md-3 pr-0">
+            <app-selected-features #selectedFeatures (updateDataEvent)="getApiData($event)">
+            </app-selected-features>
+        </div>
+        <div class="col-md-9">
+            <div class="card d-flex justify-content-center align-items-center" *ngIf="errorMsg">
+                <span>Please select a feature to view results</span>
+            </div>
+            <div *ngIf="!errorMsg">
+                <div class="card" style="height:auto;">
+                    <div class="title">
+                        <!-- Top {{topCountiesNumber}} Best-Performing {{selectedType}} Map -->
+                        Top Performing Locations
+                    </div>
+                    <div class="col-md-12 mt-3 d-flex align-items-center">
+                        <div class="col-md-3 px-0">
+                            <ng-select (change)="updateAlphaFinderSearch($event)" placeholder="{{placeholder}}"
+                                [searchable]="false" class="custom" [items]="dropDownList" bindLabel="title">
+                            </ng-select>
+                        </div>
+                        <div class="col-md-9"></div>
+                    </div>
+                    <div class="col-12 pt-2 pb-3">
+                        <app-alpha-finder-map (dropDownValueEvent)="updateAlphaFinderSearch($event)"
+                            (ModalEvent)="OpenModal($event)" [mapView]="mapView">
+                        </app-alpha-finder-map>
+                    </div>
+                </div>
+                <div class="card" style="height: auto;">
+                    <div class="card-body pb-0">
+                        <app-alpha-ranking-bars #rankingbars [rankingType]="selectedType" [pdfFilters]="export_filters"
+                            [show_footer]="showExportButtonsFooter">
+                        </app-alpha-ranking-bars>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

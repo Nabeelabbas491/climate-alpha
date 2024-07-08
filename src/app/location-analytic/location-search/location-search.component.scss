@@ -1,0 +1,74 @@
+@import "assets/style/index";
+
+.form-group{
+    width: 400px;
+    position: relative;
+  
+    input{
+      height: 30px;
+      font-size: 12px;
+    }
+
+    .search-icon{
+        position: absolute;
+        top: 25%;
+        right: 1.5%;
+    }
+
+    .cancel-btn{
+        position: absolute;
+        top: 10%;
+        right: 2%;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        color: #ced4da;
+    }
+
+    .search-result-container{
+        // height: 250px;
+        position: absolute;
+        margin-top: 6px;
+        z-index: 4;
+        background: antiquewhite;
+        width: 100%;
+        border-radius: 0.25rem;
+        color: #495057;
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        overflow: auto;
+
+        .location-container{
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            // height: 42px;
+
+            .location-text{
+                @include font(500, 14px, 22px, #292929)
+            }
+    
+            input[type=checkbox] {
+                accent-color: #009999;
+            }
+        }
+
+        .disabled{
+            cursor: default;
+            background-color: transparent !important;
+
+            .text-disabled{
+                opacity: 0.6;
+            }
+        }
+
+        .location-container:hover{
+            background-color: aliceblue;
+        }
+        
+    }
+}
+
+

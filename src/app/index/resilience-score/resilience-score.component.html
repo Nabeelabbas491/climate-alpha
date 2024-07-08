@@ -1,0 +1,120 @@
+<div class="row" *ngIf="data">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="risk-label text-center">{{title}}</div>
+            <div class="address text-center">{{subTitle}}</div>
+            <div class="risk-intensity text-center" [ngStyle]="{'color' : boxColors[data[key].Cat]?.border }">
+                {{data[key].Cat}}</div>
+            <div class="circle-progress">
+                <circle-progress [percent]="data[key]?.Score" [maxPercent]="100" [animationDuration]="0"
+                    [animateTitle]="false" [outerStrokeColor]="colors[data[key].Cat]?.mainColor"
+                    [innerStrokeColor]="'#e7e8ea'" [animation]="true" [showSubtitle]="true" [subtitle]="'/100'"
+                    [showUnits]="false" [subtitleColor]="'#000'" [subtitleFontSize]="'9'" [showBackground]="false"
+                    [titleFontSize]="16" [titleFontWeight]="600" [outerStrokeLinecap]="'butt'" [radius]="50"
+                    [space]="-24" [outerStrokeWidth]="24" [innerStrokeWidth]="24" [outerStrokeGradient]="true"
+                    [outerStrokeGradientStopColor]="colors[data[key].Cat]?.gradientColor"></circle-progress>
+            </div>
+            <div class="description px-20" innerHTML="{{data[key]?.Desc}}"></div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="row">
+            <!-- Show this box for climate risk index only -->
+            <div class="col-md-6 pl-0" *ngIf="key == 'Overall' ">
+                <div class="score-box mb-18">
+                    <div class="d-flex justify-content-between align-items-center px-20">
+                        <div class="text-left d-flex align-items-center">
+                            <img [src]="scenarios[selectedScenario].icon">
+                            <div class="category ml-1">{{scenarios[selectedScenario].title}}</div>
+                        </div>
+                    </div>
+                    <div class="description py-3 px-20" style="height:88%">
+                        {{scenarios[selectedScenario].summary}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pl-0" *ngFor="let item of data | keyvalue : returnZero"
+                [ngStyle]="{'display' :  ['Readiness', 'Vulnerability', 'Overall'].includes(item.key) ? 'none' : ''}">
+                <div class="score-box mb-18">
+                    <div class="d-flex justify-content-between align-items-center px-20">
+                        <div class="text-left">
+                            <div class="category">{{item.value.Title}}</div>
+                            <div class="range" [ngStyle]="{'color' : boxColors[item.value.Cat]?.border }">
+                                {{item.value.Cat}}</div>
+                        </div>
+                        <div class="value"
+                            [ngStyle]="{'background-color' : boxColors[item.value.Cat]?.background, 'border-color' : boxColors[item.value.Cat]?.border } ">
+                            <div class="d-flex align-items-baseline">
+                                {{item.value.Score}}
+                                <span>/100</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description py-3 px-20" style="height:88%" innerHTML="{{item.value.Desc}}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- small device -->
+<!-- <div class="mobile-device" *ngIf="data">
+    <div class="col-12 px-0">
+        <div class="card text-center border" id="SmallDeviceClimateRisk">
+            <div class="card-content main-border px-2">
+                <div>
+                    <div class="pie_title pt-3">{{data.Overall.Title}}</div> <br>
+                    <div *ngIf="title" class="pie_summary">
+                        {{title}}
+                        <br />
+                    </div>
+                </div>
+                <div class="card-body px-0 pt-0">
+                    <div [ngStyle]="{color: colors[data.Overall.Cat]?.mainColor}" class="pie_sub_title">
+                        {{data.Overall.Cat}}</div>
+                    <div class="progress_pie_main">
+                        <circle-progress [percent]="data.Overall.Score" [maxPercent]="100" [animationDuration]="0"
+                            [animateTitle]="false" [outerStrokeColor]="colors[data.Overall.Cat]?.mainColor"
+                            [innerStrokeColor]="'#e7e8ea'" [animation]="true" [showSubtitle]="true" [subtitle]="'/100'"
+                            [showUnits]="false" [subtitleColor]="'#000'" [subtitleFontSize]="'9'"
+                            [showBackground]="false" [titleFontSize]="16" [titleFontWeight]="600"
+                            [outerStrokeLinecap]="'butt'" [radius]="50" [space]="-24" [outerStrokeWidth]="24"
+                            [innerStrokeWidth]="24" [outerStrokeGradient]="true"
+                            [outerStrokeGradientStopColor]="colors[data.Overall.Cat]?.gradientColor"></circle-progress>
+                    </div>
+                    <div>
+                        <div class="pie_summary" innerHTML="{{data.Overall.Desc}}"></div>
+                    </div>
+                    <hr class="mx-1">
+                    <div class="card-content">
+                        <img *ngIf="scenarios[selectedScenario].icon" [src]="scenarios[selectedScenario].icon">
+                        <div class="pie_title mt-1 mb-1 fs-14" id="sc-ri-climate-title"
+                            innerHtml="{{scenarios[selectedScenario].title}}">
+                        </div>
+                        <p class="pie_summary text-left" *ngIf="showScenarioSummary"
+                            innerHtml="{{scenarios[selectedScenario].summary}}">
+                        </p>
+                    </div>
+                    <div class="score-box mt-2" *ngFor="let item of data | keyvalue : returnZero"
+                        [ngStyle]="{'display' : item.key == 'Overall' ? 'none' : ''}">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-left">
+                                <div class="category">{{item.value.Title}}</div>
+                                <div class="range" [ngStyle]="{'color' : boxColors[item.value.Cat]?.border }">
+                                    {{item.value.Cat}}</div>
+                            </div>
+                            <div class="value"
+                                [ngStyle]="{'background-color' : boxColors[item.value.Cat]?.background, 'border-color' : boxColors[item.value.Cat]?.border } ">
+                                <div class="d-flex align-items-baseline">
+                                    {{item.value.Score}}
+                                    <span>/100</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="desc pt-3" innerHTML="{{item.value.Desc}}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

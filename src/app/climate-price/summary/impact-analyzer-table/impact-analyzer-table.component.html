@@ -1,0 +1,96 @@
+<div *ngIf="!data" class="loader">
+    <app-loader></app-loader>
+</div>
+<div *ngIf="data">
+    <div class="header row mb-2">
+        <div class="col-md-8 d-flex align-items-center">
+            <div class="pr-2">
+                <span class="labels" *ngIf="count1"> {{ count1 }}
+                    {{ tierHeadings?.tier1.length ? tierHeadings.tier1 : 'Portfolio' }}{{ count1 > 1 ? 's' :
+                    '' }}
+                </span>
+                <span *ngIf="count2" class="slash px-1"> /</span>
+                <span class="labels" *ngIf="count2"> {{ count2 }}
+                    {{ tierHeadings.tier2.length ? tierHeadings.tier2 : 'Tier 2' }}{{ count2 > 1 &&
+                    tierHeadings.tier2.length ? 's' : '' }}
+                </span>
+                <span *ngIf="count3" class="slash px-1"> / </span>
+                <span class="labels" *ngIf="count3"> {{ count3 }}
+                    {{ tierHeadings.tier3.length ? tierHeadings.tier3 : 'Tier 3' }}{{ count3 > 1 &&
+                    tierHeadings.tier3.length ? 's' : '' }}
+                </span>
+                <span *ngIf="count4" class="slash px-1"> / </span>
+                <span class="labels" *ngIf="count4"> {{ count4 }}
+                    {{ tierHeadings.tier4.length ? tierHeadings.tier4 : 'Tier 4' }}{{ count4 > 1 &&
+                    tierHeadings.tier4.length ? 's' : '' }}
+                </span>
+            </div>
+            <span class="collapse-all-text" (click)="expandAll()">Expand All</span>
+            <span class="collapse-all-text px-2" (click)="collapseAll()">Collapse All</span>
+        </div>
+        <div class="col-md-4 d-flex align-items-center justify-content-end">
+            <fieldset class="form-group m-0">
+                <input class="form-control" placeholder="Search" (keyup)="search($event.target.value)" #input>
+                <img *ngIf="!input.value.length" src="assets/img/svg/Search_no_color.svg" class="search-icon">
+            </fieldset>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="table mt-2">
+            <thead>
+                <tr>
+                    <th class="header-th">
+                        <span (click)="sort()" class="cursor-pointer">
+                            {{ tierHeadings?.tier1.length ? tierHeadings.tier1 : 'Portfolio' }}{{ data.length
+                                > 1 ? 's' : '' }}
+                            <img src="assets/img/svg/climate_price/analytical-table/sort.svg">
+                        </span>
+                    </th>
+                    <th class="header-th">
+                        <span
+                            [ngbTooltip]="'Market value, i.e., valuation, considers both the value of land and improvements/structures associated with the property.'"
+                            [container]="'body'"> Market Value ($)</span>
+                    </th>
+                    <th class="header-th">
+                        <span
+                            [ngbTooltip]="'Total Physical Impact is an estimate of the potential economic impact of climate risks on this location under the selected climate change scenario and time period.'"
+                            [container]="'body'"> Total Physical Impact (%)</span>
+                    </th>
+                    <th class="header-th">
+                        <span
+                            [ngbTooltip]="'Value at Risk (VaR) is a measure of the potential loss that an asset/ portfolio might experience over a given period of time.'"
+                            [container]="'body'"> Value At Risk ($)</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data; let i = index" class="{{item.class}}" id="{{i}}"
+                    [ngClass]="{'expnaded-row' : item.expanded }">
+                    <td class="border d-flex align-items-center">
+                        <span [ngStyle]="{'padding-left' : item.paddingLeft }">
+                            <span *ngIf="item.children">
+                                <!-- plus sign -->
+                                <span class="cursor-pointer" *ngIf="!item.expanded && item.children.length"
+                                    (click)="expandRow(item,i)">
+                                    <img src="assets/img/svg/climate_price/summary/plus.svg">
+                                </span>
+                                <!-- minus sign -->
+                                <span class="cursor-pointer" *ngIf="item.expanded" (click)="collapseRow(item,i)">
+                                    <img src="assets/img/svg/climate_price/summary/minus.svg">
+                                </span>
+                            </span> <span>
+                                {{item.data.title}}</span>
+                        </span>
+                    </td>
+                    <td>{{item.data.avg_market_value == 1 ? 'N/A' : item.data.avg_market_value | number: '1.0-2' }}</td>
+                    <td>{{ ((item.data.avg_physical_impact >= 0 ? '+' : '') + (item.data.avg_physical_impact| number :
+                        '1.2-2')).replaceAll(',', '')
+                        }}</td>
+                    <td>{{((item.data.avg_value_at_risk >= 0 ? '+' : '') + (item.data.avg_value_at_risk| number : '1.2-2')).replaceAll(',',
+                        '')
+                        }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

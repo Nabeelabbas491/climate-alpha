@@ -1,0 +1,7 @@
+<div class="benchmark-slider w-100" *ngIf="sliderOptions">
+    <!-- <div class="benchmark-chip mb-1" [ngClass]="sliderOptions.benchMarkChipClass">
+        BENCHMARK-{{class == 'red'  ? 'TRAILING' : 'BEATING' }}
+    </div> -->
+    <ngx-slider [(value)]="value" [options]="config?.options" id="{{sliderOptions?.id}}">
+    </ngx-slider>
+</div>

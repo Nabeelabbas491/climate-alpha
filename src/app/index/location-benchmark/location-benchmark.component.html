@@ -1,0 +1,56 @@
+<div class="location-benchmark-panel" [ngClass]="{'d-none' : noDataAvailbale}">
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <div class="label">{{headlineTitle}}</div>
+            <div class="ml-2">
+                <app-score-toggle (ToggleSelection)="ScoreTypeSelection.next($event)">
+                </app-score-toggle>
+            </div>
+            <div class="ml-2">
+                <app-time-period-toggle (ToggleSelection)="TimePeriodSelection.next($event)">
+                </app-time-period-toggle>
+            </div>
+        </div>
+        <div class="benchmark" [ngClass]="class" *ngIf="sliderOptions">
+            BENCHMARK-{{class == 'red'  ? 'TRAILING' : 'BEATING' }}
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="d-flex">
+                <div class="benchmark-value d-flex align-items-center pr-3"
+                    [ngStyle]="{'color' : colors[data.cat]?.mainColor}" *ngIf="value || value == 0">
+                    <span *ngIf="scorekeys.Impact.key == scoreToggleComponent?.selectedScoreType">
+                        {{value | number: '1.0-2'}}</span>
+                    <span *ngIf="scorekeys.Score.key == scoreToggleComponent?.selectedScoreType">
+                        {{value | number: '1.0-0'}}</span>
+                    <span class="unit">{{scorekeys[scoreToggleComponent?.selectedScoreType]?.unit}}</span>
+                </div>
+                <div class="benchmark-value d-flex align-items-center pr-3" *ngIf="!value && value != 0 ">
+                    -
+                </div>
+                <div class="description p-3 br-left" *ngIf="explainer" innerHtml=" {{ explainer }}"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="w-100 pb-2" [ngClass]="{'d-none' : !value && value != 0 }">
+                <marker-slider [value]="value" [sliderOptions]="sliderOptions"></marker-slider>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="location-benchmark-panel" [ngClass]="{'d-none' : !noDataAvailbale}">
+    <div class="opacity">
+        <div class="label"> {{impactType}} </div>
+        <div class="row my-3">
+            <div class="col-12 d-flex align-items-center">
+                <div class="benchmark-value d-flex align-items-center pr-3">
+                    -
+                </div>
+                <div class="description p-3 br-left">
+                    {{noDataAvailableMsg}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+@import "assets/style/index";
+
+.graph-card{
+    @include card(100%, auto);
+}
+
+.map-card{
+    @include card(100%, auto)
+}
+
+hr{
+    margin: 0;
+} 
+
+.margin-top{
+    position: relative;
+    top: 45px;
+}

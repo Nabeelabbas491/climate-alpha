@@ -1,0 +1,53 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 8px;
+    height: 33px;
+    background: #009999;
+    border-radius: 5px;
+    width: 170px;
+}
+
+.content-container {
+    width: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // align-items: center;
+
+    a {
+        font-size: 12px;
+        text-decoration: underline;
+        color: #009999;
+    }
+}
+
+.mfa-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #919EAB3D;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.w-115px {
+    width: 115px !important;
+}
+
+.center {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    flex-direction: column;
+}
+
+:host ::ng-deep {
+    .ngx-otp-input {
+        border: 1px solid #919EAB3D !important;
+    }
+}

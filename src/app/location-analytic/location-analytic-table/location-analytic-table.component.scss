@@ -1,0 +1,83 @@
+@import "assets/style/index";
+
+.table-card{
+    @include card(100%,auto);
+}
+
+.w-250-px{
+    width: 250px;
+}
+
+.text{
+    @include font(400, 12px, 15px, #292929);
+}
+
+%box{
+    width: 12px;
+    height: 12px;
+    display: block;
+    border-radius: 2px;
+}
+
+.box-grn{
+    @extend %box;
+    border:1px solid rgba(0, 153, 153, 1);
+    background-color: #e6f5f5;
+}
+
+.box-yellow{
+     @extend %box;
+    border:1px solid #EAAE14;
+    background-color: #fdf7e8;
+}
+
+.box-red{
+     @extend %box;
+    border:1px solid rgba(129, 0, 0, 1);
+    background-color: #f3e6e6;
+}
+
+.table{
+
+    width: 100%;
+    
+    th{
+        background: rgb(74, 113, 130);
+        color: #fff;
+        border :1px solid #fff !important;
+        text-align: center;
+        @include font(600, 12px, 12px, rgba(255, 255, 255, 1))
+    }
+
+    td{
+        border: 1px solid  #dee2e6;
+        @include font(400, 12px, 15px, #292929);
+        text-align: center;
+    }
+
+    .border-unset{
+        border: unset !important;
+    }
+
+    .indicator-name{
+        // cursor: pointer;
+        // text-decoration: underline;
+    }
+}
+
+.loader{
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disabled-indicator{
+    color: #b5b5b5!important;
+    cursor: default !important;
+    text-decoration: none !important;
+}
+
+
+
+

@@ -1,0 +1,110 @@
+@mixin textDecoration($font-weight, $font-size, $line-height, $color) {
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $color;
+}
+
+@mixin contentSection($background, $borderRadius, $height) {
+    background: $background;
+    border-radius: $borderRadius;
+    height: $height;
+}
+
+@mixin button($padding, $background, $color) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $padding;
+    gap: 8px;
+    width: 145px;
+    height: 40px;
+    background: $background;
+    border-radius: 5px;
+    color: $color;
+    cursor: pointer;
+}
+
+.input-limit {
+    position: absolute;
+    right: 1%;
+    top: 18%;
+    color: #B5B5B5;
+}
+
+.textarea-limit {
+    position: absolute;
+    right: 1%;
+    top: 6.5rem;
+    color: #B5B5B5;
+}
+
+.main-card {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.summray-box {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(150, 150, 150, 0.5);
+    border-radius: 5px;
+    height: 30px;
+}
+
+summary {
+    user-select: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.webkit-fill-available {
+    width: -webkit-fill-available;
+}
+
+.form-group {
+    margin-bottom: unset;
+    position: relative;
+}
+
+.label {
+    @include textDecoration(600, 16px, 24px, #000000)
+}
+
+.category {
+    @include textDecoration(600, 14px, 17px, #000000)
+}
+
+.summray-box-title {
+    @include textDecoration(400, 14px, 17px, #000000)
+}
+
+.selected-features-section {
+    @include contentSection(#F1F1F3, 10px, 832px);
+    overflow: auto
+}
+
+.save-feature-section {
+    @include contentSection(white, unset, 832px)
+}
+
+.selected-feature-title {
+    @include textDecoration(600, 20px, 22px, #000000)
+}
+
+.save-btn {
+    @include button(8px 16px, #009999, #FFFFFF);
+}
+
+.cancel-btn {
+    @include button(8px 16px, #FFFFFF, #000000);
+    border: 1px solid #D9D9D9;
+}
+
+input[type=checkbox] {
+    accent-color: #009999;
+}

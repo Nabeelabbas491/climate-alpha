@@ -1,0 +1,97 @@
+<div class="card mb-18" *ngIf="data">
+    <div class="d-flex justify-content-between align-items-start rotate-180deg">
+        <div class="justify-content-end d-flex align-items-center pr-0 mr-3 rotate-180deg" id="toggles">
+            <div class="mr-2">
+                <app-score-toggle [selectedScoreType]="selectedScoreType"
+                    (ToggleSelection)="selectedScoreType = $event; setSliders()"></app-score-toggle>
+            </div>
+            <div>
+                <app-time-period-toggle (ToggleSelection)="selectedToggleItem = $event; setSliders()"
+                    [selectedToggleItem]="selectedToggleItem"> </app-time-period-toggle>
+            </div>
+        </div>
+        <!-- tabs -->
+        <img *ngIf="showArrows" class="cursor-pointer mr-2 arrow" height="10" width="10"
+            src="assets/img/svg/climate_price/ri/left-poly.svg" (click)="scroll('left')">
+        <div class="overflow rotate-180deg w-full" id="tabs-options">
+            <app-indicator-tabs [indicators]="data?.risk.Indicators" [colors]="colors"
+                [selectedIndicator]="selectedIndicator" [selectedToggleItem]="selectedToggleItem"
+                (Item)="onIndicatorSelection($event)"></app-indicator-tabs>
+        </div>
+        <img *ngIf="showArrows" class="cursor-pointer ml-2 arrow" height="10" width="10"
+            src="assets/img/svg/climate_price/ri/right-poly.svg" (click)="scroll('right')">
+    </div>
+    <!-- overview tab -->
+    <div class="container-fluid" *ngIf="selectedIndicator == 'overview'">
+        <div class="row">
+            <div class="col-md-6 {{item}}" *ngFor="let item of ['risk', 'resilience']">
+                <div class="indicators-container mt-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="fz-22 fw-700 lh-normal capitalize mr-2">
+                            {{data[item]?.Headline[selectedScoreType +'_title']}}
+                        </div>
+                        <div class="d-flex align-items-baseline pt-1">
+                            <div class="fz-48 fw-600 lh-normal"
+                                [ngStyle]="{'color' : data?.sliderOptions[item]?.color }">
+                                {{ data?.sliderOptions[item]?.value }}
+                            </div>
+                            <div class="fz-16 fw-400 lh-normal pl-1">{{scorekeys[this.selectedScoreType].unit}}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="description px-0 h-240px mt-3"
+                        innerHTML="{{data[item]?.Headline[selectedScoreType +'_desc']}}">
+                    </p>
+                    <div class="h-100px" *ngIf="data.sliderOptions[item]">
+                        <marker-slider [value]="data.sliderOptions[item].value"
+                            [sliderOptions]="data.sliderOptions[item]">
+                        </marker-slider>
+                    </div>
+                    <div class="mt-2" *ngFor="let indicator of data[item]?.Indicators ">
+                        <app-indicator-details-bar class="cursor-pointer" [type]="item"
+                            (click)="onIndicatorSelection(indicator, item)" [colors]="colors"
+                            [selectedIndicator]="indicator" [selectedToggleItem]="selectedToggleItem"
+                            [selectedScoreType]="selectedScoreType">
+                        </app-indicator-details-bar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- indicators details tab -->
+    <div class="container-fluid" *ngIf="selectedIndicator != 'overview'">
+        <div class="row">
+            <div class="col-md-6 {{item}}" *ngFor="let item of ['risk', 'resilience']">
+                <div class="py-20px">
+                    <app-indicator-details-bar [showBorder]="true" [type]="item" [colors]="colors"
+                        [selectedIndicator]="selectedIndicator[item]" [selectedToggleItem]="selectedToggleItem"
+                        [selectedScoreType]="selectedScoreType">
+                    </app-indicator-details-bar>
+                </div>
+            </div>
+            <div class="col-md-6 px-0 text-center py-2 tab" [ngClass]="{ 'selected' : selectedTab == 'risk' }"
+                (click)="selectedTab = 'risk' ">Risk</div>
+            <div class="col-md-6 px-0 text-center py-2 tab" [ngClass]="{ 'selected' : selectedTab == 'resilience' }"
+                (click)="selectedTab = 'resilience' ">
+                Resilience</div>
+            <div class="col-12 px-0">
+                <ng-container [ngSwitch]="selectedTab">
+                    <div *ngSwitchCase="'risk'">
+                        <app-physical-impact-features [selectedIndicator]="selectedIndicator.risk"
+                            [selectedToggleItem]="selectedToggleItem" [greyishBoxHeight]="greyishBoxHeight"
+                            (ToggleItem)="selectedToggleItem = $event">
+                        </app-physical-impact-features>
+                    </div>
+                    <div *ngSwitchCase="'resilience'">
+                        <app-res-adj-impact-features [selectedIndicator]="selectedIndicator.resilience">
+                        </app-res-adj-impact-features>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <app-resilience-panel></app-resilience-panel>
+</div>

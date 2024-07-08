@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="pr-0" *ngIf="showTier1" class="{{tier1Class}}">
+        <div class="fz-14px d-flex align-items-center">
+            <span class="green-label pr-1"> Tier 1 </span>
+            <span *ngIf="!editTier1"> {{ tierHeadings?.tier1 ? "-" : '' }} {{ tierHeadings?.tier1 }} </span>
+            <span class="d-flex" *ngIf="editTier1">
+                <fieldset class="form-group mb-1 ml-2">
+                    <input class="form-control" id="tier1-heading" [(ngModel)]="tierHeadings.tier1" maxlength="20"
+                        (focusout)="onFocusOut(1)" (keydown.enter)="onFocusOut(1)">
+                </fieldset>
+            </span>
+            <img *ngIf="!editTier1 && allowTiersHeadingsEdit" class="ml-2 cursor-pointer"
+                src="assets/img/svg/climate_price/Edit not selected.svg" (click)="onEditTierHeading(1)">
+        </div>
+        <form [formGroup]="form">
+            <ng-select [clearable]="true" [dropdownPosition]="'bottom'" formControlName="selectedTierOne"
+                [appendTo]="'body'" (change)="onTierOneSelection($event)">
+                <ng-option [value]="false" *ngIf="showAllTiersOptions">
+                    <span class="fz-14px">All Tier 1</span>
+                </ng-option>
+                <ng-option *ngFor="let item of tierOneList" [value]="item.uuid"
+                    [ngClass]="{'d-none' : !item.portfolio_name?.length}">
+                    <span class="fz-14px"> {{item.portfolio_name}}</span>
+                </ng-option>
+            </ng-select>
+        </form>
+    </div>
+    <div class="pr-0" *ngIf="showTier2" class="{{tier2Class}}">
+        <div class="fz-14px d-flex align-items-center">
+            <span class="green-label pr-1"> Tier 2 </span>
+            <span *ngIf="!editTier2"> {{ tierHeadings?.tier2 ? "-" : '' }} {{ tierHeadings?.tier2 }} </span>
+            <span class="d-flex" *ngIf="editTier2">
+                <fieldset class="form-group mb-1 ml-2">
+                    <input class="form-control" id="tier2-heading" [(ngModel)]="tierHeadings.tier2" maxlength="20"
+                        (focusout)="onFocusOut(2)" (keydown.enter)="onFocusOut(2)">
+                </fieldset>
+            </span>
+            <img *ngIf="!editTier2 && allowTiersHeadingsEdit" class="ml-2 cursor-pointer"
+                src="assets/img/svg/climate_price/Edit not selected.svg" (click)="onEditTierHeading(2)">
+        </div>
+        <form [formGroup]="form">
+            <ng-select [clearable]="true" [appendTo]="'body'" [dropdownPosition]="'bottom'"
+                formControlName="selectedTierTwo" (change)="onTierTwoSelection($event)" (open)="onNgSelectOpen()">
+                <ng-option [value]="false" *ngIf="showAllTiersOptions">
+                    <span class="fz-14px">All Tier 2</span>
+                </ng-option>
+                <ng-option *ngFor="let item of tierTwoList" [value]="item.uuid">
+                    <span class="fz-14px" [ngClass]="{'d-none' : !item.name?.length}">{{item.name}}</span>
+                </ng-option>
+            </ng-select>
+        </form>
+    </div>
+    <div class="pr-0" *ngIf="showTier3" class="{{tier3Class}}">
+        <div class="fz-14px d-flex align-items-center">
+            <span class="green-label pr-1"> Tier 3 </span>
+            <span *ngIf="!editTier3"> {{ tierHeadings?.tier3 ? "-" : '' }} {{ tierHeadings?.tier3 }} </span>
+            <span class="d-flex" *ngIf="editTier3">
+                <fieldset class="form-group mb-1 ml-2">
+                    <input class="form-control" id="tier3-heading" [(ngModel)]="tierHeadings.tier3" maxlength="20"
+                        (focusout)="onFocusOut(3)" (keydown.enter)="onFocusOut(3)">
+                </fieldset>
+            </span>
+            <img *ngIf="!editTier3 && allowTiersHeadingsEdit" class="ml-2 cursor-pointer"
+                src="assets/img/svg/climate_price/Edit not selected.svg" (click)="onEditTierHeading(3)">
+        </div>
+        <form [formGroup]="form">
+            <ng-select [clearable]="true" [appendTo]="'body'" [dropdownPosition]="'bottom'"
+                formControlName="selectedTierThree" (change)="onTierThreeSelection($event)" (open)="onNgSelectOpen()">
+                <ng-option [value]="false" *ngIf="showAllTiersOptions">
+                    <span class="fz-14px">All Tier 3</span>
+                </ng-option>
+                <ng-option *ngFor="let item of tierThreeList" [value]="item.uuid"
+                    [ngClass]="{'d-none' : !item.name?.length}">
+                    <span class="fz-14px">{{item.name}}</span>
+                </ng-option>
+            </ng-select>
+        </form>
+    </div>
+    <div *ngIf="showTier4" class="{{tier4Class}}">
+        <div class="fz-14px d-flex align-items-center">
+            <span class="green-label pr-1"> Tier 4 </span>
+            <span *ngIf="!editTier4"> {{ tierHeadings?.tier4 ? "-" : '' }} {{ tierHeadings?.tier4 }} </span>
+            <span class="d-flex" *ngIf="editTier4">
+                <fieldset class="form-group mb-1 ml-2">
+                    <input class="form-control" id="tier4-heading" [(ngModel)]="tierHeadings.tier4" maxlength="20"
+                        (focusout)="onFocusOut(4)" (keydown.enter)="onFocusOut(4)">
+                </fieldset>
+            </span>
+            <img *ngIf="!editTier4 && allowTiersHeadingsEdit" class="ml-2 cursor-pointer"
+                src="assets/img/svg/climate_price/Edit not selected.svg" (click)="onEditTierHeading(4)">
+        </div>
+        <form [formGroup]="form">
+            <ng-select [clearable]="true" [appendTo]="'body'" [dropdownPosition]="'bottom'"
+                formControlName="selectedTierFour" (change)="FetchAssetsFilters.emit()" (open)="onNgSelectOpen()">
+                <ng-option [value]="false" *ngIf="showAllTiersOptions">
+                    <span class="fz-14px">All Tier 4</span>
+                </ng-option>
+                <ng-option *ngFor="let item of tierFourList" [value]="item.uuid"
+                    [ngClass]="{'d-none' : !item.name?.length}">
+                    <span class="fz-14px">{{item.name}}</span>
+                </ng-option>
+            </ng-select>
+        </form>
+    </div>
+</div>

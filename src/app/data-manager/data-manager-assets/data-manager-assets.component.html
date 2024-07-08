@@ -1,0 +1,23 @@
+<div>
+    <section class="mb-18">
+        <app-data-manager-header [selectedSection]="'Assets'"></app-data-manager-header>
+    </section>
+    <section class="margin-top">
+        <!-- trail user banner -->
+        <div class="mb-18">
+            <app-data-manager-trial-banner></app-data-manager-trial-banner>
+        </div>
+        <!-- Filters -->
+        <div class="card filter-card mb-18">
+            <app-asset-filters [totalAssets]="tableComponent.totalAssets" (ApplyFilter)="applyFilter()"
+                (SavedFilterApplied)="applyFilter()" (TierNamesChanged)="onTierNamesChanged($event)">
+            </app-asset-filters>
+        </div>
+        <!-- Data Room -->
+        <div class="mb-18">
+            <!-- <ng-template #Template></ng-template> -->
+            <app-data-manager-asset-table (FiltersEvent)="updateFiltersSection($event)">
+            </app-data-manager-asset-table>
+        </div>
+    </section>
+</div>

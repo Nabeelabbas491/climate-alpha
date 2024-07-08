@@ -1,0 +1,139 @@
+<!--Registration Page Starts-->
+<section id="registration">
+  <div class="row auth-height full-height-vh m-0" style="background: rgba(12, 40, 40, 0.62);">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="card overflow-hidden bg-transparent">
+        <div class="card-content bg-transparent">
+          <div class="card-body login-img bg-transparent">
+            <div class="row m-0 bg-transparent">
+              <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center text-center p-4"
+                style="background: rgba(112, 112, 112, 0.56078);">
+                <img src="../../assets/img/logos/alphaGeo-login.png"
+                  alt="Login to access AlphaGeo: future-proof analytics on one platform" class="img-fluid logo-w"
+                  width="400" height="230" />
+              </div>
+              <!-- Register -->
+              <div class="col-lg-6 col-md-12 p-4 bg-white" *ngIf="isRegisterForm">
+                <h4 class="card-title mb-3">Create an Institutional Account</h4>
+                <form [formGroup]="registerForm">
+                  <span class="col-12 d-flex px-0">
+                    <div class="form-group col-6 pl-0">
+                      <label class="label mb-0">First Name*</label>
+                      <input type="text" formControlName="first_name" class="form-control"
+                        [ngClass]="{ 'is-invalid': registerFormSubmitted && rf.first_name.invalid, 'is-valid': registerFormSubmitted && !rf.first_name.invalid }"
+                        required>
+                      <div *ngIf="registerFormSubmitted && (rf.first_name.invalid || rf.first_name.errors?.required)"
+                        class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> First Name is
+                        required</div>
+                    </div>
+                    <div class="form-group col-6 px-0">
+                      <label class="label mb-0">Last Name*</label>
+                      <input type="text" formControlName="last_name" class="form-control"
+                        [ngClass]="{ 'is-invalid': registerFormSubmitted && rf.last_name.invalid, 'is-valid': registerFormSubmitted && !rf.last_name.invalid }"
+                        required>
+                      <div *ngIf="registerFormSubmitted && (rf.last_name.invalid || rf.last_name.errors?.required)"
+                        class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Last Name is
+                        required</div>
+                    </div>
+                  </span>
+                  <span class="col-12 d-flex px-0">
+                    <div class="form-group col-md-6 pl-0">
+                      <label class="label mb-0">Company Name*</label>
+                      <input type="text" formControlName="company" class="form-control"
+                        [ngClass]="{ 'is-invalid': registerFormSubmitted && rf.company.invalid, 'is-valid': registerFormSubmitted && !rf.company.invalid }"
+                        required>
+                      <div *ngIf="registerFormSubmitted && (rf.company.errors?.required)"
+                        class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Company Name
+                        is
+                        required</div>
+                    </div>
+                    <div class="form-group col-md-6 px-0">
+                      <label class="label mb-0">Business Email*</label>
+                      <input type="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': registerFormSubmitted && rf.email.invalid, 'is-valid': registerFormSubmitted && !rf.email.invalid }"
+                        required>
+                      <div *ngIf="registerFormSubmitted && (rf.email.errors?.required)"
+                        class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Email is
+                        required</div>
+                      <div *ngIf="registerFormSubmitted &&  rf.email.errors?.email" class="help-block mt-1 text-danger">
+                        <i class="ft-alert-circle align-middle"></i> Email must be a valid email address</div>
+                    </div>
+                  </span>
+                  <!-- Password -->
+                  <div class="form-group">
+                    <div style="user-select: none;" class="d-flex justify-content-between align-items-baseline">
+                      <span class="label">Your password*</span>
+                      <div>
+                        <img src="../../../../assets/img/svg/{{ !showPassword ? 'show' : 'hide'}}.svg">
+                        <span (click)="showPassword = !showPassword" class="card-text label"
+                          style="cursor: pointer;">{{ !showPassword ? 'Show' : 'Hide' }}</span>
+                      </div>
+                    </div>
+                    <input [type]="!showPassword ? 'password' : 'text'" class="form-control" placeholder="Password"
+                      formControlName="password"
+                      [ngClass]="{ 'is-invalid': registerFormSubmitted && rf.password.invalid, 'is-valid': registerFormSubmitted && !rf.password.invalid }"
+                      required>
+                    <div *ngIf="registerFormSubmitted && (rf.password.errors?.required)"
+                      class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Password is
+                      required
+                    </div>
+                    <div
+                      *ngIf="registerFormSubmitted && (!rf.password.errors?.required && rf.password.errors?.minlength)"
+                      class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Password must be
+                      at least 6 characters
+                    </div>
+                  </div>
+                  <!-- confirm password -->
+                  <div class="form-group">
+                    <div style="user-select: none;" class="d-flex justify-content-between align-items-baseline">
+                      <span class="label">Confirm password*</span>
+                      <div>
+                        <img src="../../../../assets/img/svg/{{ !showConfirmPassword ? 'show' : 'hide'}}.svg">
+                        <span (click)="showConfirmPassword = !showConfirmPassword" class="card-text label"
+                          style="cursor: pointer;">{{ !showConfirmPassword ? 'Show' : 'Hide' }}</span>
+                      </div>
+                    </div>
+                    <input [type]="!showConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': registerFormSubmitted && rf.confirmPassword.invalid, 'is-valid': registerFormSubmitted && !rf.confirmPassword.invalid }"
+                      required>
+                    <div *ngIf="registerFormSubmitted && (rf.confirmPassword.errors?.required)"
+                      class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Confirm Password
+                      is
+                      required
+                    </div>
+                    <div *ngIf="registerFormSubmitted && (rf.confirmPassword.errors?.mustMatch)"
+                      class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Passwords must
+                      match
+                    </div>
+                  </div>
+                  <div>
+                    <app-password-info-points></app-password-info-points>
+                  </div>
+                  <div class="col-12 d-flex px-0 label my-3">
+                    <input type="checkbox" formControlName="isConditionsSelected"> &nbsp;
+                    I agree to the<a class="ml-1" (click)="openTermsModal()"
+                      style="color: #009999; border-bottom : 1px solid #009999;">Terms of Service</a>
+
+                  </div>
+                  <div class="col-12 px-0 text-center">
+                    <button type="button" class="btn btn-primary label" (click)="onSubmit()"
+                      [disabled]="registerForm.invalid || !registerForm.value.isConditionsSelected">
+                      Create Account
+                    </button>
+                    <div class="highlight-text mt-3">
+                      Already have an institutional account? <a [routerLink]="['/login']"
+                        style="color: #009999; border-bottom : 1px solid #009999;"> Login</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-registration-terms></app-registration-terms>
+<!-- <app-account-verification></app-account-verification> -->

@@ -1,0 +1,22 @@
+<header class="map-tabs">
+    <div class="d-flex justify-content-between align-items-center">
+        <span class="d-flex">
+            <span class="cursor tab-item" *ngFor="let key of headerCustomOrder"
+                (click)="onMapTypeChange(headerOptions[key].label); setServiceVariable()"
+                [ngClass]="{'selected-tab' : selectedSection === headerOptions[key].label }">
+                {{headerOptions[key].label}} </span>
+        </span>
+        <div class="app-tooltip left">
+            <img class="info-icon" src="assets/img/svg/shared/info.svg" *ngIf="permissions.showInfoIcon">
+            <span class="tooltiptext">
+                Choose between impact percentage and risk-level when visualizing your properties - or prospects -
+                globally. <a class="anchor" href="https://support.alphageo.ai/knowledge/heat-map" target="_blank">Learn
+                    More</a>
+            </span>
+        </div>
+    </div>
+    <hr class="my-0">
+</header>
+<div class="map-frame mt-3">
+    <div id="{{mapId}}" #leafletMap class="map"></div>
+</div>

@@ -1,0 +1,29 @@
+.details-card {
+    border-radius: 15px;
+    border: 1px solid #DDD;
+    background: #FFF;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.20);
+    padding: 15px;
+    height: 100%;
+
+    .scenario-container {
+
+        .scenario-text {
+            color: #B5B5B5;
+            text-align: center;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            border-bottom: 3px solid #DDD;
+        }
+    }
+
+    .desc {
+        color: rgba(0, 0, 0);
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}

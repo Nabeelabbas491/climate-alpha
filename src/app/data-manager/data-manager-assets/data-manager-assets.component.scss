@@ -1,0 +1,10 @@
+@import "assets/style/index";
+
+.filter-card{
+    @include card(100%, 100%)
+}
+
+.margin-top{
+    position: relative;
+    top: 55px;
+  }

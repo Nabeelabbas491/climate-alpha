@@ -1,0 +1,16 @@
+.terms{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    justify-content: left;
+}
+.bold{
+    font-style: bold;
+    font-weight: 600;
+}
+.modal-footer--sticky {
+    position: sticky;
+    bottom: 0;
+    background-color: inherit; /* [1] */
+    z-index: 1055; /* [2] */
+  }

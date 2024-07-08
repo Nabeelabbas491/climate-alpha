@@ -1,0 +1,162 @@
+@import "assets/style/index";
+
+.header{
+    .labels{
+        @include font(600, 14px, 22px, #009999)
+    } 
+
+    .slash{
+        @include font(600, 14px, 22px, rgba(181, 181, 181, 1))
+    }
+
+    .form-group{
+      width: 100%;
+    
+      input{
+        height: 30px;
+      }
+
+    .search-icon{
+      position: absolute;
+      top: 26%;
+      right: 5%;
+    }
+  }
+
+    .collapse-all-text{
+        @include font(500, 12px, 15px, #292929);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+.table-container::-webkit-scrollbar {
+  height: 5px !important;
+  width: 5px !important;
+}
+
+.table-container-portfolios::-webkit-scrollbar {
+  height: 5px !important;
+  width: 5px !important;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #adb5bd;
+ }
+
+.table-container-portfolios::-webkit-scrollbar-thumb {
+  background: #adb5bd;
+ }
+
+.table-container{
+
+  overflow: auto;
+  transform: rotateX(180deg);
+
+  .table{
+
+    transform: rotateX(180deg);
+    margin: unset;
+    margin-bottom: 5px;
+
+    .header-th{
+      background-color: #4A7182 !important;
+      border: 1px solid #dee2e6 !important;
+      @include font(600, 12px, 100%, #FFFFFF !important)
+    }
+    
+    td{
+      border: 1px solid #dee2e6 !important;
+      padding: 6px 12px !important;
+    }
+
+    .national-avg{
+      background: #eaae141a;
+      @include font(400, 12px, 100%, #292929 !important)
+    }
+    
+    tr{
+      @include font(400, 12px, 100%, #292929 !important)
+    }
+    
+    th {
+      .header-th{
+        background-color: #4A7182;
+        @include font(600, 12px, 100%, #FFFFFF)
+      }
+    }
+
+    .property-name{
+      color: #006666;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  
+    // .data-row:hover {
+    //   background-color:  rgba(0, 153, 153, 0.1);
+    // }
+
+    .hide-row{
+      background-color: #F1F1F3 !important;
+    }
+
+    .expnaded-row{
+      background: rgba(241, 241, 243, 0.5);
+      color: #009999 !important;
+    }
+    
+    td{
+      padding: 1rem !important;
+    }
+    
+    th{
+      padding: 1rem !important;
+    }
+}
+
+}
+
+:host ::ng-deep{
+     // for styhling height of ng select. first give static height and then set height through min-heigh
+    .ng-select.ng-select-single .ng-select-container {
+       height: 30px;
+       min-height: 2px;
+    }
+
+    // for styling of selected value from options
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+       padding-top: 2px !important;
+    }
+
+    // for styling of cross icon
+    .ng-select .ng-clear-wrapper {
+       display: none !important;
+    }
+
+    //  for styling of arrow wrapper
+    .ng-select .ng-arrow-wrapper {
+       padding-top: 3px !important;
+    }
+
+    // for styling of border color when focused and option is selected
+    .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+       border-color: #009999 !important;
+    }
+}
+
+.loader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px
+}
+
+
+
+
+
+
+
+
+
+

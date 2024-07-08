@@ -1,0 +1,20 @@
+<span *ngIf="!publicLink">
+  <a id="download_btn" type="button" placement="bottom" ngbTooltip="Download Data" (click)="chartDownload()"
+    (mouseenter)="mouseIn()" (mouseleave)="mouseOut()" style="cursor: pointer;">
+    <img [src]="downloadIcon" alt="download-icon"  [ngClass]="{'small': endpoint=='client/properties_csv/'}"/>
+  </a>
+</span>
+<div>
+  <ngx-spinner bdColor="rgba(0,0,0,0)" size="large"  color="#009999" [fullScreen]="true" name="data_download" color="#009999"
+      type="ball-scale-multiple">
+      <p style="
+      font-size: 18px;
+      color: black;
+      font-weight: 500;
+      border-radius: 5px;
+      border: 1px;
+      background: #00000047;
+      padding: 3rem;"
+      >Please wait while we are processing your request...</p>
+  </ngx-spinner>
+</div>

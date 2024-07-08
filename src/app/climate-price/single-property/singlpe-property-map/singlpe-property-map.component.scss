@@ -1,0 +1,142 @@
+@import "assets/style/index";
+
+.map{
+    height: 600px !important;
+    border-radius: 10px;
+    z-index: 3;
+}
+
+:host ::ng-deep .leaflet-touch .leaflet-control-attribution{
+    display: none;
+}
+
+.map-frame{
+  position: relative;
+}
+
+.address{
+    @include font(600, 18px, 22px, #000000)
+}
+
+.btn{
+    width: 230px;
+}
+
+.disabled{
+    background-color: #F1F1F3 !important;
+    color: #B5B5B5 !important;
+}
+
+.legend{
+    background: #FFFFFF;
+    border: 1px solid #B5B5B5;
+    border-radius: 10px;
+    position: absolute;
+    right: 1%;
+    bottom: 1.5%;
+    z-index: 3;
+    padding: 18px;
+
+    .legend-dropdown{
+        width: 250px;
+    }
+
+    p{
+        @include font(500, 12px, 17px, #000000)
+    }
+
+    .text{
+        @include font(500, 12px, 15px, #000000)
+    }
+
+    .red-box{
+        height: 12px;
+        width: 22px;
+        background-color: #810000;
+    }
+    
+    .yellow-box{
+        height: 12px;
+        width: 22px;
+        background-color: #EAAE14;
+    }
+    
+    .grn-box{
+        height: 12px;
+        width: 22px;
+        background-color: #009999;
+    }
+}
+
+.dropdown{
+    width: 300px;
+    position: absolute;
+    z-index: 4;
+    right: 1%;
+    top: 1.5%;
+}
+
+:host ::ng-deep {
+
+    .ng-select.ng-select-single .ng-select-container {
+        height: 30px;
+        min-height: 2px;
+    }
+    
+    // for styling of selected value from options
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+        padding-top: 2px !important;
+    }
+
+    // for styling of cross icon
+    .ng-select .ng-clear-wrapper {
+        display: none !important; 
+    }
+
+    //  for styling of arrow wrapper
+    .ng-select .ng-arrow-wrapper {
+        padding-top: 3px !important;
+    }
+
+    // for styling of border color when focused and option is selected
+    .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+       border-color: #009999 !important;
+    }
+
+    .ng-dropdown-panel .scroll-host::-webkit-scrollbar {
+        width: 5px !important;
+    }
+      
+    .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {
+        background: #adb5bd !important;
+    }
+
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+        font-size: 14px;
+    }
+
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value{
+        font-size: 14px;
+    }
+
+    .legend .ng-select.ng-select-single .ng-select-container .ng-value-container, .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value{
+        font-size: 14px !important;
+        font-weight: 600 !important;
+    }
+    
+}
+
+.tooltiptext{
+    right: 130%;
+  }
+  
+
+
+
+
+
+
+
+  
+
+

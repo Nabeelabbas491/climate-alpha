@@ -1,0 +1,40 @@
+<div [ngClass]="{'d-none' : !response }">
+    <div class="mb-18">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 benchmark">
+                    <app-benhmark-dropdown (BenchMarkSelection)="onBenchMarkChange($event)">
+                    </app-benhmark-dropdown>
+                </div>
+                <div class="col-md-6 scenario">
+                    <app-scenarios (ScenarioSelection)="onScenarioChange($event)"></app-scenarios>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- physical impact -->
+    <div class="mb-18" [ngClass]="{'d-none' : !response?.physical_impact}">
+        <app-location-benchmark #physicalImpactRef
+            [explainer]="response?.physical_impact?.Headline[physicalImpactBenchMark?.scoreToggleComponent.selectedScoreType + '_desc']"
+            [headlineTitle]="response?.physical_impact?.Headline[physicalImpactBenchMark?.scoreToggleComponent.selectedScoreType + '_title']"
+            [impactType]="'Physical Impact'" [sliderId]="'global-portfolio-multi-assets-physical-impact'"
+            (TimePeriodSelection)="onTimePeriodSelection('Physical Impact', $event)"
+            (ScoreTypeSelection)="onScoreTypeSelection('Physical Impact', $event)">
+        </app-location-benchmark>
+    </div>
+    <!-- res adj impact -->
+    <div class="mb-18" [ngClass]="{'d-none' : !response?.res_adj_impact}">
+        <app-location-benchmark #resAdjImpactRef [impactType]="'Resilience-Adjusted Impact'"
+            [explainer]="response?.res_adj_impact?.Headline[resAdjImpactBenchMark?.scoreToggleComponent.selectedScoreType + '_desc']"
+            [headlineTitle]="response?.res_adj_impact?.Headline[resAdjImpactBenchMark?.scoreToggleComponent.selectedScoreType + '_title']"
+            [sliderId]="'global-portfolio-multi-assets-res-adj-impact'"
+            (TimePeriodSelection)="onTimePeriodSelection('Resilience-Adjusted Impact', $event)"
+            (ScoreTypeSelection)="onScoreTypeSelection('Resilience-Adjusted Impact', $event)">
+        </app-location-benchmark>
+    </div>
+    <!-- no data for resilience -->
+    <div class="mb-18" *ngIf="!response?.res_adj_impact">
+        <app-location-benchmark [impactType]="'Resilience-Adjusted Impact'" [noDataAvailbale]="true"
+            [noDataAvailableMsg]="'Data not available for one or more selected assets.'"></app-location-benchmark>
+    </div>
+</div>

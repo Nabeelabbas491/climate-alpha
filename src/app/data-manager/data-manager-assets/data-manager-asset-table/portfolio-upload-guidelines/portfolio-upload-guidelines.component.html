@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <!-- header for card -->
+                <div class="col-xl-12 col-lg-12 col-12 col-md-12 text-center">
+                    <h1 class="card-title mb-0">CUSTOMER DATA PORTAL</h1>
+                </div>
+            </div>
+            <div class="card-content mt-3">
+                <div class="card-body">
+                    <div class="col-xl-12 col-lg-12 col-12 col-md-12 text-justify">
+                        <h5 style=" font-weight: 600 ">Data Upload Guidelines</h5>
+                        <span class="mt-2">
+                            This page provides instructions for uploading data to AlphaGeo. Data can be imported to
+                            the platform in CSV file format or via secure API.
+                        </span>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-12 col-md-12 text-justify mt-4">
+                        <h5 style="font-weight: 600">Data Type Descriptions:</h5>
+                        <span>
+                            The following are data fields and their adjacent data types to upload data by CSV or API.
+                        </span>
+                        <div class="row mt-2 mx-0 teal-dark text-white" style="border: 1px solid grey;color: white;">
+                            <!-- <div class="col-md-3 p-2 border-rt-gr text-white"><span class="fw-600">Categories</span></div> -->
+                            <div class="col-12 d-flex p-0">
+                                <div class="col-5 p-2 border-rt-gr"><span class="fw-600">Fields</span></div>
+
+                                <div class="col-7 p-2"><span class="fw-600">Description</span></div>
+                            </div>
+                        </div>
+                        <div class="row col-12 container ml-0 p-0">
+
+                            <!-- <div class="col-3 border-lt-gr secondary-content centered-element">
+                               <div class="p-4 text-left ">
+                                    <span>Data for Climate Price Compuation (Required)</span>
+                                </div>
+                            </div> -->
+                            <div class="col-12 main-contentthis">
+                                <div class="row border_rows_content mx-0" *ngFor="let item of docsData">
+                                    <div class="col-5 p-2 border-rt-gr">
+
+                                        <span>{{item.field}}</span><span style="color: red;"
+                                            *ngIf="item.required">*</span>
+                                    </div>
+
+                                    <div class="col-7 p-2 text-left"><span [innerHTML]="item.description"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <details class="pt-2 ">
+                            <summary class="fz-18">Optional Fields</summary>
+                            <div class="row mt-2 mx-0 teal-medium text-white"
+                                style="border: 1px solid grey;color: white;">
+                                <!-- <div class="col-md-3 p-2 border-rt-gr text-white"><span class="fw-600">Categories</span></div> -->
+                                <div class="col-12 d-flex p-0">
+                                    <div class="col-5 p-2 border-rt-gr"><span class="fw-600">Fields</span></div>
+
+                                    <div class="col-7 p-2"><span class="fw-600">Description</span></div>
+                                </div>
+                            </div>
+                            <div class="row col-12 container ml-0 p-0">
+
+                                <!-- <div class="col-3 border-lt-gr centered-element p-0">
+                               <div class="centered-element p-5">
+                                    <div class="text-left ">Additional Information (Optional)</div>
+                                </div>
+                               
+                            </div> -->
+                                <div class="col-12 main-contentthis">
+                                    <div class="row border_rows_content mx-0" *ngFor="let item of optionalDocsData">
+                                        <div class="col-5 p-2 border-rt-gr">
+
+                                            <span>{{item.field}}</span><span style="color: red;"
+                                                *ngIf="item.required">*</span>
+                                        </div>
+
+                                        <div class="col-7 text-left p-2"><span [innerHTML]="item.description"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3 border-lt-gr centered-element p-0">
+                               
+                                <div class="centered-element p-5 text-left " >
+                                     <div  class="text-left ">Fund/Portfolio Metadata (Optional)</div>
+                                 </div>
+                             </div> -->
+                                <div class="col-12 main-contentthis">
+                                    <div class="row border_rows_content mx-0"
+                                        *ngFor="let item of optionalPortfolioMetadata">
+                                        <div class="col-5 p-2 border-rt-gr">
+
+                                            <span>{{item.field}}</span><span style="color: red;"
+                                                *ngIf="item.required">*</span>
+                                        </div>
+
+                                        <div class="col-7 text-left p-2"><span [innerHTML]="item.description"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-3">This is 3</div>
+                            <div class="col-6">This is 6</div> -->
+                            </div><!-- end of container-->
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

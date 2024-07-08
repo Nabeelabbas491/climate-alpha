@@ -1,0 +1,54 @@
+<div>
+    <section class="mb-18" *ngIf="!isComparisonComponent">
+        <app-climate-price-header [selectedSection]="'Multi-asset View'">
+        </app-climate-price-header>
+    </section>
+    <section class="margin-top" *ngIf="!showDataProcessingMessage" id="multi-asset">
+        <!-- banner for trial user -->
+        <div class="mb-18" *ngIf="isTrialUser">
+            <app-trial-user-banner></app-trial-user-banner>
+        </div>
+        <!-- filters -->
+        <div class="card filter-card mb-18" *ngIf="!isComparisonComponent">
+            <app-asset-filters (ApplyFilter)="applyFilters()" (AddToComparison)="addToComparison()"
+                (SavedFilterApplied)="onSavedFilterApplied($event)" [isGlobalAnalytics]="isGlobalAnalytics"
+                (Error)="onError('asset filters')">
+            </app-asset-filters>
+        </div>
+        <!-- map -->
+        <div class="mb-18">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card map-card">
+                        <app-analytic-map (ApiSubscribed)="enableAddToComparisonBtn()">
+                        </app-analytic-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- overview -->
+        <div>
+            <app-multi-asset-overview (ScenarioSelection)="onScenarioChange()"
+                (ApiSubscribed)="enableAddToComparisonBtn()" (TimePeriodSelection)="onTimePeriodChange($event)">
+            </app-multi-asset-overview>
+        </div>
+        <!-- table -->
+        <div class="mb-18">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card table-card" id="app-anaylytics-table">
+                        <app-anaylytics-table (HideProperties)="getResultForHiddenProperties()"
+                            (ApiSubscribed)="enableAddToComparisonBtn()"></app-anaylytics-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<section *ngIf="showDataProcessingMessage" class="margin-top">
+    <p>
+        <ngb-alert [dismissible]="false" class="alert alert-secondary alert-dismissible">
+            {{dataMessage}}
+        </ngb-alert>
+    </p>
+</section>

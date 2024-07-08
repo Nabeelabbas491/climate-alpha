@@ -1,0 +1,49 @@
+/* ----------- Non-Retina/HD Screens (MD,PR) ----------- */
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+    #map {
+        width: 95vw; height: 55vh;
+    }
+    .font-2-r{
+        font-size: 2rem !important;
+        margin-bottom: 0;
+        line-height: 1rem !important;
+    }
+
+    .font-14-r{
+        font-size: 1rem !important;
+        line-height: 1.5rem !important;
+    }
+
+    .font-22{
+        font-size: 22px !important;
+    }
+    .map_info h2 {
+        font-weight: 500;
+        font-size: 2rem  !important;
+        color: white;
+        margin: 0;
+    }
+    .map_info.leaflet-control{
+        bottom: 10rem !important;
+    }
+    .forest_cover_value{
+        font-size: 3rem !important;
+    }
+}
+
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px) {
+    #large_screen_info{
+        margin-left: -50px;
+    }
+    .forest_cover_value{
+        font-size: 3rem !important;
+    }
+}

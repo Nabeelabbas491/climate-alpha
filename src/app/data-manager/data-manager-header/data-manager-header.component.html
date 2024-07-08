@@ -1,0 +1,11 @@
+<div id="sliding-header">
+    <header class="header">
+        <div class="d-flex justify-content-center">
+            <div *ngFor="let item of headerOptions" [ngClass]="{'selected-option' : item.section === selectedSection }"
+                [routerLink]="['/data-manager/'+item.path]">
+                {{item.section}}</div>
+        </div>
+        <app-navbar-item id="navbarItems" class="navbar-items"></app-navbar-item>
+        <hr class="my-0">
+    </header>
+</div>

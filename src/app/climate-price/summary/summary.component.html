@@ -1,0 +1,46 @@
+<div>
+    <section class="mb-18">
+        <app-climate-price-header [selectedSection]="'Overview'" (Scroll)="impactAnalyzerTableComponent.onScroll()">
+        </app-climate-price-header>
+    </section>
+    <section *ngIf="!showDataProcessingMessage" class="margin-top" id="overview-portfolio-analytics">
+        <div class="mb-18">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="app-tooltip right label">Scenario
+                        <span class="tooltiptext">
+                            Choose a scenario to alter the projected physical impact of climate risk to your assets.
+                        </span>
+                    </div>
+                    <ng-select [(ngModel)]="selectedScenario" [searchable]="false" class="custom" [items]="scenarioList"
+                        bindLabel="label" bindValue="value" (change)="onScenarioChange()">
+                    </ng-select>
+
+                </div>
+                <div class="col-md-6 pl-0">
+                    <div class="label">Benchmark</div>
+                    <ng-select [(ngModel)]="selectedBenhmark" [searchable]="false" class="custom"
+                        [items]="benchMarkList" bindLabel="title" (change)="onBenchmarkChange()">
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="mb-18">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card table-card">
+                        <app-impact-analyzer-table (ApiError)="showError($event)">
+                        </app-impact-analyzer-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<section *ngIf="showDataProcessingMessage" class="margin-top">
+    <p>
+        <ngb-alert [dismissible]="false" class="alert alert-secondary alert-dismissible">
+            {{dataMessage}}
+        </ngb-alert>
+    </p>
+</section>

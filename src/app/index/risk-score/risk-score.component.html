@@ -1,0 +1,30 @@
+<div class="card" [ngClass]="{'d-none' : !data }">
+    <!-- tabs -->
+    <header>
+        <div>
+            <!-- [selectedIndicator]="selectedIndicator"
+                (Item)="onIndicatorSelection($event)"
+                [selectedToggleItem]="selectedToggleItem" -->
+            <app-indicator-tabs [indicators]="data?.Indicators" [selectedIndicator]="selectedIndicator"
+                [selectedToggleItem]="selectedToggleItem">
+            </app-indicator-tabs>
+        </div>
+        <div class="d-flex">
+            <div class="mr-2">
+                <!-- [impactType]="impactType" (ToggleSelection)="ScoreTypeSelection.next($event)" -->
+                <app-score-toggle></app-score-toggle>
+            </div>
+            <div>
+                <!-- (ToggleSelection)="TimePeriodSelection.next($event)" -->
+                <app-time-period-toggle> </app-time-period-toggle>
+            </div>
+        </div>
+    </header>
+    <!--  -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">dwqdqw</div>
+            <div class="col-md-6">dwqdqw</div>
+        </div>
+    </div>
+</div>

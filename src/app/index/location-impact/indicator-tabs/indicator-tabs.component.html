@@ -1,0 +1,13 @@
+<div class="options-container mt-3">
+    <span class="option" id="overview" [ngClass]="{'selected-option' : selectedIndicator == 'overview'}"
+        (click)="Item.next('overview')">
+        Overview
+    </span>
+    <span class="option" id="{{item.headline.Title}}" *ngFor="let item of indicators" (click)="Item.next(item)"
+        [ngClass]="{'selected-option' : item.headline.Title == selectedIndicator?.risk?.headline?.Title}">
+        {{item.headline.Title}}
+        <span class="circle"
+            [ngStyle]="{'background-color' : colors[item?.headline?.Cat[selectedToggleItem?.key]]?.mainColor}">
+        </span>
+    </span>
+</div>

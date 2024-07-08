@@ -1,0 +1,23 @@
+.img{
+    border: 1px solid rgba(221, 221, 221, 1);
+    border-radius: 5px;
+    height: 26px;
+    width: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.left-border{
+    border-radius: 5px 0 0 5px;
+}
+
+.right-border{
+    border-radius: 0 5px 5px 0;
+}
+
+.tooltiptext{
+    top: -19px;
+    left: 120%;
+}

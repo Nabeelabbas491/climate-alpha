@@ -1,0 +1,20 @@
+<div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <div class="scenario-name">{{selectedScenario.name}}</div>
+            <div class="scenario-value">{{selectedScenario.label}}</div>
+        </div>
+        <div class="d-flex">
+            <div *ngFor="let item of scenarios" class="emoji ml-2" (click)="onScenarioSelection(item)"
+                [ngClass]="{'selected' : item.value == selectedScenario.value, 'cursor-pointer' : !item.showSpinner }">
+                <img src="{{item.icon}}" *ngIf="!item.showSpinner">
+                <div class="loader" *ngIf="item.showSpinner"></div>
+            </div>
+        </div>
+    </div>
+    <div class="scenario-description">
+        Climate change scenarios are based on the Shared Socioeconomic Pathways (SSPs) of the Coupled Model
+        Intercomparison Project 6 (CMIP6). They project greenhouse gas emissions under different climate policies until
+        the year 2100.
+    </div>
+</div>

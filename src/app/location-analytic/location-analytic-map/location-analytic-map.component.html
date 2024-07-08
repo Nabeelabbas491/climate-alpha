@@ -1,0 +1,73 @@
+<div class="pt-2">
+    <div class="banner mb-18" *ngIf="isTrialUser">
+        <div class="title">Welcome to AlphaGeo</div>
+        <div class="desc">
+            This trial account gives you limited access to our platform. This is Location Explorer. Use the search bar
+            or map to find any 5 locations in the world (address, town, city, county or province/state). You can look at
+            each location's data and compare them as well. Next, you can go to the left sidebar and navigate to
+            Portfolio Analytics and Data Manager. You will have access to this trial account for 7 days. Enjoy!
+        </div>
+    </div>
+    <div class="card mb-18">
+        <!-- tabs -->
+        <!-- selected locations -->
+        <div class="d-flex align-items-start justify-content-between"
+            [ngClass]="{'mb-2 justify-content-end' : !trialUserData?.places?.length}" *ngIf="isTrialUser">
+            <div class="pr-3">
+                <span *ngFor="let item of trialUserData?.places" class="address my-1 mr-1 cursor-pointer"
+                    [ngStyle]="{'border' : item.added && '1px solid #099'}"
+                    (click)="locationSearchComponent.addLocation(item)">
+                    <img src="assets/img/svg/pin.svg" [ngStyle]="{'opacity' : !item.added ? 0.5 : 1 }">
+                    <span>
+                        {{item.name}}
+                    </span>
+                </span>
+            </div>
+            <div class="credits">
+                <span class="nowrap"> Credits Used </span>
+                <span class="box ml-2" *ngIf="trialUserData">
+                    {{trialUserData?.credits_left}}/{{trialUserData?.total_credits}}
+                </span>
+                <div class="loader ml-2" *ngIf="!trialUserData"></div>
+            </div>
+        </div>
+        <div *ngIf="!isTrialUser">
+            <span *ngFor="let item of locationSearchComponent?.selectedLocations" class="address my-1 mr-1">
+                <img src="assets/img/svg/location-analytic/small-dark-green-marker.svg">
+                <span>
+                    {{item.name}}
+                </span>
+                <img src="assets/img/svg/location-analytic/cross.svg" class="pl-1 cursor-pointer"
+                    (click)="onCross(item)">
+            </span>
+        </div>
+        <!-- map -->
+        <div class="map-frame">
+            <div class="search-bar-placement">
+                <app-location-search [isTrialUser]="isTrialUser" [trialUserData]="trialUserData" (Error)="onError()"
+                    (Response)="setLocationAnalysis($event)" (RemoveLocation)="onCross($event)">
+                </app-location-search>
+            </div>
+            <div #leafletMap class="map"></div>
+        </div>
+    </div>
+    <!-- table  -->
+    <div class="mb-18">
+        <app-location-analytic-table [isTrialUser]="isTrialUser"
+            (TimePeriodSelection)="onTableComponentToggle($event, 'timePeriod')"
+            (ScoreTypeSelection)="onTableComponentToggle($event, 'score')"></app-location-analytic-table>
+    </div>
+    <!-- selected locations bar -->
+    <div class="mb-18">
+        <app-selected-locations-bar [selectedLocations]="locationSearchComponent?.selectedLocations"
+            (Selection)="toggleSpinnerForScenarios($event); updateSelectedLocationData($event)">
+        </app-selected-locations-bar>
+    </div>
+    <!-- Resilience Score -->
+    <div>
+        <app-global-overview (ScenarioSelection)="onScenarioSelection($event)"
+            (TimePeriodSelection)="onRIScoreToggle($event, 'timePeriod')"
+            (ScoreTypeSelection)="onRIScoreToggle($event, 'score')">
+        </app-global-overview>
+    </div>
+</div>

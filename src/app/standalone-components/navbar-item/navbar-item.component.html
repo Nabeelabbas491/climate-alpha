@@ -1,0 +1,104 @@
+<ul class="navbar-nav" *ngIf="!publicLink">
+    <li class="nav-item d-flex align-items-end">
+        <!-- public link -->
+        <div ngbDropdown display="dynamic"
+            (openChange)="openChangeMenu($event,'share'); $event && sharabeLinkComponent.linkCopied = false"
+            [placement]="placement" *ngIf="permissions.shareableLinkIncon.show">
+            <a class="nav-link position-relative d-flex p-0" id="dropdownBasic3" ngbDropdownToggle>
+                <img src="assets/img/svg/navbar/share.svg" class="img-pd"
+                    [ngClass]="{'menu-open' : ngbDropdowns.share}">
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="text-left">
+                <app-shareable-link></app-shareable-link>
+            </div>
+        </div>
+        <!-- Api -->
+        <div *ngIf="permissions.showAPIbutton" ngbDropdown display="dynamic" [placement]="placement"
+            (openChange)="openChangeMenu($event,'api')" [user]="user">
+            <a class="nav-link position-relative p-0" id="dropdownBasic3" ngbDropdownToggle>
+                <img src="assets/img/svg/navbar/api.svg" class="img-pd" [ngClass]="{'menu-open' : ngbDropdowns.api}">
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="text-left">
+                <a class="dropdown-item" (click)="openModal(modal)">
+                    <img src="assets/img/svg/navbar/search.svg">
+                    <span class="pl-2">Access API Token</span>
+                </a>
+                <a class="dropdown-item" href="{{apiDocumentation}}" target="_blank">
+                    <img src="assets/img/svg/navbar/documentation.svg">
+                    <span class="pl-2">API Documentation</span>
+                </a>
+            </div>
+        </div>
+        <!-- download -->
+        <div ngbDropdown display="dynamic" [placement]="placement" *ngIf="permissions.downlaodDataIcon.show"
+            (openChange)="openChangeMenu($event, 'analysis')" class="downlaod-csv">
+            <a class="nav-link position-relative d-flex p-0" id="dropdownBasic3" ngbDropdownToggle>
+                <img src="assets/img/svg/navbar/download.svg" class="img-pd"
+                    [ngClass]="{'menu-open' : ngbDropdowns.analysis}">
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="text-left p-3">
+                <!-- Portfolio Analytics -->
+                <button class="custom-btn w-300px add-to-btn" *ngIf="permissions.showDownLoadAnalysisButton"
+                    (click)="downloadFile('portfolio_analytics/download_files', 'Portfolio-Analytics')">
+                    Download Analysis
+                </button>
+                <div class="mt-1 w-300px" *ngIf="permissions.showDownLoadPdfButton">
+                    <app-download-pdf [permissions]="permissions" [filters]="pdfFilters"></app-download-pdf>
+                </div>
+                <!-- Data Manager -->
+                <div class="w-300px" *ngIf="permissions.downlaodDataIcon.isDataManagerModule">
+                    <div class="heading">Data Manager Download</div>
+                    <hr class="my-2">
+                    <div class="text">This download contains all property data within the Data Manager, including any
+                        filters you have applied.</div>
+                    <div class="add-to-btn cursor-pointer mt-2"
+                        (click)="downloadFile('client/properties_csv/', 'Data-manager')">
+                        Download Excel</div>
+                </div>
+            </div>
+        </div>
+        <!-- user profile -->
+        <div ngbDropdown display="dynamic" [placement]="placement" (openChange)="openChangeMenu($event,'user')">
+            <a class="nav-link position-relative p-0" id="dropdownBasic3" ngbDropdownToggle>
+                <img src="assets/img/svg/navbar/user.svg" class="img-pd" [ngClass]="{'menu-open' : ngbDropdowns.user}">
+                <p class="d-none">User Settings</p>
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic3" class="text-left">
+                <a *ngIf="user" class="dropdown-item" style="cursor: unset;">
+                    <span class="username">{{user.full_name}}</span>
+                </a>
+                <a class="dropdown-item" [routerLink]="['/reset-password']">
+                    <img src="assets/img/svg/navbar/reset-password.svg" class="mr-2">
+                    <span>Reset Password</span>
+                </a>
+                <a class="dropdown-item" (click)="logout()">
+                    <i class="ft-power mr-2"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<!-- Modal Api access token -->
+<ng-template #modal let-c="close" let-d="dismiss">
+    <div class="py-3">
+        <div class="fw-700 ca_green text-center mt-2" style="font-weight: 700;">
+            API Access Token
+        </div>
+        <p class="mt-2 d-flex align-items-center justify-content-center">
+            This key will allow you to authenticate API requests. &nbsp; <a class="ca_green" target="_blank"
+                href="{{apiDocsURL}}">
+                Learn more</a><br><br>
+        </p>
+        <div class="my-2 d-flex justify-content-center">
+            <div class="link">{{apiToken}}</div>
+            <span class="copy-button" (click)="copyToClipboard()">
+                <img src="assets/img/svg/navbar/clone.png" [ngbTooltip]="'Copy Token'">
+            </span>
+            <span class="refresh-button" (click)="refreshToken()">
+                <i style="cursor: pointer;color: #fff;" [ngbTooltip]="'Refresh Token'" class="fa fa-refresh"></i>
+            </span>
+        </div>
+    </div>
+</ng-template>

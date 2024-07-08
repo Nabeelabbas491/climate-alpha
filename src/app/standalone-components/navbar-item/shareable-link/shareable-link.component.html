@@ -1,0 +1,28 @@
+<div class="body p-2">
+    <div class="title">
+        Portfolio Analytics Sharing
+        <div class="app-tooltip bottom">
+            <img class="info-icon ml-1" src="assets/img/svg/shared/info.svg">
+            <span class="tooltiptext" style="text-transform: unset;">
+                If you make changes to your underlying data before the expiry date, this will reflect in the link you've
+                shared.
+                <a class="anchor" href="https://support.alphageo.ai/knowledge/share-results" target="_blank">Learn
+                    More</a>
+            </span>
+        </div>
+    </div>
+    <div class="text align-items-center d-flex justify-content-between mt-2">
+        <span> Link Expiry Date </span>
+        <ng-select [(ngModel)]="selectedExpiry" [clearable]="false" [searchable]="false" class="select-dropdown">
+            <ng-option *ngFor="let item of expiryList" [value]="item.value">{{item.label}}</ng-option>
+        </ng-select>
+    </div>
+    <div class="col-md-12 d-flex align-items-center p-0 pt-2" id="sharebale-link-btn-container">
+        <div class="btn" [ngClass]="{'disabled' : linkCopied}" (click)="getShareableLink()">
+            <span>
+                <img class="mr-1" src="assets/img/svg/navbar/Outlined.svg" *ngIf="linkCopied">
+                {{ linkCopied ?  'Sharing Link Copied' : 'Copy Shareable Link' }}
+            </span>
+        </div>
+    </div>
+</div>

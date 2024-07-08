@@ -1,0 +1,249 @@
+@import "assets/style/index"; 
+
+.form-control{
+    font-size: 12px;
+    height: 26px;
+}
+
+.properties-selected {
+    @include font(600, 14px, 22px, #009999)
+}
+
+.green-label {
+    font-weight: 700;
+    color: rgba(0, 153, 153, 1);
+}
+
+label {
+    // @include font(700,14px, 22px, 292929);
+    all: unset !important;
+    font-size: 14px !important;
+    margin-bottom: 0 !important;
+}
+
+.filter-header-label {
+    @include font(600, 18px, 22px, #292929)
+}
+
+.white-btn {
+    width: 164px;
+    height: 29px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(500, 14px, 17px, #292929)
+}
+
+.apply-filter-btn {
+    background-color: #009999;
+    font-size: 14px;
+    color: #292929;
+    border-radius: 5px;
+    border: 1px solid #DDDDDD;
+    padding: 1px 8px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    @include font(600, 16px, 20px, #fff);
+}
+
+.apply-filter-btn:active {
+    opacity: 0.8;
+}
+
+.grey-border {
+    border-top: 1px solid rgba(221, 221, 221, 1);
+}
+
+.filter-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grn-clr{
+    color: #009999;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+// for styhling height of ng select. first give static height and then set height through min-heigh
+:host ::ng-deep {
+
+    // ng-select{
+    //     height: 30px;
+    //     min-height: 2px; 
+    // }
+
+    .ng-select .ng-select-container {
+        height: 30px;
+        min-height: 2px;
+    }
+
+    // for styling of selected value from options
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+        padding-top: 2px !important;
+    }
+
+    // for styling of cross icon
+    .ng-select .ng-clear-wrapper {
+        display: none !important;
+    }
+
+    //  for styling of arrow wrapper
+    .ng-select .ng-arrow-wrapper {
+        padding-top: 3px !important;
+    }
+
+    // for styling of border color when focused and option is selected
+    .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+        border-color: #009999 !important;
+    }
+
+    .ng-placeholder {
+        color: rgb(48, 48, 48) !important;
+        font-size: 14px;
+    }
+}
+  
+input[type=checkbox] {
+    accent-color: #009999;
+    cursor: pointer;
+}
+
+.header-optn-text {
+    cursor: pointer;
+    text-decoration: underline;
+    @include font(500, 12px, 15px, #009999)
+}
+
+.filters-modal {
+    .modal-heading {
+        @include font(600, 16px, 18px, #000000);
+        text-align: center;
+    }
+
+    .steric {
+        color: red;
+    }
+
+    label {
+        @include font(400, 12px, 18px, #000000)
+    }
+
+    .input-container {
+        position: relative;
+    }
+
+    .input-limit {
+        @include font(500, 12px, 15px, #B5B5B5);
+        position: absolute;
+        right: 0;
+        top: 25%;
+        padding: 0 14px;
+    }
+
+    .checkbox-optn {
+        @include font(500, 14px, 17px, #292929);
+    }
+
+    .proceed-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 36px;
+        background: #009999;
+        border-radius: 5px;
+        cursor: pointer;
+        @include font(600, 16px, 20px, #FFFFFF)
+    }
+
+    .cancel-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 36px;
+        background: #FFFFFF;
+        border: 1px solid #DDDDDD;
+        border-radius: 5px;
+        cursor: pointer;
+        @include font(600, 16px, 20px, #292929)
+    }
+}
+
+.clear-all-filters {
+    color: #810000;
+    text-decoration: underline
+}
+
+.clear-all-filters:visited, .clear-all-filters:hover {
+    color: #810000;
+    text-decoration: underline
+}
+
+.green-outline {
+    border: 1px solid #009999;
+    padding: 1px 8px; 
+    border-radius: 5px;
+}
+
+.color-810000{
+    color: #810000;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.over-flow{
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.over-flow::-webkit-scrollbar {
+    height: 5px !important;
+    width: 5px !important;
+  }
+  
+  .over-flow::-webkit-scrollbar-thumb {
+    background: #adb5bd;
+  }
+
+::ng-deep .popover-body{
+    .filter-popover{
+
+      .btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+        height: 28px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+      }
+
+      .delete {
+        background-color: #810000;
+        color: #FFFFFF;
+     }
+
+     .cancel {
+         background: #FFFFFF;
+         border: 1px solid #DDDDDD;
+     }
+    }
+}
+

@@ -1,0 +1,10 @@
+<div class="cursor-pointer d-flex align-items-center">
+    <button class="custom-btn report-btn" (click)="pdfDownload()"
+        [disabled]="permissions?.disableDownLoadPdfButton || !filters"
+        [ngbTooltip]="permissions?.disableDownLoadPdfButton ? disableButtonsMsg : '' ">
+        <span *ngIf="!pdfDownloadInProgress"> Download Report</span>
+        <div class="loader-container" *ngIf="pdfDownloadInProgress">
+            <div class="loader"></div>
+        </div>
+    </button>
+</div>

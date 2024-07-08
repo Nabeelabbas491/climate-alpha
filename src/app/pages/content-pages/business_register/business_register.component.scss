@@ -1,0 +1,181 @@
+.btn-primary {
+  color: white !important;
+}
+
+.text-note {
+  font-size: 11px;
+}
+
+.form-control {
+  border-radius: 8px;
+}
+
+.highlight-text {
+  // font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #292929;
+  text-transform: none;
+}
+
+.label {
+  // font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #292929;
+  text-transform: none;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+
+  width: 100%;
+  height: 33px;
+
+  /* CA Green/CA Green 300 */
+
+  background: #009999;
+  border-radius: 5px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#registration {
+  background-image: url('../../../../assets/img/pdf/pdf_header.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  .login-img {
+    padding: 0;
+    background: #0000003b;
+  }
+
+  .login-btn {
+    .btn.btn-outline-primary {
+      &:hover {
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .recover-pass {
+    button.btn.btn-primary {
+      color: #fff !important;
+    }
+  }
+
+  .forgot-password-option,
+  .remember-me {
+
+    a.text-decoration-none,
+    .custom-control-label {
+      font-size: 14px;
+    }
+  }
+}
+
+.grey-overlay {
+  // background: #867e7e8f;
+  background: #7070708f;
+}
+
+.footer-text {
+  //  font-family: "Montserrat", Sans-serif;
+  padding: 0;
+  font-size: 1rem;
+
+}
+
+.password_title_align {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+input[type=checkbox] {
+  accent-color: #009999;
+  cursor: pointer;
+}
+
+#login {
+
+  // background-image: url('../../../../assets/img/gallery/login_bg.jpg');
+  background-image: url('../../../../assets/img/pdf/pdf_header.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  .login-img {
+    padding: 0;
+    background: #0000003b;
+  }
+
+  .login-btn {
+    .btn.btn-outline-primary {
+      &:hover {
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .recover-pass {
+    button.btn.btn-primary {
+      color: #fff !important;
+    }
+  }
+
+  .forgot-password-option,
+  .remember-me {
+
+    a.text-decoration-none,
+    .custom-control-label {
+      font-size: 14px;
+    }
+  }
+}
+
+.login_btn_clr {
+  background: #009999;
+}
+
+.bg-transparent {
+  background: transparent !important;
+}
+
+.grey-overlay {
+  // background: #867e7e8f;
+  background: #7070708f;
+}
+
+.login_text_clr {
+  color: #009999 !important;
+}
+
+.password_title_align {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn {
+  margin-bottom: 5px;
+}

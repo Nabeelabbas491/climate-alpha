@@ -1,0 +1,330 @@
+@import "assets/style/index";
+
+.filter-card {
+  @include card(100%, 100%)
+}
+
+.table-card {
+  @include card(100%, auto);
+  margin-bottom: $consistent-margin-bottom;
+}
+
+.header {
+  .labels {
+    @include font(600, 14px, 22px, #009999)
+  }
+
+  .slash {
+    @include font(600, 14px, 22px, rgba(181, 181, 181, 1))
+  }
+
+  .form-group {
+    width: 100%;
+
+    input {
+      height: 30px;
+      font-size: 12px;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 26%;
+      right: 35%;
+    }
+  }
+
+  .collapse-all-text {
+    @include font(500, 12px, 15px, #292929);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.table-container::-webkit-scrollbar {
+  height: 5px !important;
+  width: 5px !important;
+}
+
+.table-container-portfolios::-webkit-scrollbar {
+  height: 5px !important;
+  width: 5px !important;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #adb5bd;
+}
+
+.table-container-portfolios::-webkit-scrollbar-thumb {
+  background: #adb5bd;
+}
+
+.table-container {
+
+  overflow: auto;
+  transform: rotateX(180deg);
+
+  .table {
+
+    transform: rotateX(180deg);
+    margin: unset;
+    margin-bottom: 5px;
+
+    .img_btn_size {
+      background-color: unset !important;
+      width: 25px;
+      height: 25px;
+      padding-top: 2px;
+      cursor: pointer;
+    }
+
+    .header-th {
+      background-color: #4A7182 !important;
+      border: 1px solid #dee2e6 !important;
+      @include font(600, 12px, 100%, #FFFFFF !important)
+    }
+
+    .w-20px {
+      width: 20px;
+    }
+
+    .border-unset {
+      border: unset !important;
+      background-color: #fff !important;
+    }
+
+    .w-h-22px {
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+    }
+
+    .data-column {
+      border: 1px solid #dee2e6;
+      //   padding: 6px 12px !important;
+    }
+
+    tr {
+      @include font(400, 12px, 100%, #292929 !important)
+    }
+
+    th * {
+      background-color: #4A7182;
+      @include font(600, 12px, 100%, #FFFFFF)
+    }
+
+    .property-name {
+      color: #006666;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    // .data-row:hover {
+    //   background-color:  rgba(0, 153, 153, 0.1);
+    // }
+
+    .hide-row {
+      background-color: #F1F1F3 !important;
+    }
+
+    .expnaded-row {
+      background: rgba(241, 241, 243, 0.5);
+      color: #009999 !important;
+    }
+
+    td {
+      padding: 1rem !important;
+      vertical-align: middle;
+    }
+
+    th {
+      padding: 1rem !important;
+    }
+
+    .form-control {
+      height: 26px;
+    }
+  }
+
+}
+
+:host ::ng-deep {
+
+  // for styhling height of ng select. first give static height and then set height through min-heigh
+  .ng-select.ng-select-single .ng-select-container {
+    height: 30px;
+    min-height: 2px;
+  }
+
+  // for styling of selected value from options
+  .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    padding-top: 2px !important;
+  }
+
+  // for styling of cross icon
+  .ng-select .ng-clear-wrapper {
+    display: none !important;
+  }
+
+  //  for styling of arrow wrapper
+  .ng-select .ng-arrow-wrapper {
+    padding-top: 3px !important;
+  }
+
+  // for styling of border color when focused and option is selected
+  .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    border-color: #009999 !important;
+  }
+}
+
+input[type=checkbox] {
+  accent-color: #009999;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px
+}
+
+// modal css
+
+.modal {
+  text-align: center;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 5.73966px;
+  line-height: 150%;
+  /* identical to box height, or 9px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+
+
+.modal-title {
+  @include font(600, 16px, 24px, rgba(0, 0, 0, 1))
+}
+
+.warning-text {
+  @include font(400, 14px, 16px, rgba(41, 41, 41, 1))
+}
+
+.dropdown-item {
+  color: black;
+  text-decoration: none;
+  // font-family: "Montserrat" !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  color: #292929 !important;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.custom-padding {
+  padding: 30px !important;
+  border-radius: 10px !important;
+  align-items: center;
+}
+
+.modal-header {
+  border-bottom: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.modal-footer {
+  border-top: 0;
+  justify-content: center;
+}
+
+.btn-primary {
+  color: white !important;
+}
+
+.modal-body {
+  color: #009999;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.btn-outline-secondary {
+  color: #000000 !important;
+  font-weight: 600;
+  border: 1px solid #DDDDDD;
+
+  :hover {
+    color: white !important;
+  }
+}
+
+.btn-primary {
+  font-weight: 600;
+}
+
+:host ::ng-deep .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+  border-radius: 10px !important;
+  width: 600px !important;
+}
+
+.fw-400 {
+  font-weight: 400 !important;
+}
+
+.margin-top {
+  position: relative;
+  top: 55px;
+}
+
+.white-btn {
+  height: 29px;
+  background: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 10px;
+  @include font(500, 14px, 17px, #292929)
+}
+
+.w-164px {
+  width: 164px;
+}
+
+
+
+::ng-deep {
+  .my-custom-class .tooltip-inner {
+    color: black;
+    padding: 0.5rem 0.75rem;
+    border-radius: 3px;
+    font-size: 13px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff !important;
+    border: 1px solid #dee2e6;
+    margin-left: 10px;
+    // white-space: nowrap;
+  }
+}

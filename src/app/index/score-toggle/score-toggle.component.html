@@ -1,0 +1,15 @@
+<div class="app-tooltip right">
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="img left-border" (click)="selectToggle(scorekeys.Impact.key)"
+            [ngStyle]="{'background' : selectedScoreType == scorekeys.Impact.key ? '#F1F1F3' : 'unset'}">
+            <img src="assets/img/svg/shared/percentage.svg">
+        </div>
+        <div class="img right-border" (click)="selectToggle(scorekeys.Score.key)"
+            [ngStyle]="{'background' :  selectedScoreType == scorekeys.Score.key ? '#F1F1F3' : 'unset'}">
+            <img src="assets/img/svg/shared/hash.svg">
+        </div>
+    </div>
+    <span class="tooltiptext">
+        Click to toggle between risk score and total impact percentage.
+    </span>
+</div>

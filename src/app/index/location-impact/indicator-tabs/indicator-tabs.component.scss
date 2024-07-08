@@ -1,0 +1,46 @@
+@import "assets/style/index";
+
+
+.options-container {
+
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(221, 221, 221, 1);
+    justify-content: space-between;
+
+    @media only screen and (max-width: 1200px) {
+        justify-content: space-between;
+    }
+
+    .option {
+        @include font(400, 14px, 16px, rgba(41, 41, 41, 1));
+        display: flex;
+        align-items: center;
+        padding: 0 1.6rem;
+        padding-bottom: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+
+        @media only screen and (max-width: 1400px) {
+            padding: 0 12px
+        }
+
+        @media only screen and (max-width: 1200px) {
+            padding: 0 10px 0
+        }
+    }
+
+    .circle {
+        width: 7px;
+        height: 7px;
+        display: inline-block;
+        border-radius: 100%;
+        margin-left: 4px;
+    }
+
+    .selected-option {
+        @include font(600, 14px, 24px, rgba(41, 41, 41, 1));
+        border-bottom: 2px solid black;
+    }
+
+}

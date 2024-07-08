@@ -1,0 +1,301 @@
+<div>
+    <!-- first page -->
+    <section id="first-page" class="page page-container">
+        <header>
+            <app-pdf-header></app-pdf-header>
+        </header>
+        <div class="pdf-page-padding">
+            <section class="mt-4">
+                <div class="fw-700 fz-22 clr-black text-center">
+                    {{reports['risk']?.response?.meta?.user_company ? reports['risk'].response.meta.user_company + ": " : '' }}
+                    {{propertyName}} Report
+                </div>
+                <div class="map-frame mt-4">
+                    <div #leafletMap class="map"></div>
+                </div>
+            </section>
+            <section class="table mt-4" *ngIf="reports['risk']?.response">
+                <div *ngIf="reports['risk']?.response?.meta?.title || reports['risk']?.response?.meta?.address">
+                    <div class="w-25 bg-dark-grn clr-white fw-600 fz-14 p-1 px-2">Property Name</div>
+                    <div class="w-75 bg-white clr-black fw-400 fz-14 p-1 px-2">
+                        {{propertyName}}
+                    </div>
+                </div>
+                <div *ngIf="reports['risk']?.response?.meta?.address">
+                    <div class="w-25 bg-dark-grn clr-white fw-600 fz-14 p-1 px-2">Address</div>
+                    <div class="w-75 bg-white clr-black fw-400 fz-14 p-1 px-2">{{address}}
+                    </div>
+                </div>
+                <div *ngIf="reports['risk']?.response?.meta?.asset_class">
+                    <div class="w-25 bg-dark-grn clr-white fw-600 fz-14 p-1 px-2">Property Type </div>
+                    <div class="w-75 bg-white clr-black fw-400 fz-14 p-1 px-2">
+                        {{reports['risk']?.response?.meta?.asset_class}}
+                    </div>
+                </div>
+                <div>
+                    <div class="w-25 bg-dark-grn clr-white fw-600 fz-14 p-1 px-2">Climate Model</div>
+                    <div class="w-75 bg-white clr-black fw-400 fz-14 p-1 px-2">CMIP6 Ensemble</div>
+                </div>
+                <div>
+                    <div class="w-25 bg-dark-grn clr-white fw-600 fz-14 p-1 px-2">Climate Scenario</div>
+                    <div class="w-75 bg-white clr-black fw-400 fz-14 p-1 px-2">{{selectedScenario}}</div>
+                </div>
+                <div>
+                    <div class="w-25 bg-dark-grn clr-white fw-600 fz-14 p-1 px-2">Access Date</div>
+                    <div class="w-75 bg-white clr-black fw-400 fz-14 p-1 px-2">{{date | date:'dd/MM/yyyy'}}</div>
+                </div>
+                <div>
+                    <div class="w-25 bg-dark-grn clr-white fw-600 fz-14 p-1 px-2">Data Version</div>
+                    <div class="w-75 bg-white clr-black fw-400 fz-14 p-1 px-2">{{dataVersion}}</div>
+                </div>
+            </section>
+            <section class="mt-4">
+                <div class="fw-700 fz-22 line-h-24 clr-teal">OVERVIEW</div>
+                <div class="fw-400 fz-15 clr-black mt-2 line-h-22" style="font-kerning: normal;">
+                    This report assesses the potential impact on an asset’s location from physical climate hazards under
+                    multiple timeframes and scenarios. It provides the following information:
+                    <br> <br>
+                    <ul class="mb-0">
+                        <li class="line-h-22">Physical Risk: A summary of the projected climate risks across six
+                            indicators – Heat Stress,
+                            Hurricane Wind, Drought, Inland Flooding, Coastal Flooding, and Wildfire – from present
+                            until 2100. </li>
+                        <li class="line-h-22">Resilience: A summary of six resilience indicators – Infrastructure,
+                            Energy Transition, Energy Reliability, Social Robustness, Economic Momentum, and Location
+                            Wellness – that correspond to a location’s preparedness for physical climate risks.
+                            Currently, these indicators are only available for locations in the U.S. and Canada.</li>
+                    </ul>
+                </div>
+                <div class="fw-700 fz-22 line-h-24 clr-teal mt-4">METHODOLOGY</div>
+                <div class="fw-400 fz-15 clr-black mt-2 line-h-22">
+                    AlphaGeo gathers raw, unstructured climate, socio-economic, and market data from an array of
+                    public and private sources. The data is engineered into curated features that offer distilled
+                    insights into the impact of climate change. Sets of related features are then consolidated into
+                    thematic indicators for calculation and analysis. These thematic indicators are bucketed into two
+                    main categories: Risk and Resilience.
+                    <br><br>
+                    Clusters of risk and resilience indicators are fed into a pipeline that aggregates them into two
+                    quantitative coefficients: Physical Impact Coefficient and Resilience Adjusted Impact Coefficient.
+                    <span class="fw-700">Physical Impact</span> projects the net financial impact of physical climate
+                    risks on a given location at a
+                    given time in the future and under a given climate change scenario and is expressed as a percent
+                    change from a location’s projected market growth rate.
+                    <span class="fw-700">Resilience-Adjusted Impact</span> modifies the
+                    Physical Impact coefficient with the location’s resilience profile to account for its capacity to
+                    offset physical climate risks. (It is also represented as a percent change from that location’s
+                    projected growth rate.)
+                    <br> <br>
+                    The full methodology can be found here: <a
+                        href=" https://docs.alphageo.ai/whitepapers/alphageo-climate-risk-index" target="_blank"
+                        class="clr-teal underline"> https://docs.alphageo.ai/whitepapers/alphageo-climate-risk-index</a>
+                </div>
+            </section>
+        </div>
+        <footer class="px-0">
+            <app-pdf-footer [pageNumber]="1"></app-pdf-footer>
+        </footer>
+    </section>
+    <!-- overview pages -->
+    <div *ngFor="let item of reports | keyvalue : returnZero">
+        <section class="page page-container summary-page" *ngIf="item.value">
+            <header>
+                <app-pdf-header
+                    [title]="item.value.type == 'risk' ? 'PHYSICAL RISK OVERVIEW' : 'RESILIENCE-ADJUSTED RISK OVERVIEW' ">
+                </app-pdf-header>
+            </header>
+            <section class="mt-4 pdf-page-padding">
+                <ng-container [ngSwitch]="item.value.type">
+                    <div *ngSwitchCase="'risk'">
+                        <div class="fw-700 fz-22 line-h-24 clr-teal">Physical Risk Overview </div>
+                        <div class="fw-500 fz-15 line-h-22 clr-black mt-3">
+                            Physical Risk quantifies the vulnerability of a specific location to particular types of
+                            natural hazards influenced by climate change. Elevated risk levels suggest that the
+                            likelihood of occurrence of a given hazard is increased, and that each event may be more
+                            severe in the future.
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'resilience'">
+                        <div class="fw-700 fz-22 line-h-24 clr-teal"> Resilience-adjusted Risk </div>
+                        <div class="fw-500 fz-15 line-h-22 clr-black mt-3">
+                            Resilience-adjusted Risk recalibrates Physical Climate Risk by incorporating local
+                            adaptation features. By implementing hazard-specific adaptation measures, a location can
+                            decrease its vulnerability, reduce its risk and enhance its overall performance. ​
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="d-flex align-items-center mt-4 px-20">
+                    <div class="w-44">
+                    </div>
+                    <div class="d-flex align-items-end flex-column w-14" *ngFor="let m of riskFeatures">
+                        <span class="fw-600 fz-14 line-h-14 black">{{m.label}}</span>
+                        <span class="fw-400 fz-13 line-h-14 black pt-1">{{m?.year}}</span>
+                    </div>
+                </div>
+                <div class="indicator-bar mt-4 bg-white height-unset">
+                    <div class="d-flex align-items-center border-bottom py-3">
+                        <div class="w-44">
+                            <div class="fw-600 fz-17 line-h-20 ls-1">
+                                {{ item.value.type == 'risk' ? 'Overall Physical Risk Score' : 'Overall Resilience-adjusted Risk Score' }}
+                            </div>
+                            <div class="fw-400 fz-14"> (0-100) </div>
+                        </div>
+                        <div class="w-14 d-flex justify-content-end" *ngFor="let m of riskFeatures">
+                            <div class="fw-600 fz-44 d-flex px-2 clr-grey"
+                                [ngStyle]="{'color' : colors[item.value.response.Headline.Cat[m.key]]?.mainColor}">
+                                {{item.value.response.Headline[selectedScoreType][m.key]  | number: '1.0-0' }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center py-3">
+                        <div class="w-44">
+                            <div class="fw-600 fz-17 line-h-20">
+                                National Average
+                                {{ item.value.type == 'risk' ? 'Physical Risk Score' : 'Resilience-adjusted Risk Score'}}
+                            </div>
+                            <div class="fw-400 fz-14"> (0-100) </div>
+                        </div>
+                        <div class="w-14 d-flex justify-content-end" *ngFor="let m of riskFeatures">
+                            <div class="fw-600 fz-44 d-flex px-2 clr-grey">
+                                {{item.value.nationalBenchMark[selectedScoreType][m?.key]?.mean}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="indicator-bar mt-2 height-unset py-3"
+                    *ngFor="let indicator of item.value.response['Indicators']">
+                    <div class="d-flex align-items-center">
+                        <div class="w-44">
+                            <div class="fw-600 fz-17 line-h-24"> {{indicator.headline.Title}} </div>
+                            <div class="fw-700 fz-14"
+                                [ngStyle]="{ 'color' : colors[indicator.headline.Cat[indicator.headline['Overall Cat']]]?.mainColor}">
+                                {{indicator.headline.Cat[indicator.headline['Overall Cat']]}}
+                            </div>
+                        </div>
+                        <div class="w-14 d-flex justify-content-end" *ngFor="let m of riskFeatures">
+                            <div class="score" [ngStyle]="{
+                                        'background-color' : colors[indicator.headline.Cat[m.key]]?.darkBackground,
+                                        'border-color' : colors[indicator.headline.Cat[m.key]]?.mainColor }">
+                                <div class="d-flex align-items-baseline px-2">
+                                    <span *ngIf="scorekeys.Impact.key == selectedScoreType">
+                                        {{ indicator.headline[selectedScoreType][m.key] | number: '1.0-2'}}
+                                    </span>
+                                    <span *ngIf="scorekeys.Score.key == selectedScoreType">
+                                        {{ indicator.headline[selectedScoreType][m.key] | number: '1.0-0'}}
+                                    </span>
+                                    <span class="total">{{scorekeys[selectedScoreType]?.unit}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="px-0">
+                <app-pdf-footer [pageNumber]=" item.value.overviewPageNumber"></app-pdf-footer>
+            </footer>
+        </section>
+    </div>
+    <!-- indicator Pages -->
+    <div *ngFor="let indicator of listIndicators; let i = index">
+        <!-- first page -->
+        <section class="indicator-first-page page page-container">
+            <header>
+                <app-pdf-header [title]="indicator.title">
+                </app-pdf-header>
+            </header>
+            <section class="pdf-page-padding mt-4 indicators">
+                <div class="fw-700 fz-22 line-h-24 clr-teal"> {{indexToAlphabet[i+1]}}.
+                    {{indicator.title}}
+                </div>
+                <div class="fw-500 fz-15 line-h-22 clr-black mt-3">
+                    {{pdfContent[indicator.title].explainer}} </div>
+                <div class="indicator-bar bg-slate mt-4 height-unset" *ngFor="let item of reportTypes">
+                    <div class="d-flex align-items-center py-3">
+                        <div class="w-44">
+                            <div class="fw-700 fz-17 line-h-24">{{indicator.title}} <span
+                                    class="risk-type-label fw-400">
+                                    {{  item == 'risk' ? 'Physical' : 'Resilience-adjusted' }}</span> </div>
+                            <div class="fw-700 fz-14"
+                                [ngStyle]="{ 'color' : colors[indicator[item].headline.Cat[indicator[item].headline['Overall Cat']]]?.mainColor}">
+                                {{indicator[item].headline.Cat[indicator[item].headline['Overall Cat']]}}
+                            </div>
+                        </div>
+                        <div class="w-14 d-flex justify-content-end" *ngFor="let m of riskFeatures">
+                            <div class="score" [ngStyle]="{
+                                'background-color' : colors[indicator[item].headline.Cat[m.key]]?.darkBackground,
+                                'border-color' : colors[indicator[item].headline.Cat[m.key]]?.mainColor }">
+                                <div class="d-flex align-items-baseline px-2">
+                                    <span *ngIf="scorekeys.Impact.key == selectedScoreType">
+                                        {{ indicator[item].headline[selectedScoreType][m.key] | number: '1.0-2'}}
+                                    </span>
+                                    <span *ngIf="scorekeys.Score.key == selectedScoreType">
+                                        {{ indicator[item].headline[selectedScoreType][m.key] | number: '1.0-0'}}
+                                    </span>
+                                    <span class="total">{{scorekeys[selectedScoreType]?.unit}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-0 w-full border-slate">
+                    <div class="d-flex align-items-center py-3">
+                        <div class="w-44">
+                            <div class="fw-400 fz-14 line-h-18">National Average</div>
+                        </div>
+                        <div class="w-14 d-flex justify-content-end" *ngFor="let m of riskFeatures">
+                            <div class="score">
+                                <div class="d-flex align-items-baseline px-2">
+                                    <span>
+                                        {{reports[item].nationalBenchMark[selectedScoreType][m?.key]?.mean}}
+                                    </span>
+                                    <span class="total">{{scorekeys[selectedScoreType]?.unit}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-3">
+                <div>
+                    <div class="fw-700 fz-22 line-h-24 clr-teal mb-3">Best Practices</div>
+                    <div class="fw-400 fz-15 line-h-22 clr-black"
+                        *ngFor="let prcatice of pdfContent[indicator.title].bestPractices; let j = index">
+                        <div class="d-flex">
+                            <span class="pr-2">{{j+1}}.</span> <span>{{prcatice}}</span>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </section>
+            <footer class="px-0">
+                <app-pdf-footer [pageNumber]="indicator.pageNumber[0]"></app-pdf-footer>
+            </footer>
+        </section>
+        <!-- second page  -->
+        <section class="page page-container">
+            <header>
+                <app-pdf-header [title]="indicator.title">
+                </app-pdf-header>
+            </header>
+            <div class="pdf-page-padding mt-4">
+                <div class="fw-700 fz-22 line-h-24 clr-teal"> {{indexToAlphabet[i+1]}}.
+                    {{indicator.title}}
+                </div>
+                <div class="fw-500 fz-15 line-h-22 clr-black mt-3">
+                    {{pdfContent[indicator.title].explainer}} </div>
+                <div class="mt-4">
+                    <div>
+                        <app-physical-impact-features [selectedIndicator]="indicator.risk"
+                            [label]="'PHYSICAL RISK DATA'" [isPdf]="true">
+                        </app-physical-impact-features>
+                    </div>
+                    <div>
+                        <app-res-adj-impact-features [selectedIndicator]="indicator.resilience"
+                            [label]="'RESILIENCE DATA'" [isPdf]="true">
+                        </app-res-adj-impact-features>
+                    </div>
+                </div>
+            </div>
+            <footer class="px-0">
+                <app-pdf-footer [pageNumber]="indicator.pageNumber[1]"></app-pdf-footer>
+            </footer>
+        </section>
+    </div>
+</div>

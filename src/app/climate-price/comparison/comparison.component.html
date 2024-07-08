@@ -1,0 +1,27 @@
+<div>
+    <section class="mb-18">
+        <app-climate-price-header [selectedSection]="'Comparison'">
+            <section class="mt-1">
+                <div class="items-list-bar">
+                    <div class="d-flex align-items-center h-100 secondary-scroll px-2">
+                        <div *ngFor="let item of comparisonList; let i = index" class="list-item mx-1"
+                            (click)="selectedFilter = item; loadComponent()"
+                            [ngClass]="{'selected' : item.id == selectedFilter.id }">
+                            {{ item.address || item.title + ' (' + item.assetsCount + ')' }}
+                            <img class="ml-1" src="assets/img/svg/climate_price/comparison/cross.svg"
+                                (click)="remove(item); $event.stopPropagation()">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </app-climate-price-header>
+    </section>
+    <section class="margin-top" id="comparison">
+        <div class="mb-18" *ngIf="selectedFilter.type == 'Multi-asset View' ">
+            <app-multiple-properties></app-multiple-properties>
+        </div>
+        <div class="mb-85" *ngIf="selectedFilter.type == 'Single-Asset' ">
+            <app-single-property></app-single-property>
+        </div>
+    </section>
+</div>

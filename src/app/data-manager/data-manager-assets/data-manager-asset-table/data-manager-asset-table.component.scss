@@ -1,0 +1,1015 @@
+@import "assets/style/index";
+
+@media print {
+    .table_header_row {
+        background: #4A7182 !important;
+        color: black !important;
+    }
+
+    .table_data_pdf_lh {
+        line-height: 10px !important;
+    }
+}
+
+.unSelect-all-text {
+    @include font(500, 12px, 15px, #292929);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@mixin table_content($font_weight, $line_height) {
+    // font-family: 'Montserrat';
+    font-size: 12px;
+    font-style: normal;
+    letter-spacing: 0em;
+    text-align: center;
+    font-weight: $font_weight;
+    line-height: $line_height;
+}
+
+td {
+    // font-family: 'Montserrat';
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+    white-space: nowrap;
+}
+
+.table_header_row th {
+    background-color: #4A7182;
+    color: white;
+    border-bottom: 0;
+    border-top: 0;
+    // border-left: 1px solid #fff !important;
+    // border-right: 1px solid #fff !important;
+}
+
+.add_btn_position {
+    position: absolute;
+    // bottom: 8px;
+    top: -60%
+}
+
+.table_heading_label {
+    @include table_content(600, 22px);
+    vertical-align: unset;
+}
+
+.table_data {
+    @include table_content(400, 20px);
+}
+
+table {
+    width: 100%;
+}
+
+.card-title {
+    color: teal;
+    // filter: drop-shadow(10px 10px 15px teal);
+    font-weight: 600 !important;
+}
+
+.apply_btns {
+    background: red;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.apply_btns2 {
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.apply_btns2:hover {
+    background: #009DA0;
+    color: #fff;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.popover-body {
+    text-align: end !important;
+}
+
+.baseLineValue_center {
+    width: 6.4rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+::ng-deep .ngx-pagination .current {
+    background-color: #4A7182 !important;
+    border-radius: 4px !important;
+}
+
+::ng-deep .ngx-pagination {
+    font-size: 12px;
+}
+
+.pagination_btn {
+    padding: 0.5rem;
+    user-select: none;
+    color: #fefefe;
+    cursor: pointer;
+    // background-color: #4A7182 !important;
+    border-radius: 4px !important;
+    font-size: 12px;
+}
+
+
+
+.over-flow {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    transform: rotateX(180deg);
+    // max-height: 475px;
+    // padding-right: 5px !important;
+}
+
+.table {
+    transform: rotateX(180deg);
+}
+
+.over-flow-portfolios {
+    overflow-x: auto;
+    max-height: 505px;
+    padding: 18px;
+}
+
+// .over-flow-height{
+//     height:54vh;
+// }
+
+.over-flow::-webkit-scrollbar {
+    height: 7px !important;
+    width: 7px !important;
+
+}
+
+.over-flow-portfolios::-webkit-scrollbar {
+    height: 7px !important;
+    width: 7px !important;
+
+}
+
+.over-flow::-webkit-scrollbar-thumb {
+    background: #adb5bd;
+
+}
+
+.over-flow-portfolios::-webkit-scrollbar-thumb {
+    background: #adb5bd;
+
+}
+
+.overflow-y {
+    overflow-y: auto;
+    max-height: 275px;
+}
+
+tbody {
+    overflow-y: scroll;
+    max-height: 250px;
+}
+
+// for styhling height of ng select. first give static height and then set height through min-heigh
+:host ::ng-deep .ng-select.ng-select-single .ng-select-container {
+    height: 29px;
+    min-height: 2px;
+}
+
+:host ::ng-deep .table-edit-select.ng-select.ng-select-single .ng-select-container {
+    height: 29px;
+    min-height: 2px;
+    font-size: 12px;
+}
+
+// for styling of selected value from options
+:host ::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    padding-top: 2px !important;
+}
+
+// for styling of cross icon
+:host ::ng-deep .ng-select .ng-clear-wrapper {
+    // display: none !important;
+    top: 10% !important;
+    left: 4% !important;
+}
+
+//  for styling of arrow wrapper
+:host ::ng-deep .ng-select .ng-arrow-wrapper {
+    padding-top: 3px !important;
+}
+
+// for styling of border color when focused and option is selected
+:host ::ng-deep .ng-select-focused.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    border-color: #009999 !important;
+}
+
+:host ::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    font-size: 12px;
+}
+
+:host ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+:host ::ng-deep .ng-dropdown-panel .scroll-host::-webkit-scrollbar-thumb {
+    background: #adb5bd !important;
+}
+
+:host ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    text-align: left !important;
+}
+
+.fz-12 {
+    font-size: 12px;
+}
+
+
+.column {
+    vertical-align: middle;
+}
+
+
+
+
+
+// 
+
+
+:host ::ng-deep {
+    .p-paginator {
+        .p-paginator-current {
+            margin-left: auto;
+        }
+    }
+
+    .p-progressbar {
+        height: .5rem;
+        background-color: #D8DADC;
+
+        .p-progressbar-value {
+            background-color: #607D8B;
+        }
+    }
+
+    .table-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .p-calendar .p-datepicker {
+        min-width: 25rem;
+
+        td {
+            font-weight: 400;
+        }
+    }
+
+    .p-datatable.p-datatable-customers {
+        .p-datatable-header {
+            padding: 1rem;
+            text-align: left;
+            font-size: 1.5rem;
+        }
+
+        .p-paginator {
+            padding: 1rem;
+        }
+
+        .p-datatable-thead>tr>th {
+            text-align: left;
+        }
+
+        .p-datatable-tbody>tr>td {
+            cursor: auto;
+        }
+
+        .p-dropdown-label:not(.p-placeholder) {
+            text-transform: uppercase;
+        }
+    }
+
+    /* Responsive */
+    .p-datatable-customers .p-datatable-tbody>tr>td .p-column-title {
+        display: none;
+    }
+}
+
+:host ::ng-deep {
+    .p-paginator {
+        .p-paginator-current {
+            margin-left: auto;
+        }
+    }
+
+    .p-progressbar {
+        height: .5rem;
+        background-color: #D8DADC;
+
+        .p-progressbar-value {
+            background-color: #607D8B;
+        }
+    }
+
+    .table-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .p-calendar .p-datepicker {
+        min-width: 25rem;
+
+        td {
+            font-weight: 400;
+        }
+    }
+
+    .p-datatable.p-datatable-customers {
+        .p-datatable-header {
+            padding: 1rem;
+            text-align: left;
+            font-size: 1.5rem;
+        }
+
+        .p-paginator {
+            padding: 1rem;
+        }
+
+        .p-datatable-thead>tr>th {
+            text-align: left;
+        }
+
+        .p-datatable-tbody>tr>td {
+            cursor: auto;
+        }
+
+        .p-dropdown-label:not(.p-placeholder) {
+            text-transform: uppercase;
+        }
+    }
+
+    /* Responsive */
+    .p-datatable-customers .p-datatable-tbody>tr>td .p-column-title {
+        display: none;
+    }
+}
+
+.filters-box {
+    box-shadow: 0px 0px 5px 3px rgb(0 0 0 / 8%) !important;
+}
+
+input[type=checkbox] {
+    accent-color: #009999;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+input[type=radio] {
+    accent-color: #009999;
+    cursor: pointer;
+}
+
+// .btn{
+//     display: flex;
+//     // flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     // padding: 5px 16px;
+//     // gap: 8px;
+//     font-size: 12px !important;
+//     width: 120px;
+
+//     background: #009999;
+//     border-radius: 5px;
+//     // flex: none;
+//     // order: 0;
+//     // flex-grow: 0;
+//     background-color: #009999;
+//     // padding: 15px 20px 15px 20px;
+//     // height: 47px;
+//     border-radius: 4px;
+//     color: #fff !important;
+//     font-size: 12px;
+//     line-height: 1;
+//     fill: #fff;
+//     text-align: center;
+//     font-weight: 600;
+//     letter-spacing: 1px;
+//     cursor: pointer;
+//     height: 24px !important;
+// }
+.fw-600 {
+    font-weight: 600 !important;
+}
+
+.asterisk_input::after {
+    content: " * ";
+    position: absolute;
+    right: 0px;
+
+    color: #e32;
+    margin: -3px 0px 0px -23px;
+    font-size: large;
+    padding: 0 0 0 0;
+}
+
+.asterisk_select::after {
+    content: " * ";
+    position: absolute;
+    right: 0px;
+    top: 0;
+    color: #e32;
+    margin: -3px 0px 0px -23px;
+    font-size: large;
+    padding: 0 0 0 0;
+}
+
+.ng-select {
+    min-width: 120px;
+}
+
+button:focus {
+    outline: #009999;
+}
+
+.icon-disabled {
+    color: #636464;
+}
+
+.icon-enabled {
+    color: #009999;
+    ;
+}
+
+.text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media print {
+    td {
+        font-size: 12px;
+    }
+
+    th {
+        font-size: 12px;
+    }
+
+    .pdf_none {
+        display: none;
+    }
+
+
+}
+
+.filter-box-border {
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+}
+
+.link-btn {
+
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    /*optional*/
+    // font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #4A7182;
+    ;
+    text-decoration: underline;
+    cursor: pointer;
+    bottom: 0;
+
+}
+
+label {
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+}
+
+ng-select {
+    font-size: 12px;
+    min-width: 180px !important;
+}
+
+th {
+    font-size: 12px;
+    // font-family: Montserrat;
+}
+
+.table-striped {
+    background-color: #F1F1F3;
+}
+
+.prefix {
+    // font-family: 'Montserrat';
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    background: #fff;
+    border: 1px solid #a0a0a0;
+    border-radius: 4px;
+    padding-left: 0.5rem;
+    overflow: hidden;
+    // font-family: sans-serif;
+}
+
+.input-box input {
+    flex-grow: 1;
+    height: 25px;
+    width: 75%;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    // font-family: Montserrat;
+}
+
+.input-box input:focus {
+    outline: none;
+    border: none;
+}
+
+::ng-deep .ng-select.filterselect .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
+    display: none !important;
+}
+
+.nav-tabs>li>a {
+    border: 0;
+    text-decoration: none !important;
+    color: #616161;
+    font-size: 12px;
+
+
+}
+
+.nav-tabs .nav-link.active {
+    border: 0;
+    bottom: 1px;
+    border-bottom: 2px solid #292929;
+    color: black;
+    font-weight: 500;
+}
+
+a.dropdown-item {
+    color: black;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+a.active .dropdown-item {
+    background-color: #B5B5B5;
+}
+
+.red {
+    color: #810000 !important;
+}
+
+.nav-link::after {
+    display: none;
+}
+
+.hide-table-border {
+    border: 0;
+    ;
+}
+
+.sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: white;
+    border: 0;
+    padding-right: 6px;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    border: 0;
+}
+
+
+.portfolio_banner {
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    font-size: 12px;
+    color: #616161;
+
+}
+
+.portfolio_banner p {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.portfolio_banner textarea {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.close {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
+}
+
+.edit_height {
+    height: 115px !important;
+
+}
+
+.portfolio_input {
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.green {
+    background-color: #009999;
+}
+
+.green-ellipse {
+    position: relative;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    left: -18px;
+    top: 5px;
+    border-radius: 50%;
+    background: rgba(74, 201, 201, 0.2) !important;
+}
+
+.lightgreen-elispse {
+
+    position: relative;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    left: -18px;
+    top: 5px;
+    border-radius: 50%;
+    background: #4AC9C9;
+    opacity: 10%;
+}
+
+.optionalfields {
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+}
+
+.border-left {
+    border: 0 !important;
+}
+
+.img_btn_size {
+    width: 25px;
+    height: 25px;
+    padding-top: 2px;
+    cursor: pointer;
+}
+
+.table-edit-input {
+    margin-left: 5px;
+    border: 0.5px solid #D9D9D9;
+    border-radius: 2px;
+
+    top: calc(50% - 18px/2);
+    height: 30px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #616161;
+}
+
+::ng-deep .highlight-green {
+    /*need ng-deep for modal*/
+    outline: 3px solid #4AC9C9;
+    outline-offset: 10px;
+    border-radius: 2px;
+
+}
+
+.highlight-green {
+    outline: 3px solid #4AC9C9;
+    outline-offset: 10px;
+    border-radius: 2px;
+
+}
+
+//   .grey-container > *:not(.highlight) {
+//     opacity: 0.5 !important;
+//     z-index: 9 !important;
+//     top:0;
+
+// width: 90vw;
+// height: 90vh;
+//     background-color: #000 !important;
+//   }
+
+#menu1 {
+    margin: 0 !important;
+}
+
+.modal-footer .small-font.btn {
+    font-size: 10px !important;
+    font-weight: 400;
+    width: auto;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.all-portfolios-button {
+    padding-right: 10px;
+    padding-left: 10px;
+    border: none;
+    bottom: -3px;
+    position: relative;
+}
+
+
+// modal css
+
+.modal {
+    text-align: center;
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 5.73966px;
+    line-height: 150%;
+    /* identical to box height, or 9px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-title {
+    @include font(600, 16px, 24px, rgba(0, 0, 0, 1))
+}
+
+.warning-text {
+    @include font(400, 14px, 16px, rgba(41, 41, 41, 1))
+}
+
+.dropdown-item {
+    color: black;
+    text-decoration: none;
+    //   font-family: "Montserrat" !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.custom-padding {
+    padding: 30px !important;
+    border-radius: 10px !important;
+    align-items: center;
+}
+
+.modal-header {
+    border-bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.link {
+    color: #4A7182;
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.cursor-help {
+    cursor: help !important;
+}
+
+.modal-footer {
+    border-top: 0;
+    justify-content: center;
+}
+
+.btn-primary {
+    color: white !important;
+}
+
+.modal-body {
+    color: #009999;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.btn-outline-secondary {
+    color: #000000 !important;
+    font-weight: 600;
+    border: 1px solid #DDDDDD;
+
+    :hover {
+        color: white !important;
+    }
+}
+
+//   .btn-outline-secondary:hover{
+//     color: white !important;
+//   }
+
+.btn-primary {
+    font-weight: 600;
+}
+
+.add-icon {
+    position: absolute;
+    top: 10%;
+    left: 4%;
+    cursor: pointer;
+}
+
+:host ::ng-deep .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+    border-radius: 10px !important;
+    width: 600px !important;
+}
+
+.fw-400 {
+    font-weight: 400 !important;
+}
+
+.white-btn {
+    background-color: white;
+    font-size: 12px;
+    color: #616161;
+    border-radius: 5px;
+    border: 1px solid #DDDDDD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    width: 400px;
+}
+
+.table {
+    .form-control {
+        height: 30px;
+        width: -webkit-fill-available;
+        font-size: 12px;
+    }
+
+    .form-control:focus {
+        border-color: #ced4da !important;
+        box-shadow: unset !important;
+    }
+}
+
+.edit-column {
+    background-color: white !important;
+    border: 0 !important;
+}
+
+.steric {
+    font-size: 18px;
+    color: red;
+    position: absolute;
+    top: 0%;
+    right: 2%;
+}
+
+.failed-icon-tooltip {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #009999;
+}
+
+.custom-tooltip {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: black;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    position: absolute;
+    left: 65%;
+    top: 10%;
+    border: 1px solid #dee2e6;
+}
+
+.header-checkbox {
+    background-color: white;
+    border-radius: 2px;
+    width: 14px;
+    user-select: none;
+    vertical-align: middle;
+    display: inline-block;
+    height: 14px
+}
+
+.data-row {
+    height: 75px;
+
+    td {
+        white-space: nowrap;
+    }
+}
+
+%sticky-col {
+    position: -webkit-sticky;
+    position: sticky;
+    // background-color: white;
+    z-index: 2;
+    top: 0
+}
+
+.first-col {
+    @extend %sticky-col;
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    background-color: #fff
+}
+
+.zero-width {
+    width: unset;
+    min-width: unset;
+    max-width: unset;
+}
+
+.second-col {
+    @extend %sticky-col;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+}
+
+.third-col {
+    @extend %sticky-col;
+    width: 90px;
+    min-width: 90px;
+    max-width: 90px;
+}
+
+
+:host ::ng-deep .unclassified-tooltip .tooltip-inner {
+    max-width: unset;
+    width: 250px !important;
+    white-space: nowrap !important;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.rotate-0 {
+    transform: rotate(0deg);
+}
+
+.tooltiptext {
+    right: 130%;
+    top: -40px;
+}

@@ -1,0 +1,19 @@
+@import "assets/style/index";
+
+.filter-card{
+    @include card(100%, 100%)
+}
+
+.table-card{
+    @include card(100%, auto);
+    margin-bottom: $consistent-margin-bottom;
+}
+
+.map-card{
+    @include card(100%, 100%)
+}
+
+.margin-top{
+  position: relative;
+  top: 45px;
+}

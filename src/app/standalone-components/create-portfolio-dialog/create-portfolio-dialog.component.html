@@ -1,0 +1,44 @@
+<ng-template #newTier1Modal class="modal-content">
+    <div class="custom-padding">
+        <div class="modal-header d-flex justify-content-center p-0">
+            <h5 class="modal-title font-weight-bold">Create New Tier 1</h5>
+        </div>
+        <div class="modal-body text-left px-0">
+
+            <span class="pb-2" *ngIf="modalConfig.modalContent">
+                <div *ngFor="let line of  modalConfig.modalContent.split('\n') ">
+                    <span style="color: #009999;">✓</span> {{line}}
+                </div>
+            </span>
+
+            <label class="asterisk_input black mb-1 mt-2 pt-2 text-left fw-400">
+                Name
+            </label>
+            <input type="text" class="form-control mb-2" [(ngModel)]="name" maxlength="30" required
+                placeholder="Enter a name, max 30 characters">
+            <label class=" black mb-1 mt-2 pt-2 text-left fw-400">
+                Description
+            </label>
+            <fieldset class="form-group" style="position: relative;">
+                <textarea #textarea [(ngModel)]="description"
+                    class="form-control d-flex ng-pristine ng-valid ng-touched" minlength="0" maxlength="300"
+                    placeholder="Enter description max 300 characters" rows="3" ng-reflect-maxlength="300"
+                    ng-reflect-name="preset_description">  </textarea>
+                <span *ngIf="description" class="textarea-limit">{{description.length}} / 300</span>
+
+            </fieldset>
+        </div>
+        <div class="modal-footer p-0">
+            <button type="button" class="btn btn-primary white fw-600" [ngClass]="{'disabled' : !name.length  }"
+                (click)="submit()" *ngIf="modalConfig.hideCloseButton === undefined || !modalConfig.hideCloseButton()"
+                [disabled]="!name">
+                Proceed
+            </button>
+            <button type="button" class="btn btn-outline-secondary" (click)="dismiss()"
+                *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()"
+                [disabled]="modalConfig.disableDismissButton !== undefined && modalConfig.disableDismissButton()">
+                Cancel
+            </button>
+        </div>
+    </div>
+</ng-template>

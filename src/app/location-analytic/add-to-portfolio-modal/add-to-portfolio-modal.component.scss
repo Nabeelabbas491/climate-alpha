@@ -1,0 +1,14 @@
+@import "assets/style/index";
+
+.label{
+    @include font(600, 16px, 24px, rgba(0, 0, 0, 1))
+}
+
+.location-name{
+    @include font(400, 14px, 17px, rgba(0, 0, 0, 1))
+}
+
+.btn{
+    height: 29px;
+    width: 100px
+}
